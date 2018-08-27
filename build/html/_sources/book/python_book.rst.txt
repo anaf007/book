@@ -2,11 +2,12 @@ python相关书籍
 ==================
 
 
+python
+-----------------
 .. toctree::
     :maxdepth: 0
 
     python_book/python_core 
-    python_book/python_web_development
     python_book/python_in_practice
     python_book/python_suggestion
     python_book/python_cookbook
@@ -22,3 +23,16 @@ python相关书籍
     python_book/python_scripting_for_arcgis
     python_book/abaqus_python
     python_book/the_hacker_guide_to_python
+
+
+web开发
+-----------------
+.. toctree::
+    :maxdepth: 0  
+
+    python_book/python_web_development
+
+
+
+客户端开发(wxpython/qt)
+------------------------

@@ -2,13 +2,15 @@
    sphinx-quickstart on Sun Aug 26 17:52:41 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+   :glob:为不显示子栏目
    
-
+======================
 Python书籍
 ======================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
+    :glob:
 
     book/python_book
 
@@ -21,6 +23,7 @@ Python书籍
     :maxdepth: 0
 
     book/security_book
+
     
 
 
@@ -30,13 +33,18 @@ ASM/C/C++书籍
 .. toctree::
     :maxdepth: 0
 
-    asm_c_cjj_book
+    book/asm_c_cjj_book
+
 
 
 
 算法相关
 ======================
 
+.. toctree::
+    :maxdepth: 0
+
+    book/algorithm
     
 
 
@@ -47,6 +55,8 @@ ASM/C/C++书籍
 .. toctree::
     :maxdepth: 0
 
+    book/database
+
 
 
 深度学习书籍
@@ -55,12 +65,17 @@ ASM/C/C++书籍
 .. toctree::
     :maxdepth: 0
 
-   
-Indices and tables
-==================
+    book/deep
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+ 
+其他笔记
+======================
+
+.. toctree::
+    :maxdepth: 2
+    :glob:
+
+    doc/othor
+
 
 
