@@ -59,23 +59,38 @@ ASM/C/C++书籍
 
 
 
-深度学习书籍
-======================
+人工智能/机器学习/深度学习/数据挖掘相关书籍
+===============================================
 
 .. toctree::
     :maxdepth: 0
 
-    book/deep
+    book/ai
+
+
+数学书
+====================================
+
+.. toctree::
+    :maxdepth: 0
+
+    book/mathematics
+
 
  
-其他笔记
+笔记
 ======================
 
 .. toctree::
     :maxdepth: 2
     :glob:
 
-    doc/othor
+    note/othor
+
+
+.. toctree::
+    :maxdepth: 0
 
 
 
+.. include:: ad.rst

@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Flask Web开发(狗书) &mdash; my_book_doc  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="第一章：安装" href="flask_web_development/ch1.html" />
+    <link rel="prev" title="第十五章：web开发项目实践" href="python_web_development/ch15.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> my_book_doc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Flask Web开发(狗书)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flask_web_development/ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security_book.html">安全相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../asm_c_cjj_book.html">ASM/C/C++书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../algorithm.html">算法相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">数据库相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../mathematics.html">数学书</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../note/othor.html">笔记</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">my_book_doc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../python_book.html">python相关书籍</a> &raquo;</li>
+        
+      <li>Flask Web开发(狗书)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flask-web">
+<h1>Flask Web开发(狗书)<a class="headerlink" href="#flask-web" title="永久链接至标题">¶</a></h1>
+<p>start_time:2018-08-28</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch1.html">第一章：安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch1.html#id2">使用虚拟环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch1.html#pippython">使用pip安装Python包</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch2.html">第二章：程序基本结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch2.html#id2">请求钩子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch2.html#id3">响应</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch2.html#flask">Flask扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch2.html#flask-script">使用Flask-Script支持命令行选项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch3.html">第三章：模板</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flask_web_development/ch3.html#id2">渲染模板</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flask_web_development/ch3.html#id3">变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flask_web_development/ch3.html#id4">控制结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flask_web_development/ch3.html#flask-bootstraptwitter-bootstrap">使用Flask-Bootstrap集成Twitter Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch4.html">第四章：web表单</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch5.html">第五章：数据库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch15.html">第十五章：测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch16.html">第十六章：性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch17.html">第十七章：部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask_web_development/ch18.html">第十八章：其他资源</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flask_web_development/ch1.html" class="btn btn-neutral float-right" title="第一章：安装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="python_web_development/ch15.html" class="btn btn-neutral" title="第十五章：web开发项目实践" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anaf.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
