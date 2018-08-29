@@ -1,8 +1,7 @@
-笔记
+使用技巧
 ==================
 
 .. toctree::
     :maxdepth: 0
     
-    use_skills
-    othor/crazy_programmer
+    othor/sublime_text

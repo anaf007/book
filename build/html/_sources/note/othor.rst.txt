@@ -4,4 +4,5 @@
 .. toctree::
     :maxdepth: 0
     
+    use_skills
     othor/crazy_programmer

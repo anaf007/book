@@ -135,11 +135,14 @@ templates/user.html:使用 Flask-Bootstrap 的模板
 Jinja2 中的 extends 指令从 Flask-Bootstrap 中导入 bootstrap/base.html,从而实现模板继
 承。Flask-Bootstrap 中的基模板提供了一个网页框架,引入了 Bootstrap 中的所有 CSS 和JavaScript 文件。
 
-很多块都是 Flask-Bootstrap 自用的,如果直接重定义可能会导致一些问题。例 如,Bootstrap 所需的文件在 styles 和 scripts 块中声明。如果程序需要向已经有内容的块 中添加新内容,必须使用 Jinja2 提供的 super() 函数。例如,如果要在衍生模板中添加新 的 JavaScript 文件,需要这么定义 scripts 块::
+很多块都是 Flask-Bootstrap 自用的,如果直接重定义可能会导致一些问题。例 如,Bootstrap 所需的文件在 styles 和 scripts 块中声明。
+**如果程序需要向已经有内容的块 中添加新内容,必须使用 Jinja2 提供的 super() 函数。**
+例如,如果要在衍生模板中添加新 的 JavaScript 文件,需要这么定义 scripts 块::
 	
 	{% block scripts %}
 	{{ super() }}
-	<script type="text/javascript" src="my-script.js"></script> {% endblock %}
+	<script type="text/javascript" src="my-script.js"></script> 
+	{% endblock %}
 
 
 

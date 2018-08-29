@@ -349,13 +349,22 @@ Hello, Stranger!
 </div>
 <p>Jinja2 中的 extends 指令从 Flask-Bootstrap 中导入 bootstrap/base.html,从而实现模板继
 承。Flask-Bootstrap 中的基模板提供了一个网页框架,引入了 Bootstrap 中的所有 CSS 和JavaScript 文件。</p>
-<p>很多块都是 Flask-Bootstrap 自用的,如果直接重定义可能会导致一些问题。例 如,Bootstrap 所需的文件在 styles 和 scripts 块中声明。如果程序需要向已经有内容的块 中添加新内容,必须使用 Jinja2 提供的 super() 函数。例如,如果要在衍生模板中添加新 的 JavaScript 文件,需要这么定义 scripts 块:</p>
+<p>很多块都是 Flask-Bootstrap 自用的,如果直接重定义可能会导致一些问题。例 如,Bootstrap 所需的文件在 styles 和 scripts 块中声明。
+<strong>如果程序需要向已经有内容的块 中添加新内容,必须使用 Jinja2 提供的 super() 函数。</strong>
+例如,如果要在衍生模板中添加新 的 JavaScript 文件,需要这么定义 scripts 块:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">block</span> <span class="n">scripts</span> <span class="o">%</span><span class="p">}</span>
 <span class="p">{{</span> <span class="nb">super</span><span class="p">()</span> <span class="p">}}</span>
-<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;my-script.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;my-script.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endblock</span> <span class="o">%</span><span class="p">}</span>
 </pre></div>
 </div>
-<p class="rubric"><strong>广告区——博主提供付费服务，付费回答、网站建设、web开发、微信开发，尤其欢迎长期外包合作，联系方式：微信QQ电话均为18977771077.</strong></p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供技术咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
 </div>
 </div>
 </div>
