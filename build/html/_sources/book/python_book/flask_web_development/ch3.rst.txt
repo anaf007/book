@@ -145,6 +145,120 @@ Jinja2 中的 extends 指令从 Flask-Bootstrap 中导入 bootstrap/base.html,�
 	{% endblock %}
 
 
+自定义错误页面
+-----------------
+
+如果你在浏览器的地址栏中输入了不可用的路由,那么会显示一个状态码为 404 的错误页
+面。现在这个错误页面太简陋、平庸,而且样式和使用了 Bootstrap 的页面不一致。
+像常规路由一样,Flask 允许程序使用基于模板的自定义错误页面。最常见的错误代码有 两个:404,客户端请求未知页面或路由时显示;500,有未处理的异常时显示。
+
+::
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_server_error(e):
+        return render_template('500.html'), 500
+
+和视图函数一样,错误处理程序也会返回响应。它们还返回与该错误对应的数字状态码。
+
+错误处理程序中引用的模板也需要编写。
+
+示例 3-7 templates/base.html:包含导航条的程序基模板::
+
+ .. literalinclude:: code/code3-7.html
+    :language: html
+
+这个模板的 content 块中只有一个 <div> 容器,其中包含了一个名为 page_content 的新的空块,块中的内容由衍生模板定义。 
+
+现在,程序使用的模板继承自这个模板,而不直接继承自 Flask-Bootstrap 的基模板。通过继承 templates/base.html 模板编写自定义的 404 错误页面很简单.
+
+ .. literalinclude:: code/code3-8.html
+    :language: html
+
+
+链接
+---------
+
+任何具有多个路由的程序都需要可以连接不同页面的链接,例如导航条。
+
+在模板中直接编写简单路由的 URL 链接不难,但对于包含可变部分的动态路由,在模板 中构建正确的 URL 就很困难。而且,直接编写 URL 会对代码中定义的路由产生不必要的 依赖关系。如果重新定义路由,模板中的链接可能会失效。
+
+为了避免这些问题,Flask 提供了 url_for() 辅助函数,它可以使用程序 URL 映射中保存 的信息生成 URL。
+
+url_for() 函数最简单的用法是以视图函数名(或者 app.add_url_route() 定义路由时使用 的端点名)作为参数,返回对应的 URL。例如,在当前版本的 hello.py 程序中调用 url_for('index')得到的结果是/。调用
+**url_for('index', _external=True)**
+返回的则是绝对地 址,在这个示例中是 http://localhost:5000/。
+
+使用 url_for() 生成动态地址时,将动态部分作为关键字参数传入。例如,
+**url_for ('user', name='john', _external=True)**
+的返回结果是http://localhost:5000/user/john。
+
+传入 url_for()的关键字参数不仅限于动态路由中的参数。函数能将任何额外参数添加到 查询字符串中。例如,url_for('index', page=2)的返回结果是/?page=2。
+
+
+静态文件
+--------------
+
+**调用 url_for('static', filename='css/styles.css', _external=True) 得 到 的 结 果 是 http:// localhost:5000/static/css/styles.css。**
+
+默认设置下,Flask 在程序根目录中名为 static 的子目录中寻找静态文件。如果需要,可在 static 文件夹中使用子文件夹存放文件。服务器收到前面那个 URL 后,会生成一个响应, 包含文件系统中 static/css/styles.css 文件的内容。
+
+ .. literalinclude:: code/code3-10.html
+    :language: html
+
+
+
+使用Flask-Moment本地化日期和时间
+---------------------------------------
+
+讲真  一般博主不用。
+
+如果 Web 程序的用户来自世界各地,那么处理日期和时间可不是一个简单的任务。
+
+服务器需要统一时间单位,这和用户所在的地理位置无关,所以一般使用协调世界时 (Coordinated Universal Time,UTC)。不过用户看到UTC格式的时间会感到困惑,他们更希望看到当地时间,而且采用当地惯用的格式。
+
+有一个使用 JavaScript 开发的优秀客户端开源代码库,名为 moment.js(http://momentjs. com/),它可以在浏览器中渲染日期和时间。Flask-Moment 是一个 Flask 程序扩展,能把 moment.js 集成到 Jinja2 模板中。Flask-Moment 可以使用 pip 安装::
+
+	(venv) $ pip install flask-moment
+	from flask.ext.moment import Moment
+	moment = Moment(app)
+
+除了 moment.js,Flask-Moment 还依赖 jquery.js。要在 HTML 文档的某个地方引入这两个 库,可以直接引入,这样可以选择使用哪个版本,也可使用扩展提供的辅助函数,从内容 分发网络(Content Delivery Network,CDN)中引入通过测试的版本。Bootstrap已经引入 了 jquery.js,因此只需引入 moment.js 即可。示例 3-12 展示了如何在基模板的 scripts 块 中引入这个库。
+
+::
+	
+	{% block scripts %}
+	{{ super() }}
+	{{ moment.include_moment() }} 
+	{% endblock %}
+
+::
+	
+	from datetime import datetime
+	@app.route('/')
+	def index():
+		return render_template('index.html',current_time=datetime.utcnow())
+
+templates/index.html::
+
+	<p>The local date and time is {{ moment(current_time).format('LLL') }}.</p>
+	<p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+
+format('LLL') 根据客户端电脑中的时区和区域设置渲染日期和时间。参数决定了渲染的方 式,'L' 到 'LLLL' 分别对应不同的复杂度。format() 函数还可接受自定义的格式说明符。
+
+第二行中的 fromNow() 渲染相对时间戳,而且会随着时间的推移自动刷新显示的时间。这 个时间戳最开始显示为“a few seconds ago”,但指定refresh参数后,其内容会随着时 间的推移而更新。如果一直待在这个页面,几分钟后,会看到显示的文本变成“a minute ago”“2 minutes ago”等。
+
+Flask-Moment 实现了 moment.js 中的 format()、fromNow()、fromTime()、calendar()、valueOf() 和 unix() 方法。你可查阅文档(http://momentjs.com/docs/#/displaying/)学习 moment.js 提供的全部格式化选项。
+
+Flask-Moment 渲染的时间戳可实现多种语言的本地化。语言可在模板中选择,把语言代码 传给 lang() 函数即可::
+
+	{{ moment.lang('es') }}
+
+
+使用本章介绍的技术,你应该能为程序编写出现代化且用户友好的网页。下一章将介绍本 章没有涉及的一个模板功能,即如何通过 Web 表单和用户交互。
 
 
 

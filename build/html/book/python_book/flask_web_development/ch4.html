@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第五章：数据库" href="ch5.html" />
+    <link rel="prev" title="第三章：模板" href="ch3.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第四章：web表单</li>
     
     
@@ -163,6 +198,193 @@
             
   <div class="section" id="web">
 <h1>第四章：web表单<a class="headerlink" href="#web" title="永久链接至标题">¶</a></h1>
+<p>Flask-WTF(<a class="reference external" href="http://pythonhosted.org/Flask-WTF/">http://pythonhosted.org/Flask-WTF/</a>)扩展可以把处理 Web 表单的过程变成一 种愉悦的体验。这个扩展对独立的 WTForms(<a class="reference external" href="http://wtforms.simplecodes.com">http://wtforms.simplecodes.com</a>)包进行了包 装,方便集成到 Flask 程序中。</p>
+<p>安装:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ pip install flask-wtf
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>跨站请求伪造保护<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>默认情况下,Flask-WTF能保护所有表单免受跨站请求伪造(Cross-Site Request Forgery,CSRF)的攻击。恶意网站把请求发送到被攻击者已登录的其他网站时就会引发 CSRF 攻击。</p>
+<p>为了实现 CSRF 保护,Flask-WTF 需要程序设置一个密钥。Flask-WTF 使用这个密钥生成加密令牌,再用令牌验证请求中表单数据的真伪。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hard to guess string&#39;</span>
+</pre></div>
+</div>
+<p>app.config 字典可用来存储框架、扩展和程序本身的配置变量。使用标准的字典句法就能 把配置值添加到 app.config 对象中。这个对象还提供了一些方法,可以从文件或环境中导 入配置值。</p>
+<p>SECRET_KEY 配置变量是通用密钥,可在 Flask 和多个第三方扩展中使用。如其名所示,加 密的强度取决于变量值的机密程度。不同的程序要使用不同的密钥,而且要保证其他人不 知道你所用的字符串。</p>
+</div>
+<div class="section" id="id2">
+<h2>表单类<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>使用 Flask-WTF 时,每个 Web 表单都由一个继承自 Form 的类表示。这个类定义表单中的 一组字段,每个字段都用对象表示。字段对象可附属一个或多个验证函数。验证函数用来 验证用户提交的输入值是否符合要求。</p>
+<p>hello.py:定义表单类:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask.ext.wtf</span> <span class="k">import</span> <span class="n">Form</span>
+<span class="kn">from</span> <span class="nn">wtforms</span> <span class="k">import</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">SubmitField</span>
+<span class="kn">from</span> <span class="nn">wtforms.validators</span> <span class="k">import</span> <span class="n">Required</span>
+<span class="k">class</span> <span class="nc">NameForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Required</span><span class="p">()])</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="n">SubmitField</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>flask版本已经升级了，这里按照书上的from flask.ext.wtf import Form应该会报错，应该写成from flask_wtf import Form</strong></p>
+<p>这个表单中的字段都定义为类变量,类变量的值是相应字段类型的对象。</p>
+<p>在这个示例中, NameForm 表单中有一个名为 name 的文本字段和一个名为 submit 的提交按钮。StringField 类表示属性为 type=”text” 的 &lt;input&gt; 元素。SubmitField 类表示属性为 type=”submit” 的 &lt;input&gt; 元素。字段构造函数的第一个参数是把表单渲染成 HTML 时使用的标号。</p>
+<p>StringField 构造函数中的可选参数 validators 指定一个由验证函数组成的列表,在接受 用户提交的数据之前验证数据。验证函数 Required() 确保提交的字段不为空。</p>
+<p>WTForms支持的HTML标准字段</p>
+<blockquote>
+<div><ul class="simple">
+<li>StringField  :文本字段</li>
+<li>TextAreaField :多行文本字段</li>
+<li>PasswordField :密码文本字段</li>
+<li>HiddenField :隐藏文本字段</li>
+<li>DateField :文本字段,值为 datetime.date 格式</li>
+<li>DateTimeField :文本字段,值为 datetime.datetime 格式</li>
+<li>IntegerField :文本字段,值为整数</li>
+<li>DecimalField :文本字段,值为 decimal.Decimal</li>
+<li>FloatField :文本字段,值为浮点数</li>
+<li>BooleanField :复选框,值为 True 和 False</li>
+<li>RadioField :一组单选框</li>
+<li>SelectField :下拉列表</li>
+<li>SelectMultipleField :下拉列表,可选择多个值</li>
+<li>FileField :文件上传字段</li>
+<li>SubmitField :表单提交按钮</li>
+<li>FormField:把表单作为字段嵌入另一个表单</li>
+<li>FieldList:一组指定类型的字段</li>
+</ul>
+</div></blockquote>
+<p>WTForms验证函数:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Email :验证电子邮件地址</li>
+<li>EqualTo :比较两个字段的值;常用于要求输入两次密码进行确认的情况 IPAddress 验证 IPv4 网络地址</li>
+<li>Length :验证输入字符串的长度</li>
+<li>NumberRange :验证输入的值在数字范围内</li>
+<li>Optional :无输入值时跳过其他验证函数</li>
+<li>Required :确保字段中有数据</li>
+<li>Regexp :使用正则表达式验证输入值</li>
+<li>URL :验证 URL</li>
+<li>AnyOf :确保输入值在可选值列表中</li>
+<li>NoneOf :确保输入值不在可选值列表中</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="html">
+<h2>把表单渲染成HTML<a class="headerlink" href="#html" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">form</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="o">&gt;</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">hidden_tag</span><span class="p">()</span> <span class="p">}}</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">label</span> <span class="p">}}</span> <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="p">}}</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span> <span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>要想改进表单的外观,可以把参数传入渲染字段的函数,传入 的参数会被转换成字段的 HTML 属性</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">form</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="o">&gt;</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">hidden_tag</span><span class="p">()</span> <span class="p">}}</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">label</span> <span class="p">}}</span> <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-text-field&#39;</span><span class="p">)</span> <span class="p">}}</span>
+    <span class="p">{{</span> <span class="n">form</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span> <span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>渲染出来再定义有的场景不合适，还有另外一种渲染方式用render_kw</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;验证码&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">DataRequired</span><span class="p">(),</span> <span class="n">render_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;style&#39;</span><span class="p">:</span><span class="s1">&#39;width:100px;&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>即便能指定 HTML 属性,但按照这种方式渲染表单的工作量还是很大,所以在条件允许的 情况下最好能使用 Bootstrap 中的表单样式。Flask-Bootstrap 提供了一个非常高端的辅助函 数,可以使用 Bootstrap 中预先定义好的表单样式渲染整个 Flask-WTF 表单,而这些操作 只需一次调用即可完成。使用 Flask-Bootstrap,上述表单可使用下面的方式渲染:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="kn">import</span> <span class="s2">&quot;bootstrap/wtf.html&quot;</span> <span class="k">as</span> <span class="n">wtf</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{{</span> <span class="n">wtf</span><span class="o">.</span><span class="n">quick_form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>import 指令的使用方法和普通 Python 代码一样,允许导入模板中的元素并用在多个模板 中。导入的 bootstrap/wtf.html 文件中定义了一个使用 Bootstrap 渲染 Falsk-WTF 表单对象 的辅助函数。wtf.quick_form() 函数的参数为 Flask-WTF 表单对象,使用 Bootstrap 的默认 样式渲染传入的表单</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &quot;base.html&quot; %}
+{% import &quot;bootstrap/wtf.html&quot; as wtf %}
+{% block title %}Flasky{% endblock %}
+{% block page_content %} 
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;page-header&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span> 
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{{ wtf.quick_form(form) }} 
+{% endblock %}
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>在视图函数中处理表单<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>视图函数 index() 不仅要渲染表单,还要接收表单中的数据:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">NameForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>app.route 修饰器中添加的 methods 参数告诉 Flask 在 URL 映射中把这个视图函数注册为 GET 和 POST 请求的处理程序。如果没指定 methods 参数,就只把视图函数注册为 GET 请求 的处理程序。</p>
+<p>把 POST 加入方法列表很有必要,因为将提交表单作为 POST 请求进行处理更加便利。表单 也可作为 GET 请求提交,不过 GET 请求没有主体,提交的数据以查询字符串的形式附加到 URL 中,可在浏览器的地址栏中看到。基于这个以及其他多个原因,提交表单大都作为 POST 请求进行处理。</p>
+</div>
+<div class="section" id="id4">
+<h2>重定向和用户会话<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>注意使用methods=[‘GET’, ‘POST’]</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">NameForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">session</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="flash">
+<h2>Flash消息<a class="headerlink" href="#flash" title="永久链接至标题">¶</a></h2>
+<p>请求完成后,有时需要让用户知道状态发生了变化。这里可以使用确认消息、警告或者错 误提醒。一个典型例子是,用户提交了有一项错误的登录表单后,服务器发回的响应重新 渲染了登录表单,并在表单上面显示一个消息,提示用户用户名或密码错误。</p>
+<p><strong>这种功能是 Flask 的核心特性。</strong></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">flash</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">NameForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">old_name</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">old_name</span> <span class="o">!=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Looks like you have changed your name!&#39;</span><span class="p">)</span> 
+        <span class="n">session</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span><span class="n">form</span> <span class="o">=</span> <span class="n">form</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>仅调用 flash() 函数并不能把消息显示出来,程序使用的模板要渲染这些消息。最好在 基模板中渲染 Flash 消息,因为这样所有页面都能使用这些消息。Flask 把 get_flashed_messages() 函数开放给模板,用来获取并渲染消息,</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block content %} 
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+{% for message in get_flashed_messages() %} 
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-warning&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;close&quot;</span> <span class="na">data-dismiss</span><span class="o">=</span><span class="s">&quot;alert&quot;</span><span class="p">&gt;</span><span class="ni">&amp;times;</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+{{ message }}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endfor %}
+{% block page_content %}
+{% endblock %} 
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+</div></blockquote>
+<p>在模板中使用循环是因为在之前的请求循环中每次调用 flash() 函数时都会生成一个消息, 所以可能有多个消息在排队等待显示。get_flashed_messages() 函数获取的消息在下次调 用时不会再次返回,因此 Flash 消息只显示一次,然后就消失了。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -170,6 +392,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch5.html" class="btn btn-neutral float-right" title="第五章：数据库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch3.html" class="btn btn-neutral" title="第三章：模板" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
