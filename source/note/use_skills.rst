@@ -5,3 +5,4 @@
     :maxdepth: 0
     
     othor/sublime_text
+    othor/inno_setup

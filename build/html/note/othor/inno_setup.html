@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>使用Sublime Text前永久设置使用4个空格缩进和取消更新 &mdash; my_book_doc  文档</title>
+  <title>解决Inno Setup制作安装包无法创建桌面快捷方式的问题 &mdash; my_book_doc  文档</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="解决Inno Setup制作安装包无法创建桌面快捷方式的问题" href="inno_setup.html" />
-    <link rel="prev" title="使用技巧" href="../use_skills.html" /> 
+    <link rel="next" title="疯狂的程序员摘要" href="crazy_programmer.html" />
+    <link rel="prev" title="使用Sublime Text前永久设置使用4个空格缩进和取消更新" href="sublime_text.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -102,8 +102,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../othor.html">笔记</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../use_skills.html">使用技巧</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">使用Sublime Text前永久设置使用4个空格缩进和取消更新</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inno_setup.html">解决Inno Setup制作安装包无法创建桌面快捷方式的问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sublime_text.html">使用Sublime Text前永久设置使用4个空格缩进和取消更新</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">解决Inno Setup制作安装包无法创建桌面快捷方式的问题</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="crazy_programmer.html">疯狂的程序员摘要</a></li>
@@ -158,7 +158,7 @@
         
           <li><a href="../use_skills.html">使用技巧</a> &raquo;</li>
         
-      <li>使用Sublime Text前永久设置使用4个空格缩进和取消更新</li>
+      <li>解决Inno Setup制作安装包无法创建桌面快捷方式的问题</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,13 +175,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sublime-text4">
-<h1>使用Sublime Text前永久设置使用4个空格缩进和取消更新<a class="headerlink" href="#sublime-text4" title="永久链接至标题">¶</a></h1>
-<p>设置方法是点击首选项–”设置-用户”：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;tab_size&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-<span class="s2">&quot;translate_tabs_to_spaces&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-<span class="s2">&quot;expand_tabs_on_save&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-<span class="s2">&quot;update_check&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <div class="section" id="inno-setup">
+<h1>解决Inno Setup制作安装包无法创建桌面快捷方式的问题<a class="headerlink" href="#inno-setup" title="永久链接至标题">¶</a></h1>
+<p>编译前修改如下代码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Tasks</span><span class="p">];</span>
+<span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;desktopicon&quot;</span><span class="p">;</span> <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;{cm:CreateDesktopIcon}&quot;</span><span class="p">;</span> <span class="n">GroupDescription</span><span class="p">:</span> <span class="s2">&quot;{cm:AdditionalIcons}&quot;</span><span class="p">;</span> <span class="n">Flags</span><span class="p">:</span> <span class="n">unchecked</span><span class="p">;</span> <span class="n">OnlyBelowVersion</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mf">6.1</span>
+<span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;desktopicon&quot;</span><span class="p">;</span> <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;{cm:CreateDesktopIcon}&quot;</span><span class="p">;</span> <span class="n">GroupDescription</span><span class="p">:</span> <span class="s2">&quot;{cm:AdditionalIcons}&quot;</span><span class="p">;</span> <span class="n">Flags</span><span class="p">:</span> <span class="n">checkablealone</span>
+<span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;quicklaunchicon&quot;</span><span class="p">;</span> <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;{cm:CreateQuickLaunchIcon}&quot;</span><span class="p">;</span> <span class="n">GroupDescription</span><span class="p">:</span> <span class="s2">&quot;{cm:AdditionalIcons}&quot;</span><span class="p">;</span> <span class="n">Flags</span><span class="p">:</span> <span class="n">checkablealone</span>
 </pre></div>
 </div>
 <p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
@@ -201,10 +201,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="inno_setup.html" class="btn btn-neutral float-right" title="解决Inno Setup制作安装包无法创建桌面快捷方式的问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="crazy_programmer.html" class="btn btn-neutral float-right" title="疯狂的程序员摘要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../use_skills.html" class="btn btn-neutral" title="使用技巧" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sublime_text.html" class="btn btn-neutral" title="使用Sublime Text前永久设置使用4个空格缩进和取消更新" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
