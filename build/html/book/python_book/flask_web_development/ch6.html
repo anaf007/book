@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第七章：大型程序的结构" href="ch7.html" />
+    <link rel="prev" title="第五章：数据库" href="ch5.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第六章：电子邮件</li>
     
     
@@ -163,6 +198,72 @@
             
   <div class="section" id="id1">
 <h1>第六章：电子邮件<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>这章节其实跟flask不是很大关系，主要是与flask的集成，跳过这章学习对之后也没影响</p>
+<p>安装:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ pip install flask-mail
+
+#配置
+
+import os
+# ...
+app.config[&#39;MAIL_SERVER&#39;] = &#39;smtp.googlemail.com&#39;
+app.config[&#39;MAIL_PORT&#39;] = 587
+app.config[&#39;MAIL_USE_TLS&#39;] = True
+app.config[&#39;MAIL_USERNAME&#39;] = os.environ.get(&#39;MAIL_USERNAME&#39;
+app.config[&#39;MAIL_PASSWORD&#39;] = os.environ.get(&#39;MAIL_PASSWORD&#39;)
+
+#初始化
+from flask.ext.mail import Mail
+mail = Mail(app)
+</pre></div>
+</div>
+<p>保存电子邮件服务器用户名和密码的两个环境变量要在环境中定义。如果你在 Linux 或 Mac OS X 中使用 bash,那么可以按照下面的方式设定这两个变量:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ export MAIL_USERNAME=&lt;Gmail username&gt;
+(venv) $ export MAIL_PASSWORD=&lt;Gmail password&gt;
+</pre></div>
+</div>
+<p>微软 Windows 用户可按照下面的方式设定环境变量:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   (venv) $ set MAIL_USERNAME=&lt;Gmail username&gt;
+   (venv) $ set MAIL_PASSWORD=&lt;Gmail password&gt;
+
+
+
+.. literalinclude:: code/code6-1.py
+   :language: python
+
+
+.. literalinclude:: code/code6-2.py
+   :language: python
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>异步发送电子邮件<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="k">def</span> <span class="nf">send_async_email</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+        <span class="n">mail</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">send_email</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_MAIL_SUBJECT_PREFIX&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">subject</span><span class="p">,</span>
+        <span class="n">sender</span><span class="o">=</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_MAIL_SENDER&#39;</span><span class="p">],</span> <span class="n">recipients</span><span class="o">=</span><span class="p">[</span><span class="n">to</span><span class="p">])</span> 
+    <span class="n">msg</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">html</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span> <span class="o">+</span> <span class="s1">&#39;.html&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">thr</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">send_async_email</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">app</span><span class="p">,</span> <span class="n">msg</span><span class="p">])</span>
+    <span class="n">thr</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">thr</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>程序要发送大量电子邮件时,使 用专门发送电子邮件的作业要比给每封邮件都新建一个线程更合适。例如,我们可以把执 行 send_async_email() 函数的操作发给 Celery(<a class="reference external" href="http://www.celeryproject.org/">http://www.celeryproject.org/</a>)任务队列。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -170,6 +271,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch7.html" class="btn btn-neutral float-right" title="第七章：大型程序的结构" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch5.html" class="btn btn-neutral" title="第五章：数据库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
