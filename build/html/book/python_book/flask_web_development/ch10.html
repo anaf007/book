@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第十一章：博客文章" href="ch11.html" />
+    <link rel="prev" title="第九章：用户角色" href="ch9.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第十章：用户资料</li>
     
     
@@ -163,6 +198,332 @@
             
   <div class="section" id="id1">
 <h1>第十章：用户资料<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>在本章,我们要实现 Flasky 的用户资料页面。所有社交网站都会给用户提供资料页面,其 中简要显示了用户在网站中的活动情况。用户可以把资料页面的 URL 分享给别人,以此 宣告自己在这个网站上。因此,这个页面的 URL 要简短易记。</p>
+<div class="section" id="id2">
+<h2>资料信息<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>为了让用户的资料页面更吸引人,我们可以在其中添加一些关于用户的其他信息。</p>
+<p>app/models.py:用户信息字段:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+    <span class="n">about_me</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Text</span><span class="p">())</span>
+    <span class="n">member_since</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
+    <span class="n">last_seen</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">DateTime</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>新添加的字段保存用户的真实姓名、所在地、自我介绍、注册日期和最后访问日期。about_me 字段的类型是 db.Text()。db.String 和 db.Text 的区别在于后者不需要指定最大长度。</p>
+<p>两个时间戳的默认值都是当前时间。注意,datetime.utcnow 后面没有 (),因为 db.Column() 的 default 参数可以接受函数作为默认值,所以每次需要生成默认值时,db.Column() 都会 调用指定的函数。member_since 字段只需要默认值即可。</p>
+<p>last_seen 字段创建时的初始值也是当前时间,但用户每次访问网站后,这个值都会被刷新。</p>
+<p><strong>这样每次访问都需要一个数据库更新操作增加数据库的访问，会不会性能低下？我也不清楚</strong>
+app/models.py:刷新用户的最后访问时间:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">last_seen</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>每次收到用户的请求时都要调用 ping() 方法。由于 auth 蓝本中的 before_app_request 处 理程序会在每次请求前运行,所以能很轻松地实现这个需求。</p>
+<p>app/auth/views.py:更新已登录用户的访问时间:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@auth</span><span class="o">.</span><span class="n">before_app_request</span>
+<span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+<span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+    <span class="n">current_user</span><span class="o">.</span><span class="n">ping</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">confirmed</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">endpoint</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;auth.&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;auth.unconfirmed&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>用户资料页面<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>为每个用户都创建资料页面并没有什么难度。</p>
+<p>app/main/views.py:资料页面的路由:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/user/&lt;username&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;user.html&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这个路由在 main 蓝本中添加。对于名为 john 的用户,其资料页面的地址是 <a class="reference external" href="http://localhost:5000/user/john">http://localhost:5000/user/john</a>。这个视图函数会在数据库中搜索 URL 中指定的用户名,如果找到,则渲染模板 user. html,并把用户名作为参数传入模板。如果传入路由的用户名不存在,则返回 404 错误。user. html 模板应该渲染保存在用户对象中的信息。</p>
+<p>app/templates/user.html:用户资料页面的模板:</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% block page_content %} 
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;page-header&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ user.username }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    {% if user.name or user.location %} 
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        {% if user.name %}{{ user.name }}{% endif %}
+        {% if user.location %}
+            From <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://maps.google.com/?q={{ user.location }}&quot;</span><span class="p">&gt;</span>{ user.location }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        {% endif %} 
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    {% endif %}
+    {% if current_user.is_administrator() %}
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:{{ user.email }}&quot;</span><span class="p">&gt;</span>{{ user.email }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> 
+    {% endif %}
+    {% if user.about_me %}
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ user.about_me }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    {% endif %} 
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+    Member since {{ moment(user.member_since).format(&#39;L&#39;) }}.
+             Last seen {{ moment(user.last_seen).fromNow() }}.
+    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>在这个模板中,有几处实现细节需要说明一下:</dt>
+<dd><ul class="first last simple">
+<li>name 和 location 字段在同一个 &lt;p&gt; 元素中渲染。只有至少定义了这两个字段中的一个时, &lt;p&gt; 元素才会创建。</li>
+<li>用户的location字段被渲染成指向谷歌地图的查询链接。</li>
+<li>如果登录用户是管理员,那么就显示用户的电子邮件地址,且渲染成mailto链接。</li>
+</ul>
+</dd>
+</dl>
+<p>大多数用户都希望能很轻松地访问自己的资料页面,因此我们可以在导航条中添加一个链接。</p>
+<p>app/templates/base.html:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;main.user&#39;, username=current_user.username) }}&quot;</span><span class="o">&gt;</span> <span class="n">Profile</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>把资料页面的链接包含在条件语句中是非常必要的,因为未认证的用户也能看到导航条,
+但我们不应该让他们看到资料页面的链接。</p>
+</div>
+<div class="section" id="id4">
+<h2>资料编辑器<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>用户资料的编辑分两种情况。最显而易见的情况是,用户要进入一个页面并在其中输入自 己的资料,而且这些内容显示在自己的资料页面上。还有一种不太明显但也同样重要的情 况,那就是要让管理员能够编辑任意用户的资料——不仅要能编辑用户的个人信息,还要 能编辑用户不能直接访问的 User 模型字段,例如用户角色。这两种编辑需求有本质上的区别,所以我们要创建两个不同的表单。</p>
+</div>
+<div class="section" id="id5">
+<h2>用户级别的资料编辑器<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>普通用户的资料编辑表单
+app/main/forms.py:资料编辑表单:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EditProfileForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Real name&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Length</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">)])</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Length</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">)])</span>
+    <span class="n">about_me</span> <span class="o">=</span> <span class="n">TextAreaField</span><span class="p">(</span><span class="s1">&#39;About me&#39;</span><span class="p">)</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="n">SubmitField</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注意,这个表单中的所有字段都是可选的,因此长度验证函数允许长度为零。</p>
+<p>app/main/views.py:资料编辑路由:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@main.route</span><span class="p">(</span><span class="s1">&#39;/edit-profile&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span> 
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">edit_profile</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">EditProfileForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">current_user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">current_user</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">current_user</span><span class="o">.</span><span class="n">about_me</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">about_me</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Your profile has been updated.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.user&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">username</span><span class="p">))</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">location</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">about_me</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">about_me</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;edit_profile.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>在显示表单之前,这个视图函数为所有字段设定了初始值。对于所有给定字段,这一工作 都是通过把初始值赋值给 form.&lt;field-name&gt;.data 完成的。当 form.validate_on_submit() 返回 False 时,表单中的 3 个字段都使用 current_user 中保存的初始值。提交表单后,表 单字段的 data 属性中保存有更新后的值,因此可以将其赋值给用户对象中的各字段,然后 再把用户对象添加到数据库会话中。</p>
+<p>为了让用户能轻易找到编辑页面,我们可以在资料页面中添加一个链接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">user</span> <span class="o">==</span> <span class="n">current_user</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn btn-default&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;.edit_profile&#39;) }}&quot;</span><span class="o">&gt;</span><span class="n">Edit</span> <span class="n">Profile</span> <span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>链接外层的条件语句能确保只有当用户查看自己的资料页面时才显示这个链接。</p>
+</div>
+<div class="section" id="id6">
+<h2>管理员级别的资料编辑器<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>管理员使用的资料编辑表单比普通用户的表单更加复杂。除了前面的 3 个资料信息字段之 外,管理员在表单中还要能编辑用户的电子邮件、用户名、确认状态和角色。</p>
+<p>app/main/forms.py:管理员使用的资料编辑表单</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EditProfileAdminForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Required</span><span class="p">(),</span> <span class="n">Length</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span><span class="n">Email</span><span class="p">()])</span> 
+    <span class="n">username</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Required</span><span class="p">(),</span> <span class="n">Length</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> 
+        <span class="n">Regexp</span><span class="p">(</span><span class="s1">&#39;^[A-Za-z][A-Za-z0-9_.]*$&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;Usernames must have only letters, &#39;</span><span class="p">,</span>
+            <span class="s1">&#39;numbers, dots or underscores&#39;</span><span class="p">)])</span>
+    <span class="n">confirmed</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">(</span><span class="s1">&#39;Confirmed&#39;</span><span class="p">)</span>
+    <span class="n">role</span> <span class="o">=</span> <span class="n">SelectField</span><span class="p">(</span><span class="s1">&#39;Role&#39;</span><span class="p">,</span> <span class="nb">coerce</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Real name&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Length</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">)])</span> 
+    <span class="n">location</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Length</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">)])</span> 
+    <span class="n">about_me</span> <span class="o">=</span> <span class="n">TextAreaField</span><span class="p">(</span><span class="s1">&#39;About me&#39;</span><span class="p">)</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="n">SubmitField</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> 
+        <span class="nb">super</span><span class="p">(</span><span class="n">EditProfileAdminForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">role</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[(</span><span class="n">role</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">role</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> \
+                            <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">Role</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Role</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+
+    <span class="k">def</span> <span class="nf">validate_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="ow">and</span> \
+                <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">field</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">():</span> 
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Email already registered.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_username</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="ow">and</span> \
+                <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">field</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">():</span> 
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;Username already in use.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>WTForms 对 HTML 表单控件 &lt;select&gt; 进行 SelectField 包装,从而实现下拉列表,用来 在这个表单中选择用户角色。
+<strong>SelectField 实例必须在其 choices 属性中设置各选项</strong>
+。选 项必须是一个由元组组成的列表,各元组都包含两个元素:选项的标识符和显示在控件中 的文本字符串。choices 列表在表单的构造函数中设定,其值从 Role 模型中获取,使用一 个查询按照角色名的字母顺序排列所有角色。元组中的标识符是角色的 id,因为这是个整 数,所以在 SelectField 构造函数中添加 coerce=int 参数,从而把字段的值转换为整数, 而不使用默认的字符串。</p>
+<p>email 和 username 字段的构造方式和认证表单中的一样,但处理验证时需要更加小心。验 证这两个字段时,首先要检查字段的值是否发生了变化,如果有变化,就要保证新值不 和其他用户的相应字段值重复;如果字段值没有变化,则应该跳过验证。为了实现这个逻
+辑,表单构造函数接收用户对象作为参数,并将其保存在成员变量中,随后自定义的验证 方法要使用这个用户对象。</p>
+<p>app/main/views.py:管理员的资料编辑路由</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@login_required</span>
+<span class="nd">@admin_required</span>
+<span class="k">def</span> <span class="nf">edit_profile_admin</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">EditProfileAdminForm</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">confirmed</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">Role</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">role</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">about_me</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">about_me</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;The profile has been updated.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.user&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">))</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">confirmed</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">confirmed</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">role</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">role_id</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">location</span>
+    <span class="n">form</span><span class="o">.</span><span class="n">about_me</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">about_me</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;edit_profile.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>这个路由和较简单的、普通用户的编辑路由具有基本相同的结构。在这个视图函数中,用 户由 id 指定,因此可使用 Flask-SQLAlchemy 提供的 get_or_404() 函数,如果提供的 id 不正确,则会返回 404 错误。</p>
+<p>我们还需要再探讨一下用于选择用户角色的 SelectField。设定这个字段的初始值时, role_id 被赋值给了 field.role.data,这么做的原因在于 choices 属性中设置的元组列表 使用数字标识符表示各选项。表单提交后,id 从字段的 data 属性中提取,并且查询时会 使用提取出来的 id 值加载角色对象。表单中声明 SelectField 时使用 coerce=int 参数, 其作用是保证这个字段的 data 属性值是整数。</p>
+<p>为链接到这个页面,我们还需在用户资料页面中添加一个链接按钮,</p>
+<p>app/templates/user.html:管理员使用的资料编辑链接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_administrator</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn btn-danger&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;.edit_profile_admin&#39;, id=user.id) }}&quot;</span><span class="o">&gt;</span>
+    <span class="n">Edit</span> <span class="n">Profile</span> <span class="p">[</span><span class="n">Admin</span><span class="p">]</span>
+<span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>为了醒目,这个按钮使用了不同的 Bootstrap 样式进行渲染。这里使用的条件语句确保只当 登录用户为管理员时才显示按钮。</p>
+</div>
+<div class="section" id="id7">
+<h2>用户头像<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p><strong>可以使用email以外的值也行比如传唯一的用户名或手机号哈希加密过后</strong>
+通过显示用户的头像,我们可以进一步改进资料页面的外观。在本节,你会学到如何添加 Gravatar(<a class="reference external" href="http://gravatar.com/">http://gravatar.com/</a>)提供的用户头像。Gravatar 是一个行业领先的头像服务,能 把头像和电子邮件地址关联起来。用户先要到 <a class="reference external" href="http://gravatar.com">http://gravatar.com</a> 中注册账户,然后上传图 片。生成头像的 URL 时,要计算电子邮件地址的 MD5 散列值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ python
+&gt;&gt;&gt; import hashlib
+&gt;&gt;&gt; hashlib.md5(&#39;john@example.com&#39;.encode(&#39;utf-8&#39;)).hexdigest()
+&#39;d4c74594d841139328695756648b6bd6&#39;
+</pre></div>
+</div>
+<p>生 成 的 头 像 URL 是 在 <a class="reference external" href="http://www.gravatar.com/avatar/">http://www.gravatar.com/avatar/</a> 或 <a class="reference external" href="https://secure.gravatar.com/avatar/">https://secure.gravatar.com/avatar/</a> 之后加上这个 MD5 散列值。例如,你在浏览器的地址栏中输入 <a class="reference external" href="http://www.gravatar.com/">http://www.gravatar.com/</a> avatar/d4c74594d841139328695756648b6bd6,就会看到电子邮件地址 <a class="reference external" href="mailto:john&#37;&#52;&#48;example&#46;com">john<span>&#64;</span>example<span>&#46;</span>com</a> 对 应的头像图片。如果这个电子邮件地址没有对应的头像,则会显示一个默认图片。头像 URL 的查询字符串中可以包含多个参数以配置头像图片的特征</p>
+<dl class="docutils">
+<dt>Gravatar查询字符串参数:</dt>
+<dd><ul class="first last simple">
+<li>s 图片大小,单位为像素</li>
+<li>r 图片级别。可选值有 “g”、”pg”、”r” 和 “x”</li>
+<li>d 没有注册 Gravatar 服务的用户使用的默认图片生成方式。可选值有:”404”,返回 404 错误;默认图片的 URL;图片生成器 “mm”、”identicon”、”monsterid”、”wavatar”、”retro” 或 “blank”之一</li>
+<li>fd 强制使用默认头像</li>
+</ul>
+</dd>
+</dl>
+<p>我们可将构建 Gravatar URL 的方法添加到 User 模型中,</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="k">def</span> <span class="nf">gravatar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;identicon&#39;</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://secure.gravatar.com/avatar&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://www.gravatar.com/avatar&#39;</span>
+        <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;{url}/{hash}?s={size}&amp;d={default}&amp;r={rating}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="nb">hash</span><span class="o">=</span><span class="nb">hash</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="n">rating</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>这一实现会选择标准的或加密的Gravatar URL基以匹配用户的安全需求。头像的URL由 URL 基、用户电子邮件地址的 MD5 散列值和参数组成,而且各参数都设定了默认值。有 了上述实现,我们就可以在 Python shell 中轻易生成头像的 URL 了:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ python manage.py shell
+&gt;&gt;&gt; u = User(email=&#39;john@example.com&#39;)
+&gt;&gt;&gt; u.gravatar()
+&#39;http://www.gravatar.com/avatar/d4c74594d84113932869575bd6?s=100&amp;d=identicon&amp;r=g&#39;
+&gt;&gt;&gt; u.gravatar(size=256)
+&#39;http://www.gravatar.com/avatar/d4c74594d84113932869575bd6?s=256&amp;d=identicon&amp;r=g&#39;
+</pre></div>
+</div>
+<p>gravatar() 方法也可在 Jinja2 模板中调用。</p>
+<p>app/tempaltes/user.html:资料页面中的头像:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;img-rounded profile-thumbnail&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;{{ user.gravatar(size=256) }}&quot;</span><span class="o">&gt;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>使用类似方式,我们可在基模板的导航条上添加一个已登录用户头像的小型缩略图。为了 更好地调整页面中头像图片的显示格式,我们可使用一些自定义的 CSS 类。你可以在源码 仓库的 styles.css 文件中查看自定义的 CSS,styles.css 文件保存在程序静态文件的文件夹 中,而且要在 base.html 模板中引用。图 10-3 为显示了头像的用户资料页面。</p>
+<p>生成头像时要生成 MD5 值,这是一项 CPU 密集型操作。如果要在某个页面中生成大量头 像,计算量会非常大。由于用户电子邮件地址的 MD5 散列值是不变的,因此可以将其缓 存在 User 模型中。若要把 MD5 散列值保存在数据库中,需要对 User 模型做些改动,</p>
+<p>app/models.py:使用缓存的 MD5 散列值生成 Gravatar URL</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># ...</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">change_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+        <span class="c1"># ...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">new_email</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">gravatar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;identicon&#39;</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://secure.gravatar.com/avatar&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://www.gravatar.com/avatar&#39;</span>
+        <span class="nb">hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="ow">or</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;{url}/{hash}?s={size}&amp;d={default}&amp;r={rating}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="nb">hash</span><span class="o">=</span><span class="nb">hash</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="n">rating</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>模型初始化过程中会计算电子邮件的散列值,然后存入数据库,若用户更新了电子邮件 地址,则会重新计算散列值。gravatar() 方法会使用模型中保存的散列值;如果模型中没 有,就和之前一样计算电子邮件地址的散列值。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -170,6 +531,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch11.html" class="btn btn-neutral float-right" title="第十一章：博客文章" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch9.html" class="btn btn-neutral" title="第九章：用户角色" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第十五章：测试" href="ch15.html" />
+    <link rel="prev" title="第十三章：用户评论" href="ch13.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第十四章：应用编程接口</li>
     
     
@@ -163,6 +198,46 @@
             
   <div class="section" id="id1">
 <h1>第十四章：应用编程接口<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<dl class="docutils">
+<dt>hhhh</dt>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># ...</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">change_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+        <span class="c1"># ...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">new_email</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">gravatar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;identicon&#39;</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://secure.gravatar.com/avatar&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://www.gravatar.com/avatar&#39;</span>
+        <span class="nb">hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar_hash</span> <span class="ow">or</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;{url}/{hash}?s={size}&amp;d={default}&amp;r={rating}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="nb">hash</span><span class="o">=</span><span class="nb">hash</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="n">rating</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
 </div>
 
 
@@ -170,6 +245,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch15.html" class="btn btn-neutral float-right" title="第十五章：测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch13.html" class="btn btn-neutral" title="第十三章：用户评论" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

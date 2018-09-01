@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第十四章：应用编程接口" href="ch14.html" />
+    <link rel="prev" title="第十二章：关注者" href="ch12.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch11.html">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第十三章：用户评论</li>
     
     
@@ -163,6 +198,208 @@
             
   <div class="section" id="id1">
 <h1>第十三章：用户评论<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>允许用户交互是社交博客平台成功的关键。在本章,你将学到如何实现用户评论。</p>
+<p>评论属于某篇博客文章,因此定义了一个从 posts 表到 comments 表的一对多关系。使用这个关系可以获取某篇特定博客文章的评论列表。</p>
+<p>comments 表还和 users 表之间有一对多关系。通过这个关系可以获取用户发表的所有评 论,还能间接知道用户发表了多少篇评论。用户发表的评论数量可以显示在用户资料页 中。</p>
+<p>app/models.py:Comment 模型</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Comment</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;comments&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">body_html</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
+    <span class="n">disabled</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Boolean</span><span class="p">)</span>
+    <span class="n">author_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">))</span>
+    <span class="n">post_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;posts.id&#39;</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">on_changed_body</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">oldvalue</span><span class="p">,</span> <span class="n">initiator</span><span class="p">):</span>
+        <span class="n">allowed_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;abbr&#39;</span><span class="p">,</span> <span class="s1">&#39;acronym&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;em&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;strong&#39;</span><span class="p">]</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">body_html</span> <span class="o">=</span> <span class="n">bleach</span><span class="o">.</span><span class="n">linkify</span><span class="p">(</span><span class="n">bleach</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span>
+            <span class="n">markdown</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">),</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">allowed_tags</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">Comment</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;set&#39;</span><span class="p">,</span> <span class="n">Comment</span><span class="o">.</span><span class="n">on_changed_body</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Comment 模型的属性几乎和 Post 模型一样,不过多了一个 disabled 字段。这是个布尔值字 段,协管员通过这个字段查禁不当评论。和博客文章一样,评论也定义了一个事件,在修 改 body 字段内容时触发,自动把 Markdown 文本转换成 HTML。转换过程和第 11 章中的 博客文章一样,不过评论相对较短,而且对 Markdown 中允许使用的 HTML 标签要求更严 格,要删除与段落相关的标签,只留下格式化字符的标签。</p>
+<p>为了完成对数据库的修改,User 和 Post 模型还要建立与 comments 表的一对多关系</p>
+<p>app/models/user.py:users 和 posts 表与 comments 表之间的一对多关系:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Comment&#39;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Comment&#39;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>提交和显示评论<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>在这个程序中,评论要显示在单篇博客文章页面中。这个页面在第 11 章添加固定链接时 已经创建。在这个页面中还要有一个提交评论的表单。用来输入评论的表单如示例 13-3 所 示。这个表单很简单,只有一个文本字段和一个提交按钮。</p>
+<p>app/main/forms.py:评论输入表单:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CommentForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Required</span><span class="p">()])</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="n">SubmitField</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>app/main/views.py:支持博客文章评论</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@main.route</span><span class="p">(</span><span class="s1">&#39;/post/&lt;int:id&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">CommentForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">form</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">post</span><span class="o">=</span><span class="n">post</span><span class="p">,</span><span class="n">author</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">_get_current_object</span><span class="p">())</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Your comment has been published.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.post&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">page</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">page</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> \ 
+            <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_COMMENTS_PER_PAGE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">pagination</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Comment</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">asc</span><span class="p">())</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span> <span class="n">page</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_COMMENTS_PER_PAGE&#39;</span><span class="p">],</span> <span class="n">error_out</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">comments</span> <span class="o">=</span> <span class="n">pagination</span><span class="o">.</span><span class="n">items</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;post.html&#39;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="p">[</span><span class="n">post</span><span class="p">],</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span>
+                <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">pagination</span><span class="o">=</span><span class="n">pagination</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>这个视图函数实例化了一个评论表单,并将其转入 post.html 模板,以便渲染。提交表单 后,插入新评论的逻辑和处理博客文章的过程差不多。和 Post 模型一样,评论的 author 字段也不能直接设为 current_user,因为这个变量是上下文代理对象。真正的 User 对象要 使用表达式 current_user._get_current_object() 获取。</p>
+<p>评论按照时间戳顺序排列,新评论显示在列表的底部。提交评论后,请求结果是一个重定 向,转回之前的 URL,但是在 url_for() 函数的参数中把 page 设为 -1,这是个特殊的页 数,用来请求评论的最后一页,所以刚提交的评论才会出现在页面中。程序从查询字符串 中获取页数,发现值为 -1 时,会计算评论的总量和总页数,得出真正要显示的页数。</p>
+<p>文章的评论列表通过 post.comments 一对多关系获取,按照时间戳顺序进行排列,再使 用与博客文章相同的技术分页显示。评论列表对象和分页对象都传入了模板,以便渲染。 FLASKY_COMMENTS_PER_PAGE 配置变量也被加入 config.py 中,用来控制每页显示的评论数量。</p>
+<p>评论的渲染过程在新模板 _comments.html 中进行,类似于 _posts.html,但使用的 CSS 类不 同。_comments.html 模板要引入 post.html 中,放在文章正文下方,后面再显示分页导航。 你可以在 GitHub 上的仓库中查看在这个程序里对模板所做的改动。</p>
+<p>为了完善功能,我们还要在首页和资料页中加上指向评论页面的链接,</p>
+<p>app/templates/_posts.html:链接到博客文章的评论:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;.post&#39;, id=post.id) }}#comments&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;label label-primary&quot;</span><span class="o">&gt;</span>
+        <span class="p">{{</span> <span class="n">post</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="p">}}</span> <span class="n">Comments</span>
+    <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>注意链接文本中显示评论数量的方法。评论数量可以使用 SQLAlchemy 提供的 count() 过滤器轻易地从 posts 和 comments 表的一对多关系中获取。</p>
+<p>指向评论页的链接结构也值得一说。这个链接的地址是在文章的固定链接后面加上一个 #comments 后缀。这个后缀称为 URL 片段,用于指定加载页面后滚动条所在的初始位置。 Web 浏览器会寻找 id 等于 URL 片段的元素并滚动页面,让这个元素显示在窗口顶部。这 个初始位置被设为 post.html 模板中评论区的标题,即 &lt;h4 id=”comments”&gt;Comments&lt;h4&gt;。</p>
+<p>除此之外,分页导航所用的宏也要做些改动。评论的分页导航链接也要加上 #comments 片 段,因此在 post.html 模板中调用宏时,传入片段参数。</p>
+</div>
+<div class="section" id="id3">
+<h2>管理评论<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>我们在第 9 章定义了几个用户角色,它们分别具有不同的权限。其中一个权限是 Permission.MODERATE_COMMENTS,拥有此权限的用户可以管理其他用户的评论。</p>
+<p>为了管理评论,我们要在导航条中添加一个链接,具有权限的用户才能看到。这个链接在
+base.html 模板中使用条件语句添加</p>
+<p>app/templates/base.html:在导航条中加入管理评论链接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">can</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">MODERATE_COMMENTS</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;main.moderate&#39;) }}&quot;</span><span class="o">&gt;</span><span class="n">Moderate</span> <span class="n">Comments</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>管理页面在同一个列表中显示全部文章的评论,最近发布的评论会显示在前面。每篇评 论的下方都会显示一个按钮,用来切换 disabled 属性的值。</p>
+<p>app/main/views.py:管理评论的路由:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/moderate&#39;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="nd">@permission_required</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">MODERATE_COMMENTS</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">moderate</span><span class="p">():</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">pagination</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span>
+        <span class="n">Comment</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span>
+            <span class="n">page</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_COMMENTS_PER_PAGE&#39;</span><span class="p">],</span>
+            <span class="n">error_out</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">pagination</span><span class="o">.</span><span class="n">items</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;moderate.html&#39;</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span>
+        <span class="n">pagination</span><span class="o">=</span><span class="n">pagination</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这个函数很简单,它从数据库中读取一页评论,将其传入模板进行渲染。除了评论列表之 外,还把分页对象和当前页数传入了模板。</p>
+<p>moderate.html 模板也很简单,如示例 13-8 所示,因为它依靠之前创建的子模板 _comments. html 渲染评论。</p>
+<p>app/templates/moderate.html:评论管理页面的模板</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &quot;base.html&quot; %}
+{% import &quot;_macros.html&quot; as macros %}
+{% block title %}Flasky - Comment Moderation{% endblock %}
+{% block page_content %} 
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;page-header&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Comment Moderation<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% set moderate = True %}
+{% include &#39;_comments.html&#39; %} 
+{% if pagination %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;pagination&quot;</span><span class="p">&gt;</span>
+        {{ macros.pagination_widget(pagination, &#39;.moderate&#39;) }}
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endif %}
+{% endblock %}
+</pre></div>
+</div>
+</div></blockquote>
+<p>这个模板将渲染评论的工作交给 _comments.html 模板完成,但把控制权交给从属模板之 前,会使用 Jinja2 提供的 set 指令定义一个模板变量 moderate,并将其值设为 True。这个 变量用在 _comments.html 模板中,决定是否渲染评论管理功能。</p>
+<p>_comments.html 模板中显示评论正文的部分要做两方面修改。对于普通用户(没设定 moderate 变量),不显示标记为有问题的评论。对于协管员(moderate 设为 True),不管评 论是否被标记为有问题,都要显示,而且在正文下方还要显示一个用来切换状态的按钮。</p>
+<p>app/templates/_comments.html:渲染评论的正文</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>...
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;comment-body&quot;</span><span class="p">&gt;</span>
+{% if comment.disabled %}
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">i</span><span class="p">&gt;</span>This comment has been disabled by a moderator.<span class="p">&lt;/</span><span class="nt">i</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+{% endif %}
+{% if moderate or not comment.disabled %}
+    {% if comment.body_html %}
+        {{ comment.body_html | safe }}
+    {% else %}
+        {{ comment.body }}
+    {% endif %}
+{% endif %}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% if moderate %}
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    {% if comment.disabled %}
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default btn-xs&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;.moderate_enable&#39;,id=comment.id, page=page) }}&quot;</span><span class="p">&gt;</span>Enable<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> 
+        {% else %}
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-danger btn-xs&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;.moderate_disable&#39;,id=comment.id, page=page) }}&quot;</span><span class="p">&gt;</span>Disable<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    {% endif %} 
+{% endif %}
+...
+</pre></div>
+</div>
+</div></blockquote>
+<p>做了上述改动之后,用户将看到一个关于有问题评论的简短提示。协管员既能看到这个提 示,也能看到评论的正文。在每篇评论的下方,协管员还能看到一个按钮,用来切换评论 的状态。点击按钮后会触发两个新路由中的一个,但具体触发哪一个取决于协管员要把评 论设为什么状态。</p>
+<p>app/main/views.py:评论管理路由</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@main.route</span><span class="p">(</span><span class="s1">&#39;/moderate/enable/&lt;int:id&gt;&#39;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="nd">@permission_required</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">MODERATE_COMMENTS</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">moderate_enable</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">comment</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.moderate&#39;</span><span class="p">,</span>
+        <span class="n">page</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)))</span>
+
+<span class="nd">@main.route</span><span class="p">(</span><span class="s1">&#39;/moderate/disable/&lt;int:id&gt;&#39;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="nd">@permission_required</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">MODERATE_COMMENTS</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">moderate_disable</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">comment</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.moderate&#39;</span><span class="p">,</span>
+        <span class="n">page</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>上述启用路由和禁用路由先加载评论对象,把 disabled 字段设为正确的值,再把评论对象 写入数据库。最后,重定向到评论管理页面(如图 13-3 所示),如果查询字符串中指定了 page 参数,会将其传入重定向操作。_comments.html 模板中的按钮指定了 page 参数,重 定向后会返回之前的页面。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -170,6 +407,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch14.html" class="btn btn-neutral float-right" title="第十四章：应用编程接口" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch12.html" class="btn btn-neutral" title="第十二章：关注者" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

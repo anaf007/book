@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../../genindex.html" />
-    <link rel="search" title="搜索" href="../../../search.html" /> 
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第十二章：关注者" href="ch12.html" />
+    <link rel="prev" title="第十章：用户资料" href="ch10.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -76,8 +78,37 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../python_book.html">python相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#id1">python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../python_book.html#web">web开发</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../python_web_development.html">python web开发实战—董伟明</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../flask_web_development.html">Flask Web开发(狗书)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ch1.html">第一章：安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch2.html">第二章：程序基本结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch3.html">第三章：模板</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch4.html">第四章：web表单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch5.html">第五章：数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6.html">第六章：电子邮件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch7.html">第七章：大型程序的结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch8.html">第八章：用户认证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch9.html">第九章：用户角色</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch10.html">第十章：用户资料</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">第十一章：博客文章</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch12.html">第十二章：关注者</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch13.html">第十三章：用户评论</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch14.html">第十四章：应用编程接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch15.html">第十五章：测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch16.html">第十六章：性能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch17.html">第十七章：部署</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch18.html">第十八章：其他资源</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_book.html#wxpython-qt">客户端开发(wxpython/qt)</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
@@ -92,7 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能/机器学习/深度学习/数据挖掘相关书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
@@ -144,6 +175,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../python_book.html">python相关书籍</a> &raquo;</li>
+        
+          <li><a href="../flask_web_development.html">Flask Web开发(狗书)</a> &raquo;</li>
+        
       <li>第十一章：博客文章</li>
     
     
@@ -163,6 +198,275 @@
             
   <div class="section" id="id1">
 <h1>第十一章：博客文章<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>在本章,我们要实现 Flasky 的主要功能,即允许用户阅读、撰写博客文章。本章你会学到 一些新技术:重用模板、分页显示长列表以及处理富文本。</p>
+<div class="section" id="id2">
+<h2>提交和显示博客文章<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>为支持博客文章,我们需要创建一个新的数据库模型</p>
+<p>app/models.py:文章模型:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;posts&#39;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">)</span>
+    <span class="n">author_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Post&#39;</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>博客文章包含正文、时间戳以及和 User 模型之间的一对多关系。body 字段的定义类型是
+db.Text,所以不限制长度。</p>
+<p>在程序的首页要显示一个表单,以便让用户写博客。这个表单很简单,只包括一个多行文本
+输入框,用于输入博客文章的内容,另外还有一个提交按钮,</p>
+<p>app/main/forms.py:博客文章表单:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PostForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">TextAreaField</span><span class="p">(</span><span class="s2">&quot;What&#39;s on your mind?&quot;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">Required</span><span class="p">()])</span>
+    <span class="n">submit</span> <span class="o">=</span> <span class="n">SubmitField</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>index() 视图函数处理这个表单并把以前发布的博客文章列表传给模板</p>
+<p>app/main/views.py:处理博客文章的首页路由:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">PostForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">can</span><span class="p">(</span><span class="n">Permission</span><span class="o">.</span><span class="n">WRITE_ARTICLES</span><span class="p">)</span> <span class="ow">and</span> \
+            <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="n">post</span> <span class="o">=</span> <span class="n">Post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">form</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">author</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">_get_current_object</span><span class="p">())</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;.index&#39;</span><span class="p">))</span>
+
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Post</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这个视图函数把表单和完整的博客文章列表传给模板。文章列表按照时间戳进行降序排 列。博客文章表单采取惯常处理方式,如果提交的数据能通过验证就创建一个新 Post 实 例。在发布新文章之前,要检查当前用户是否有写文章的权限。</p>
+<p>注意,新文章对象的 author 属性值为表达式 current_user._get_current_object()。变量 current_user 由 Flask-Login 提供,和所有上下文变量一样,也是通过线程内的代理对象实 现。这个对象的表现类似用户对象,但实际上却是一个轻度包装,包含真正的用户对象。 数据库需要真正的用户对象,因此要调用 _get_current_object() 方法。</p>
+<p>这个表单显示在 index.html 模板中欢迎消息的下方,其后是博客文章列表。在这个博客文 章列表中,我们首次尝试创建博客文章时间轴,按照时间顺序由新到旧列出了数据库中所 有的博客文章。</p>
+<p>app/templates/index.html:显示博客文章的首页模板:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">literalinclude</span><span class="p">::</span> <span class="n">code</span><span class="o">/</span><span class="n">code11</span><span class="o">-</span><span class="mf">1.</span><span class="n">html</span>
+   <span class="p">:</span><span class="n">language</span><span class="p">:</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>注意,如果用户所属角色没有 WRITE_ARTICLES 权限,则经 User.can() 方法检查后,不会显 示博客文章表单。博客文章列表通过 HTML 无序列表实现,并指定了一个 CSS 类,从而 让格式更精美。页面左侧会显示作者的小头像,头像和作者用户名都渲染成链接形式,可 链接到用户资料页面。所用的 CSS 样式都存储在程序 static 文件夹里的 style.css 文件中。 你可到 GitHub 仓库中查看这个文件。</p>
+</div>
+<div class="section" id="id3">
+<h2>在资料页中显示博客文章<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>我们可以将用户资料页改进一下,在上面显示该用户发布的博客文章列表。</p>
+<p>app/main/views.py:获取博客文章的资料页路由:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/user/&lt;username&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Post</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;user.html&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>用户发布的博客文章列表通过 User.posts 关系获取,User.posts 返回的是查询对象,因此 可在其上调用过滤器,例如 order_by()。</p>
+<p>和index.html模板一样,user.html模板也要使用一个HTML &lt;ul&gt;元素渲染博客文章。维护 两个完全相同的 HTML 片段副本可不是个好主意,遇到这种情况,Jinja2 提供的 include() 指令就非常有用。user.html 模板包含了其他文件中定义的列表,</p>
+<p>app/templates/user.html:显示有博客文章的资料页模板:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Posts</span> <span class="n">by</span> <span class="p">{{</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">include</span> <span class="s1">&#39;_posts.html&#39;</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>为了完成这种新的模板组织方式,index.html 模板中的 &lt;ul&gt; 元素需要移到新模板 _posts. html 中,并替换成另一个 include() 指令。注意,_posts.html 模板名的下划线前缀不是必 须使用的,这只是一种习惯用法,以区分独立模板和局部模板。</p>
+</div>
+<div class="section" id="id4">
+<h2>分页显示长博客文章列表<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>随着网站的发展,博客文章的数量会不断增多,如果要在首页和资料页显示全部文章,浏 览速度会变慢且不符合实际需求。在 Web 浏览器中,内容多的网页需要花费更多的时间生 成、下载和渲染,所以网页内容变多会降低用户体验的质量。这一问题的解决方法是分页 显示数据,进行片段式渲染。</p>
+</div>
+<div class="section" id="id5">
+<h2>创建虚拟博客文章数据<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p><strong>不能生成中文数据？</strong>
+若想实现博客文章分页,我们需要一个包含大量数据的测试数据库。手动添加数据库记录 浪费时间而且很麻烦,所以最好能使用自动化方案。有多个 Python 包可用于生成虚拟信 息,其中功能相对完善的是 ForgeryPy,可以使用 pip 进行安装:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ pip install forgerypy
+</pre></div>
+</div>
+<p>严格来说,ForgeryPy 并不是这个程序的依赖,因为它只在开发过程中使用。为了区分生 产环境的依赖和开发环境的依赖,我们可以把文件 requirements.txt 换成 requirements 文件 夹,它们分别保存不同环境中的依赖。在这个新建的文件夹中,我们可以创建一个 dev.txt 文件,列出开发过程中所需的依赖,再创建一个 prod.txt 文件,列出生产环境所需的依赖。 由于两个环境所需的依赖大部分是相同的,因此可以创建一个 common.txt 文件,在 dev.txt 和 prod.txt 中使用 -r 参数导入。</p>
+<blockquote>
+<div><p>requirements/dev.txt:开发所需的依赖文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">r</span> <span class="n">common</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">ForgeryPy</span><span class="o">==</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>app/models.py:生成虚拟用户和博客文章</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_fake</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+        <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+        <span class="kn">import</span> <span class="nn">forgery_py</span>
+
+        <span class="n">seed</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+                    <span class="n">email</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">internet</span><span class="o">.</span><span class="n">email_address</span><span class="p">(),</span> 
+                    <span class="n">username</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">internet</span><span class="o">.</span><span class="n">user_name</span><span class="p">(</span><span class="bp">True</span><span class="p">),</span> 
+                    <span class="n">password</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">lorem_ipsum</span><span class="o">.</span><span class="n">word</span><span class="p">(),</span> 
+                    <span class="n">confirmed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">full_name</span><span class="p">(),</span> 
+                    <span class="n">location</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">city</span><span class="p">(),</span> 
+                    <span class="n">about_me</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">lorem_ipsum</span><span class="o">.</span><span class="n">sentence</span><span class="p">(),</span> 
+                    <span class="n">member_since</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">generate_fake</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span><span class="p">,</span> <span class="n">randint</span>
+        <span class="kn">import</span> <span class="nn">forgery_py</span>
+        <span class="n">seed</span><span class="p">()</span>
+
+        <span class="n">user_count</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">user_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">Post</span><span class="p">(</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">lorem_ipsum</span><span class="o">.</span><span class="n">sentences</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+                    <span class="n">timestamp</span><span class="o">=</span><span class="n">forgery_py</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="bp">True</span><span class="p">),</span>
+                    <span class="n">author</span><span class="o">=</span><span class="n">u</span>
+                <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>这些虚拟对象的属性由 ForgeryPy 的随机信息生成器生成,其中的名字、电子邮件地址、 句子等属性看起来就像真的一样。</p>
+<p>用户的电子邮件地址和用户名必须是唯一的,但 ForgeryPy 随机生成这些信息,因 此有重复的风险。如果发生了这种不太可能出现的情况,提交数据库会话时会抛出 IntegrityError 异常。这个异常的处理方式是,在继续操作之前回滚会话。在循环中生成 重复内容时不会把用户写入数据库,因此生成的虚拟用户总数可能会比预期少。</p>
+<p>随机生成文章时要为每篇文章随机指定一个用户。为此,我们使用 offset() 查询过滤器。 这个过滤器会跳过参数中指定的记录数量。通过设定一个随机的偏移值,再调用 first() 方法,就能每次都获得一个不同的随机用户。</p>
+<p>使用新添加的方法,我们可以在 Python shell 中轻易生成大量虚拟用户和文章:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(venv) $ python manage.py shell
+&gt;&gt;&gt; User.generate_fake(100)
+&gt;&gt;&gt; Post.generate_fake(100)
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>在页面中渲染数据<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>app/main/views.py:分页显示博客文章列表:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="c1">#...</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">pagination</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span>
+        <span class="n">Post</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span>
+            <span class="n">page</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FLASKY_POSTS_PER_PAGE&#39;</span><span class="p">],</span><span class="n">error_out</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">pagination</span><span class="o">.</span><span class="n">items</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span><span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">,</span>
+        <span class="n">pagination</span><span class="o">=</span><span class="n">pagination</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>渲染的页数从请求的查询字符串(request.args)中获取,如果没有明确指定,则默认渲
+染第一页。参数 type=int 保证参数无法转换成整数时,返回默认值。</p>
+<p>为了显示某页中的记录,要把 all() 换成 Flask-SQLAlchemy 提供的 paginate() 方法。页 数是 paginate() 方法的第一个参数,也是唯一必需的参数。可选参数 per_page 用来指定 每页显示的记录数量;如果没有指定,则默认显示 20 个记录。另一个可选参数为 error_out,当其设为 True 时(默认值),如果请求的页数超出了范围,则会返回 404 错误;如果 设为 False,页数超出范围时会返回一个空列表。为了能够很便利地配置每页显示的记录 数量,参数 per_page 的值从程序的环境变量 FLASKY_POSTS_PER_PAGE 中读取。</p>
+<p>这样修改之后,首页中的文章列表只会显示有限数量的文章。若想查看第 2 页中的文章, 要在浏览器地址栏中的 URL 后加上查询字符串 ?page=2。</p>
+</div>
+<div class="section" id="id7">
+<h2>添加分页导航<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>paginate() 方法的返回值是一个 Pagination 类对象,这个类在 Flask-SQLAlchemy 中定义。 这个对象包含很多属性,用于在模板中生成分页链接,因此将其作为参数传入了模板。</p>
+<dl class="docutils">
+<dt>Flask-SQLAlchemy分页对象的属性：</dt>
+<dd><ul class="first last simple">
+<li>items 当前页面中的记录</li>
+<li>query 分页的源查询</li>
+<li>page 当前页数</li>
+<li>prev_num 上一页的页数</li>
+<li>next_num 下一页的页数</li>
+<li>has_next 如果有下一页,返回 True</li>
+<li>has_prev 如果有上一页,返回 True</li>
+<li>pages 查询得到的总页数</li>
+<li>per_page 每页显示的记录数量</li>
+<li>total 查询返回的记录总数</li>
+</ul>
+</dd>
+</dl>
+<p>在Flask-SQLAlchemy对象上可调用的方法：</p>
+<blockquote>
+<div>-iter_pages(left_edge=2,left_current=2,right_current=5,right_edge=2) :一个迭代器,返回一个在分页导航中显示的页数列表。这个列表的最左边显示left_edge页,当前页的左边显示 left_current页,当前页的右边显示right_current页 最右边显示right_edge页。例如,在一个100页的列表中,当前页为第50页,使用,默认配置,这个方法会返回以下页数:1、2、None、48、49、50、51、52、53、54、55、None、99、100。None 表示页数之间的间隔
+- prev() 上一页的分页对象
+- next() 下一页的分页对象</div></blockquote>
+<p>￼
+拥有这么强大的对象和 Bootstrap 中的分页 CSS 类,我们很轻易地就能在模板底部构建一 个分页导航。</p>
+<p>app/templates/_macros.html:分页模板宏</p>
+<blockquote>
+<div><div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% macro pagination_widget(pagination, endpoint) %} 
+&lt;ul class=&quot;pagination&quot;&gt;
+&lt;li{% if not pagination.has_prev %} class=&quot;disabled&quot;{% endif %}&gt; 
+    &lt;a href=&quot;{% if pagination.has_prev %}{{ url_for(endpoint,page = pagination.page - 1, **kwargs) }}{% else %}#{% endif %}&quot;&gt;&amp;laquo; &lt;/a&gt;
+&lt;/li&gt;
+
+{% for p in pagination.iter_pages() %}
+{%if p%}
+{% if p == pagination.page %} 
+&lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;{{ url_for(endpoint, page = p, **kwargs) }}&quot;&gt;{{ p }}&lt;/a&gt;
+&lt;/li&gt;
+{% else %} 
+
+&lt;li&gt;
+    &lt;a href=&quot;{{ url_for(endpoint, page = p, **kwargs) }}&quot;&gt;{{ p }}&lt;/a&gt;
+&lt;/li&gt;
+{% endif %} 
+{% else %}
+&lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;/li&gt;
+{% endif %} 
+{% endfor %}
+&lt;li{% if not pagination.has_next %} class=&quot;disabled&quot;{% endif %}&gt; 
+    &lt;a href=&quot;{% if pagination.has_next %}{{ url_for(endpoint,page = pagination.page + 1, **kwargs) }}{% else %}#{% endif %}&quot;&gt;&amp;raquo; &lt;/a&gt;
+&lt;/li&gt; 
+&lt;/ul&gt;
+{% endmacro %}
+</pre></div>
+</div>
+</div></blockquote>
+<p>这个宏创建了一个 Bootstrap 分页元素,即一个有特殊样式的无序列表,其中定义了下述页
+面链接。</p>
+<blockquote>
+<div><ul class="simple">
+<li>“上一页”链接。如果当前页是第一页,则为这个链接加上 disabled 类。</li>
+<li>分页对象的iter_pages()迭代器返回的所有页面链接。这些页面被渲染成具有明确页 数的链接,页数在 url_for() 的参数中指定。当前显示的页面使用 activeCSS 类高亮显 示。页数列表中的间隔使用省略号表示。</li>
+<li>“下一页”链接。如果当前页是最后一页,则会禁用这个链接。</li>
+</ul>
+</div></blockquote>
+<p>Jinja2 宏的参数列表中不用加入 <a href="#id8"><span class="problematic" id="id9">**</span></a>kwargs 即可接收关键字参数。分页宏把接收到的所有关 键字参数都传给了生成分页链接的 url_for() 方法。这种方式也可在路由中使用,例如包 含一个动态部分的资料页。</p>
+<p>pagination_widget 宏可放在 index.html 和 user.html 中的 _posts.html 模板后面。</p>
+<p>app/templates/index.html:在博客文章列表下面添加分页导航:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="kn">import</span> <span class="s2">&quot;bootstrap/wtf.html&quot;</span> <span class="k">as</span> <span class="n">wtf</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="kn">import</span> <span class="s2">&quot;_macros.html&quot;</span> <span class="k">as</span> <span class="n">macros</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>…
+{% include ‘_posts.html’ %}
+&lt;div class=”pagination”&gt;
+{{ macros.pagination_widget(pagination, ‘.index’) }}
+&lt;/div&gt;
+{% endif %}</p>
+</div>
+<div class="section" id="markdownflask-pagedown">
+<h2>使用Markdown和Flask-PageDown支持富 文本文章<a class="headerlink" href="#markdownflask-pagedown" title="永久链接至标题">¶</a></h2>
+<p><strong>这个略过 ，使用flask-ueditor比这个pagedown好用，到时候在另外做一篇文章降讲解</strong></p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -170,6 +474,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch12.html" class="btn btn-neutral float-right" title="第十二章：关注者" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch10.html" class="btn btn-neutral" title="第十章：用户资料" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

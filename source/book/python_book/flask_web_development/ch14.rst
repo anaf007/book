@@ -1,2 +1,9 @@
 第十四章：应用编程接口
 ========================================
+
+hhhh
+ .. literalinclude:: code/code10-6.py
+    :language: python
+
+
+.. include:: ../../../ad.rst 

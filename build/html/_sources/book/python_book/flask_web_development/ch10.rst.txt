@@ -1,2 +1,217 @@
 第十章：用户资料
 =====================================
+
+在本章,我们要实现 Flasky 的用户资料页面。所有社交网站都会给用户提供资料页面,其 中简要显示了用户在网站中的活动情况。用户可以把资料页面的 URL 分享给别人,以此 宣告自己在这个网站上。因此,这个页面的 URL 要简短易记。
+
+资料信息
+------------------------------------------------------------------
+
+为了让用户的资料页面更吸引人,我们可以在其中添加一些关于用户的其他信息。
+
+app/models.py:用户信息字段::
+
+    class User(UserMixin, db.Model):
+        # ...
+        name = db.Column(db.String(64))
+        location = db.Column(db.String(64))
+        about_me = db.Column(db.Text())
+        member_since = db.Column(db.DateTime(), default=datetime.utcnow)
+        last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
+
+新添加的字段保存用户的真实姓名、所在地、自我介绍、注册日期和最后访问日期。about_me 字段的类型是 db.Text()。db.String 和 db.Text 的区别在于后者不需要指定最大长度。
+
+两个时间戳的默认值都是当前时间。注意,datetime.utcnow 后面没有 (),因为 db.Column() 的 default 参数可以接受函数作为默认值,所以每次需要生成默认值时,db.Column() 都会 调用指定的函数。member_since 字段只需要默认值即可。
+
+last_seen 字段创建时的初始值也是当前时间,但用户每次访问网站后,这个值都会被刷新。
+
+**这样每次访问都需要一个数据库更新操作增加数据库的访问，会不会性能低下？我也不清楚**
+app/models.py:刷新用户的最后访问时间::
+
+    class User(UserMixin, db.Model):
+    # ...
+    def ping(self):
+        self.last_seen = datetime.utcnow()
+        db.session.add(self)
+
+每次收到用户的请求时都要调用 ping() 方法。由于 auth 蓝本中的 before_app_request 处 理程序会在每次请求前运行,所以能很轻松地实现这个需求。
+
+app/auth/views.py:更新已登录用户的访问时间::
+
+    @auth.before_app_request
+    def before_request():
+    if current_user.is_authenticated(): 
+        current_user.ping()
+        if not current_user.confirmed and request.endpoint[:5] != 'auth.': 
+            return redirect(url_for('auth.unconfirmed'))
+
+用户资料页面
+------------------------------------------------------------------
+
+为每个用户都创建资料页面并没有什么难度。
+
+app/main/views.py:资料页面的路由::
+
+    @main.route('/user/<username>')
+    def user(username):
+        user = User.query.filter_by(username=username).first() 
+        if user is None:
+            abort(404)
+        return render_template('user.html', user=user)
+
+这个路由在 main 蓝本中添加。对于名为 john 的用户,其资料页面的地址是 http://localhost:5000/user/john。这个视图函数会在数据库中搜索 URL 中指定的用户名,如果找到,则渲染模板 user. html,并把用户名作为参数传入模板。如果传入路由的用户名不存在,则返回 404 错误。user. html 模板应该渲染保存在用户对象中的信息。
+
+app/templates/user.html:用户资料页面的模板:
+
+ .. literalinclude:: code/code10-1.html
+    :language: html
+
+在这个模板中,有几处实现细节需要说明一下:
+ - name 和 location 字段在同一个 <p> 元素中渲染。只有至少定义了这两个字段中的一个时, <p> 元素才会创建。    
+ - 用户的location字段被渲染成指向谷歌地图的查询链接。
+ - 如果登录用户是管理员,那么就显示用户的电子邮件地址,且渲染成mailto链接。
+
+大多数用户都希望能很轻松地访问自己的资料页面,因此我们可以在导航条中添加一个链接。
+
+app/templates/base.html::
+    
+    {% if current_user.is_authenticated() %} 
+    <li>
+        <a href="{{ url_for('main.user', username=current_user.username) }}"> Profile</a> 
+    </li>
+    {% endif %}
+
+把资料页面的链接包含在条件语句中是非常必要的,因为未认证的用户也能看到导航条,
+但我们不应该让他们看到资料页面的链接。
+
+
+资料编辑器
+------------------------------------------------------------------
+
+用户资料的编辑分两种情况。最显而易见的情况是,用户要进入一个页面并在其中输入自 己的资料,而且这些内容显示在自己的资料页面上。还有一种不太明显但也同样重要的情 况,那就是要让管理员能够编辑任意用户的资料——不仅要能编辑用户的个人信息,还要 能编辑用户不能直接访问的 User 模型字段,例如用户角色。这两种编辑需求有本质上的区别,所以我们要创建两个不同的表单。
+
+用户级别的资料编辑器
+------------------------------------------------------------------
+
+普通用户的资料编辑表单
+app/main/forms.py:资料编辑表单::
+
+    class EditProfileForm(Form):
+        name = StringField('Real name', validators=[Length(0, 64)]) 
+        location = StringField('Location', validators=[Length(0, 64)]) 
+        about_me = TextAreaField('About me')
+        submit = SubmitField('Submit')
+
+注意,这个表单中的所有字段都是可选的,因此长度验证函数允许长度为零。
+
+app/main/views.py:资料编辑路由:
+
+ .. literalinclude:: code/code10-2.py
+    :language: python
+
+在显示表单之前,这个视图函数为所有字段设定了初始值。对于所有给定字段,这一工作 都是通过把初始值赋值给 form.<field-name>.data 完成的。当 form.validate_on_submit() 返回 False 时,表单中的 3 个字段都使用 current_user 中保存的初始值。提交表单后,表 单字段的 data 属性中保存有更新后的值,因此可以将其赋值给用户对象中的各字段,然后 再把用户对象添加到数据库会话中。
+
+为了让用户能轻易找到编辑页面,我们可以在资料页面中添加一个链接::
+
+    {% if user == current_user %}
+    <a class="btn btn-default" href="{{ url_for('.edit_profile') }}">Edit Profile </a>
+    {% endif %}
+
+链接外层的条件语句能确保只有当用户查看自己的资料页面时才显示这个链接。
+
+管理员级别的资料编辑器
+------------------------------------------------------------------
+
+管理员使用的资料编辑表单比普通用户的表单更加复杂。除了前面的 3 个资料信息字段之 外,管理员在表单中还要能编辑用户的电子邮件、用户名、确认状态和角色。
+
+app/main/forms.py:管理员使用的资料编辑表单
+
+ .. literalinclude:: code/code10-3.py
+    :language: python
+
+WTForms 对 HTML 表单控件 <select> 进行 SelectField 包装,从而实现下拉列表,用来 在这个表单中选择用户角色。
+**SelectField 实例必须在其 choices 属性中设置各选项**
+。选 项必须是一个由元组组成的列表,各元组都包含两个元素:选项的标识符和显示在控件中 的文本字符串。choices 列表在表单的构造函数中设定,其值从 Role 模型中获取,使用一 个查询按照角色名的字母顺序排列所有角色。元组中的标识符是角色的 id,因为这是个整 数,所以在 SelectField 构造函数中添加 coerce=int 参数,从而把字段的值转换为整数, 而不使用默认的字符串。
+
+email 和 username 字段的构造方式和认证表单中的一样,但处理验证时需要更加小心。验 证这两个字段时,首先要检查字段的值是否发生了变化,如果有变化,就要保证新值不 和其他用户的相应字段值重复;如果字段值没有变化,则应该跳过验证。为了实现这个逻
+辑,表单构造函数接收用户对象作为参数,并将其保存在成员变量中,随后自定义的验证 方法要使用这个用户对象。
+
+app/main/views.py:管理员的资料编辑路由
+
+ .. literalinclude:: code/code10-4.py
+    :language: python
+
+这个路由和较简单的、普通用户的编辑路由具有基本相同的结构。在这个视图函数中,用 户由 id 指定,因此可使用 Flask-SQLAlchemy 提供的 get_or_404() 函数,如果提供的 id 不正确,则会返回 404 错误。
+
+我们还需要再探讨一下用于选择用户角色的 SelectField。设定这个字段的初始值时, role_id 被赋值给了 field.role.data,这么做的原因在于 choices 属性中设置的元组列表 使用数字标识符表示各选项。表单提交后,id 从字段的 data 属性中提取,并且查询时会 使用提取出来的 id 值加载角色对象。表单中声明 SelectField 时使用 coerce=int 参数, 其作用是保证这个字段的 data 属性值是整数。
+
+为链接到这个页面,我们还需在用户资料页面中添加一个链接按钮,
+
+app/templates/user.html:管理员使用的资料编辑链接::
+
+    {% if current_user.is_administrator() %} 
+    <a class="btn btn-danger" href="{{ url_for('.edit_profile_admin', id=user.id) }}"> 
+        Edit Profile [Admin]
+    </a>
+    {% endif %}
+
+为了醒目,这个按钮使用了不同的 Bootstrap 样式进行渲染。这里使用的条件语句确保只当 登录用户为管理员时才显示按钮。
+
+用户头像
+------------------------------------------------------------------
+
+**可以使用email以外的值也行比如传唯一的用户名或手机号哈希加密过后**
+通过显示用户的头像,我们可以进一步改进资料页面的外观。在本节,你会学到如何添加 Gravatar(http://gravatar.com/)提供的用户头像。Gravatar 是一个行业领先的头像服务,能 把头像和电子邮件地址关联起来。用户先要到 http://gravatar.com 中注册账户,然后上传图 片。生成头像的 URL 时,要计算电子邮件地址的 MD5 散列值:
+
+::
+
+    (venv) $ python
+    >>> import hashlib
+    >>> hashlib.md5('john@example.com'.encode('utf-8')).hexdigest()
+    'd4c74594d841139328695756648b6bd6'
+
+生 成 的 头 像 URL 是 在 http://www.gravatar.com/avatar/ 或 https://secure.gravatar.com/avatar/ 之后加上这个 MD5 散列值。例如,你在浏览器的地址栏中输入 http://www.gravatar.com/ avatar/d4c74594d841139328695756648b6bd6,就会看到电子邮件地址 john@example.com 对 应的头像图片。如果这个电子邮件地址没有对应的头像,则会显示一个默认图片。头像 URL 的查询字符串中可以包含多个参数以配置头像图片的特征
+
+Gravatar查询字符串参数:
+ - s 图片大小,单位为像素
+ - r 图片级别。可选值有 "g"、"pg"、"r" 和 "x"
+ - d 没有注册 Gravatar 服务的用户使用的默认图片生成方式。可选值有:"404",返回 404 错误;默认图片的 URL;图片生成器 "mm"、"identicon"、"monsterid"、"wavatar"、"retro" 或 "blank"之一
+ - fd 强制使用默认头像
+
+我们可将构建 Gravatar URL 的方法添加到 User 模型中,
+
+ .. literalinclude:: code/code10-5.py
+    :language: python
+
+这一实现会选择标准的或加密的Gravatar URL基以匹配用户的安全需求。头像的URL由 URL 基、用户电子邮件地址的 MD5 散列值和参数组成,而且各参数都设定了默认值。有 了上述实现,我们就可以在 Python shell 中轻易生成头像的 URL 了:
+
+::
+
+    (venv) $ python manage.py shell
+    >>> u = User(email='john@example.com')
+    >>> u.gravatar()
+    'http://www.gravatar.com/avatar/d4c74594d84113932869575bd6?s=100&d=identicon&r=g'
+    >>> u.gravatar(size=256)
+    'http://www.gravatar.com/avatar/d4c74594d84113932869575bd6?s=256&d=identicon&r=g'
+
+gravatar() 方法也可在 Jinja2 模板中调用。
+
+app/tempaltes/user.html:资料页面中的头像::
+
+    ...
+    <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}"> 
+    ...
+
+使用类似方式,我们可在基模板的导航条上添加一个已登录用户头像的小型缩略图。为了 更好地调整页面中头像图片的显示格式,我们可使用一些自定义的 CSS 类。你可以在源码 仓库的 styles.css 文件中查看自定义的 CSS,styles.css 文件保存在程序静态文件的文件夹 中,而且要在 base.html 模板中引用。图 10-3 为显示了头像的用户资料页面。
+
+生成头像时要生成 MD5 值,这是一项 CPU 密集型操作。如果要在某个页面中生成大量头 像,计算量会非常大。由于用户电子邮件地址的 MD5 散列值是不变的,因此可以将其缓 存在 User 模型中。若要把 MD5 散列值保存在数据库中,需要对 User 模型做些改动,
+
+app/models.py:使用缓存的 MD5 散列值生成 Gravatar URL
+
+ .. literalinclude:: code/code10-6.py
+    :language: python
+
+
+模型初始化过程中会计算电子邮件的散列值,然后存入数据库,若用户更新了电子邮件 地址,则会重新计算散列值。gravatar() 方法会使用模型中保存的散列值;如果模型中没 有,就和之前一样计算电子邮件地址的散列值。
+
+
+.. include:: ../../../ad.rst          
