@@ -105,7 +105,16 @@ WTForms验证函数:
 
     verification_code = StringField('验证码', validators=[DataRequired(), render_kw={'style':'width:100px;'})
 
+**修改flask-bootstrap的js和css为本地，！在配置文件中设置**
+::
+
+    BOOTSTRAP_SERVE_LOCAL = True
+
+
 即便能指定 HTML 属性,但按照这种方式渲染表单的工作量还是很大,所以在条件允许的 情况下最好能使用 Bootstrap 中的表单样式。Flask-Bootstrap 提供了一个非常高端的辅助函 数,可以使用 Bootstrap 中预先定义好的表单样式渲染整个 Flask-WTF 表单,而这些操作 只需一次调用即可完成。使用 Flask-Bootstrap,上述表单可使用下面的方式渲染:
+
+
+
 ::
 
     {% import "bootstrap/wtf.html" as wtf %} 

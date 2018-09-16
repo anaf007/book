@@ -289,6 +289,10 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="s1">&#39;验证码&#39;</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">DataRequired</span><span class="p">(),</span> <span class="n">render_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;style&#39;</span><span class="p">:</span><span class="s1">&#39;width:100px;&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
+<p><strong>修改flask-bootstrap的js和css为本地，！在配置文件中设置</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOTSTRAP_SERVE_LOCAL</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
 <p>即便能指定 HTML 属性,但按照这种方式渲染表单的工作量还是很大,所以在条件允许的 情况下最好能使用 Bootstrap 中的表单样式。Flask-Bootstrap 提供了一个非常高端的辅助函 数,可以使用 Bootstrap 中预先定义好的表单样式渲染整个 Flask-WTF 表单,而这些操作 只需一次调用即可完成。使用 Flask-Bootstrap,上述表单可使用下面的方式渲染:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="kn">import</span> <span class="s2">&quot;bootstrap/wtf.html&quot;</span> <span class="k">as</span> <span class="n">wtf</span> <span class="o">%</span><span class="p">}</span>
 <span class="p">{{</span> <span class="n">wtf</span><span class="o">.</span><span class="n">quick_form</span><span class="p">(</span><span class="n">form</span><span class="p">)</span> <span class="p">}}</span>

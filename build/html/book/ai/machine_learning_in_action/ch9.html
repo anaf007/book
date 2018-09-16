@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>树回归CART &mdash; my_book_doc  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="k-均值聚类算法" href="ch10.html" />
+    <link rel="prev" title="回归" href="ch8.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> my_book_doc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../asm_c_cjj_book.html">ASM/C/C++书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">算法相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../think_bayes.html">贝叶斯思维</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deep_learning.html">深度学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deep_learning_implementation.html">深度学习核心技术与实现</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../machine_learning_in_action.html">机器学习实战</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch1.html">机器学习基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2.html">kNN近邻算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3.html">决策树</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4.html">朴素贝叶斯</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5.html">Logistics回归</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6.html">支持向量机SVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7.html">AdaBoost元算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch8.html">回归</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">树回归CART</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch10.html">k-均值聚类算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11.html">Apriori算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12.html">FP-growth算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch13.html">PCA简化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch14.html">SVD简化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch15.html">大数据与MapReduce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch16.html">其他：神经网络RNN</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tensorflow_length.html">TensorFlow实战Google深度学习框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_neural_network.html">python神经网络编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deep_reinforcement_learning.html">深度强化学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ShuJuWanJueYuZhiShiFaXian.html">数据挖掘与知识发现</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../note/othor.html">笔记</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">my_book_doc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../ai.html">人工智能相关书籍</a> &raquo;</li>
+        
+          <li><a href="../machine_learning_in_action.html">机器学习实战</a> &raquo;</li>
+        
+      <li>树回归CART</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cart">
+<h1>树回归CART<a class="headerlink" href="#cart" title="永久链接至标题">¶</a></h1>
+<p>数据集中经常包含一些复杂的相互关系，是的输入数据和目标变量之间呈现非线性关系。一般采用树结构来对这种数据建模，相应的，若叶节点使用的模型是分段常数则称为树回归，若叶节点使用的模型是线性回归方程则为模型树。</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch10.html" class="btn btn-neutral float-right" title="k-均值聚类算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch8.html" class="btn btn-neutral" title="回归" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anaf.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
