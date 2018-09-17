@@ -4,3 +4,7 @@
 #C程序编译
 *.out
 *.exe
+
+#IDE环境
+.idea/**/workspace.xml
+.idea/workspace.xml
