@@ -1,0 +1,2359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1   reStructuredText标记规范(转) &mdash; my_book_doc  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="linux查找软件(nginx)安装位置及配置信息等" href="../linux/search_nginx.html" />
+    <link rel="prev" title="网站的使用技巧一" href="web_site_techniques.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> my_book_doc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/python_book.html">python相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/security_book.html">安全相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/asm_c_cjj_book.html">ASM/C/C++书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/algorithm.html">算法相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/database.html">数据库相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/ai.html">人工智能相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../book/mathematics.html">数学书</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../othor.html">笔记</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../use_skills.html">使用技巧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crazy_programmer.html">疯狂的程序员摘要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motivational_statements.html">励志话语</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_site_techniques.html">网站的使用技巧一</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rst-quick-syntax-overview">1.1&nbsp;&nbsp;&nbsp;语法快速概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-syntax-details">1.2&nbsp;&nbsp;&nbsp;语法细节</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rst-whitespace">1.2.1&nbsp;&nbsp;&nbsp;空格</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-escaping-mechanism">1.2.2&nbsp;&nbsp;&nbsp;转义机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-reference-names">1.2.3&nbsp;&nbsp;&nbsp;引用名称</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-document-structure">1.2.4&nbsp;&nbsp;&nbsp;文档结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-body-elements">1.2.5&nbsp;&nbsp;&nbsp;正文元素</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-implicit-hyperlink-targets">1.2.6&nbsp;&nbsp;&nbsp;隐式超链接目标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-inline-markup">1.2.7&nbsp;&nbsp;&nbsp;行内标记</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-units">1.2.8&nbsp;&nbsp;&nbsp;单位</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-error-handing">1.3&nbsp;&nbsp;&nbsp;错误处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../othor.html#linux">Linux相关</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">my_book_doc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../othor.html">笔记</a> &raquo;</li>
+        
+      <li>1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="restructuredtext">
+<h1><a class="toc-backref" href="#id89">1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</a><a class="headerlink" href="#restructuredtext" title="永久链接至标题">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">本文档为技术规范细节，而非教程或入门。如果你第一次接触  reStructuredText，请先阅读 <a class="reference external" href="../../user/rst/quickstart.html">ReStructuredText介绍</a> 和 <a class="reference external" href="../../user/rst/quickref.html">ReStructuredText快速开始</a> 用户手册。</p>
+</div>
+<p><a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> 是使用简单直观结构来展示文档结构的纯文本。这些结构无论是原生状态还是处理后的形式都相当易于阅读。这篇文档本身就是一个reStructuredText的例子(原生的，如果你阅读的是文本文件；或处理后的，如果你阅读的是一个HTML文档)。reStructuredText解析器是 <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> 的一个组件。</p>
+<p>简单的隐式标记用于展示特殊的结果，如段落标题、无序列表和强调。使用的标记尽可能小且不显眼。reStructuredText基本语法中不常用的结构和扩展可能会更显眼或使用显式标记。</p>
+<p>reStructuredText适用于任何长度的文档，从非常小的(如行内程序文档片段 – Python文档字符串)到非常大的(本文档)。</p>
+<p>第一节通过例子展示了reStructuredText标记的语法快速概览。完整的规范可以在 <a class="reference internal" href="#id5">语法细节</a> 章节看到。</p>
+<p><a class="reference internal" href="#id32">文本块</a> (其中的标记不被处理)用于展示本文档的示例，其以纯文本的形式来说明标记。</p>
+<div class="contents topic" id="id3">
+<p class="topic-title first">目录</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#restructuredtext" id="id89">1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-quick-syntax-overview" id="id90">1.1&nbsp;&nbsp;&nbsp;语法快速概述</a></li>
+<li><a class="reference internal" href="#rst-syntax-details" id="id91">1.2&nbsp;&nbsp;&nbsp;语法细节</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-whitespace" id="id92">1.2.1&nbsp;&nbsp;&nbsp;空格</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-blank-lines" id="id93">1.2.1.1&nbsp;&nbsp;&nbsp;空行</a></li>
+<li><a class="reference internal" href="#indentation" id="id94">1.2.1.2&nbsp;&nbsp;&nbsp;缩进</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-escaping-mechanism" id="id95">1.2.2&nbsp;&nbsp;&nbsp;转义机制</a></li>
+<li><a class="reference internal" href="#rst-reference-names" id="id96">1.2.3&nbsp;&nbsp;&nbsp;引用名称</a></li>
+<li><a class="reference internal" href="#rst-document-structure" id="id97">1.2.4&nbsp;&nbsp;&nbsp;文档结构</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-document" id="id98">1.2.4.1&nbsp;&nbsp;&nbsp;文档</a></li>
+<li><a class="reference internal" href="#rst-sections" id="id99">1.2.4.2&nbsp;&nbsp;&nbsp;章节</a></li>
+<li><a class="reference internal" href="#rst-transitions" id="id100">1.2.4.3&nbsp;&nbsp;&nbsp;过渡</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-body-elements" id="id101">1.2.5&nbsp;&nbsp;&nbsp;正文元素</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-paragraphs" id="id102">1.2.5.1&nbsp;&nbsp;&nbsp;段落</a></li>
+<li><a class="reference internal" href="#rst-bullet-lists" id="id103">1.2.5.2&nbsp;&nbsp;&nbsp;无序列表</a></li>
+<li><a class="reference internal" href="#rst-enumerated-lists" id="id104">1.2.5.3&nbsp;&nbsp;&nbsp;有序列表</a></li>
+<li><a class="reference internal" href="#rst-definition-lists" id="id105">1.2.5.4&nbsp;&nbsp;&nbsp;定义列表</a></li>
+<li><a class="reference internal" href="#rst-field-lists" id="id106">1.2.5.5&nbsp;&nbsp;&nbsp;字段列表</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-bibliographic-fields" id="id107">1.2.5.5.1&nbsp;&nbsp;&nbsp;目录字段</a></li>
+<li><a class="reference internal" href="#rcs" id="id108">1.2.5.5.2&nbsp;&nbsp;&nbsp;RCS关键字</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-option-lists" id="id109">1.2.5.6&nbsp;&nbsp;&nbsp;选项列表</a></li>
+<li><a class="reference internal" href="#rst-literal-blocks" id="id110">1.2.5.7&nbsp;&nbsp;&nbsp;文本块</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-indented-literal-blocks" id="id111">1.2.5.7.1&nbsp;&nbsp;&nbsp;缩进文本块</a></li>
+<li><a class="reference internal" href="#rst-quoted-literal-blocks" id="id112">1.2.5.7.2&nbsp;&nbsp;&nbsp;引用文本块</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-line-blocks" id="id113">1.2.5.8&nbsp;&nbsp;&nbsp;行块</a></li>
+<li><a class="reference internal" href="#rst-block-quotes" id="id114">1.2.5.9&nbsp;&nbsp;&nbsp;引用块</a></li>
+<li><a class="reference internal" href="#rst-doctest-blocks" id="id115">1.2.5.10&nbsp;&nbsp;&nbsp;测试文档块</a></li>
+<li><a class="reference internal" href="#rst-tables" id="id116">1.2.5.11&nbsp;&nbsp;&nbsp;表格</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-grid-tables" id="id117">1.2.5.11.1&nbsp;&nbsp;&nbsp;网格表格</a></li>
+<li><a class="reference internal" href="#rst-simple-tables" id="id118">1.2.5.11.2&nbsp;&nbsp;&nbsp;简单表格</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-explicit-markup-blocks" id="id119">1.2.5.12&nbsp;&nbsp;&nbsp;显式标记块</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-footnotes" id="id120">1.2.5.12.1&nbsp;&nbsp;&nbsp;脚注</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-auto-numbered-footnotes" id="id121">1.2.5.12.1.1&nbsp;&nbsp;&nbsp;自动编号脚注</a></li>
+<li><a class="reference internal" href="#rst-auto-symbol-footnotes" id="id122">1.2.5.12.1.2&nbsp;&nbsp;&nbsp;自动符号脚注</a></li>
+<li><a class="reference internal" href="#rst-mixed-manual-and-auto-numbered-footnotes" id="id123">1.2.5.12.1.3&nbsp;&nbsp;&nbsp;混合手动和自动编号脚注</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-citations" id="id124">1.2.5.12.2&nbsp;&nbsp;&nbsp;引文</a></li>
+<li><a class="reference internal" href="#rst-hyperlinks-targets" id="id125">1.2.5.12.3&nbsp;&nbsp;&nbsp;超链接目标</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-anonymous-hyperlinks" id="id126">1.2.5.12.3.1&nbsp;&nbsp;&nbsp;匿名超链接</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-directives" id="id127">1.2.5.12.4&nbsp;&nbsp;&nbsp;指令</a></li>
+<li><a class="reference internal" href="#rst-substitution-definitions" id="id128">1.2.5.12.5&nbsp;&nbsp;&nbsp;替代定义</a></li>
+<li><a class="reference internal" href="#rst-comments" id="id129">1.2.5.12.6&nbsp;&nbsp;&nbsp;注释</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-implicit-hyperlink-targets" id="id130">1.2.6&nbsp;&nbsp;&nbsp;隐式超链接目标</a></li>
+<li><a class="reference internal" href="#rst-inline-markup" id="id131">1.2.7&nbsp;&nbsp;&nbsp;行内标记</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-inline-markup-recognition-rules" id="id132">1.2.7.1&nbsp;&nbsp;&nbsp;行内标记识别规则</a></li>
+<li><a class="reference internal" href="#rst-recognition-order" id="id133">1.2.7.2&nbsp;&nbsp;&nbsp;识别顺序</a></li>
+<li><a class="reference internal" href="#rst-character-level-inline-markup" id="id134">1.2.7.3&nbsp;&nbsp;&nbsp;字符级行内标记</a></li>
+<li><a class="reference internal" href="#rst-emphasis" id="id135">1.2.7.4&nbsp;&nbsp;&nbsp;斜体</a></li>
+<li><a class="reference internal" href="#rst-strong-emphasis" id="id136">1.2.7.5&nbsp;&nbsp;&nbsp;粗体</a></li>
+<li><a class="reference internal" href="#rst-interpreted-text" id="id137">1.2.7.6&nbsp;&nbsp;&nbsp;解释文本</a></li>
+<li><a class="reference internal" href="#rst-inline-literals" id="id138">1.2.7.7&nbsp;&nbsp;&nbsp;行内文本</a></li>
+<li><a class="reference internal" href="#rst-hyperlink-references" id="id139">1.2.7.8&nbsp;&nbsp;&nbsp;超链接引用</a><ul class="auto-toc">
+<li><a class="reference internal" href="#uri" id="id140">1.2.7.8.1&nbsp;&nbsp;&nbsp;嵌套URI和别名</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-inline-internal-targets" id="id141">1.2.7.9&nbsp;&nbsp;&nbsp;行内内部目标</a></li>
+<li><a class="reference internal" href="#rst-footnote-references" id="id142">1.2.7.10&nbsp;&nbsp;&nbsp;脚注引用</a></li>
+<li><a class="reference internal" href="#rst-citation-references" id="id143">1.2.7.11&nbsp;&nbsp;&nbsp;引文引用</a></li>
+<li><a class="reference internal" href="#rst-substitution-references" id="id144">1.2.7.12&nbsp;&nbsp;&nbsp;替代引用</a></li>
+<li><a class="reference internal" href="#rst-standalone-hyperlinks" id="id145">1.2.7.13&nbsp;&nbsp;&nbsp;独立超链接</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-units" id="id146">1.2.8&nbsp;&nbsp;&nbsp;单位</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rst-length-units" id="id147">1.2.8.1&nbsp;&nbsp;&nbsp;长度单位</a></li>
+<li><a class="reference internal" href="#rst-percentage-units" id="id148">1.2.8.2&nbsp;&nbsp;&nbsp;百分数单位</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rst-error-handing" id="id149">1.3&nbsp;&nbsp;&nbsp;错误处理</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="rst-quick-syntax-overview">
+<span id="id4"></span><h2><a class="toc-backref" href="#id90">1.1&nbsp;&nbsp;&nbsp;语法快速概述</a><a class="headerlink" href="#rst-quick-syntax-overview" title="永久链接至标题">¶</a></h2>
+<p>reStructuredText文档由正文或块级元素组成，可以使用章节的方式来组织。 <a class="reference internal" href="#id13">章节</a> 表现为标题风格（下划线和可选的上划线）。章节包含正文元素及/或子标题。某些正文元素包含其他元素，如列表包含列表项，列表项包含段落及其他正文元素。其他的，如段落包含文本和 <a class="reference internal" href="#id65">行内标记</a> 元素。</p>
+<p>这是 <a class="reference internal" href="#id17">正文元素</a> 的例子：</p>
+<ul>
+<li><p class="first"><a class="reference internal" href="#id18">段落</a> (和 <a class="reference internal" href="#id65">行内标记</a> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>段落包含文本，还可能包含行内标记: *强调* 、 **特别强调** 、 `解释文本` 、 ``行内文本`` 、 独立超链接(http://www.python.org)、扩展超链接(Python_)、内部交叉引用(example_)、脚注引用([1]_)、引文引用([CIT2002]_)、替代引用(|example|)和 _`行内内部目标`.
+
+段落使用空行分隔，左对齐。
+</pre></div>
+</div>
+</li>
+<li><p class="first">五种类型的列表:</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference internal" href="#id19">无序列表</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">这是无序列表</span>
+
+<span class="o">-</span> <span class="n">序号可以是</span><span class="s2">&quot;* + -&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id20">有序列表</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. 这是一个有序列表
+
+2. 序号可以是任何数字、字母或罗马数字
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id21">定义列表</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>是什么
+      定义列表关联一个术语到一个定义
+如何
+      术语是一个一行句子，定义是一个或多个段落或正文元素，使用缩进联系到术语
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id22">字段列表</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:是什么: 字段列表映射字段名到字段体，如数据库记录。它们通常是扩展语法的一部分
+:怎么样: 字段标记是一个冒号，字段名，另一个冒号
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id31">选项列表</a> ，用于列出命令行选项:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">a</span>            <span class="n">命令行选项</span><span class="s2">&quot;a&quot;</span>
+<span class="o">-</span><span class="n">b</span> <span class="n">file</span>       <span class="n">选项可以有参数和描述</span>
+<span class="o">--</span><span class="n">long</span>        <span class="n">选项也可以长</span>
+<span class="o">--</span><span class="nb">input</span><span class="o">=</span><span class="n">file</span>  <span class="n">长选项也可以有参数</span>
+<span class="o">/</span><span class="n">v</span>            <span class="n">DOS</span><span class="o">/</span><span class="n">VMS风格的选项也行</span>
+</pre></div>
+</div>
+<p>选项与描述之间需要至少两个空格</p>
+</li>
+</ol>
+</li>
+<li><p class="first"><a class="reference internal" href="#id32">文本块</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>文本块可以是缩进或段落最后的行前缀块（表现为两个冒号&quot;::&quot;）::
+
+    if literal_block:
+      text = &#39;is left as-is&#39;
+      spaces_and_linebreaks = &#39;are preserved&#39;
+      markup_processing = None
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id38">引用块</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>引用快包括缩进的正文元素：
+
+  Tis theory, that is mine, is mine.
+
+  -- Anne Elk (Miss)
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="#id39">测试文档块</a>::</dt>
+<dd><div class="first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Python专用用例；以&quot;&gt;&gt;&gt;&quot;&#39;</span>
+<span class="go">Python专用用例；以&quot;&gt;&gt;&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;(cut and pasted from interactive Python sessions)&#39;</span>
+<span class="go">(cut and pasted from interactive Python sessions)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first"><a class="reference internal" href="#id40">表格</a> 有两种语法:</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference internal" href="#id41">网格表格</a> ：完整的，但复杂、冗长:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------+------------+----------+</span>
+<span class="o">|</span> <span class="n">Header</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">Header</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">Header</span> <span class="mi">3</span> <span class="o">|</span>
+<span class="o">+========================+============+==========+</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">column</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">column</span> <span class="mi">3</span> <span class="o">|</span>
+<span class="o">+------------------------+------------+----------+</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">2</span>             <span class="o">|</span> <span class="n">Cells</span> <span class="n">may</span> <span class="n">span</span>        <span class="o">|</span>
+<span class="o">+------------------------+-----------------------+</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id42">简单表格</a> ：简单且紧凑，但有限制:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">====================</span>  <span class="o">==========</span>  <span class="o">==========</span>
+<span class="n">Header</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>  <span class="n">Header</span> <span class="mi">2</span>    <span class="n">Header</span> <span class="mi">3</span>
+<span class="o">====================</span>  <span class="o">==========</span>  <span class="o">==========</span>
+<span class="n">body</span> <span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>  <span class="n">column</span> <span class="mi">2</span>    <span class="n">column</span> <span class="mi">3</span>
+<span class="n">body</span> <span class="n">row</span> <span class="mi">2</span>            <span class="n">Cells</span> <span class="n">may</span> <span class="n">span</span> <span class="n">columns</span>
+<span class="o">====================</span>  <span class="o">======================</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p class="first"><a class="reference internal" href="#id43">显式标记块</a> 都是以一个显式块标记，两个点和一个空格:</p>
+<ul>
+<li><p class="first"><a class="reference internal" href="#id44">脚注</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. [1] 个脚注包含正文元素、最少3个空格的一致缩进
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id51">引文</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. [CIT2002] 似脚注，除了标签是文本
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id52">超链接目标</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_Python</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span>
+
+<span class="o">..</span> <span class="n">_example</span><span class="p">:</span>
+
+<span class="n">上面的</span><span class="s2">&quot;_example&quot;</span><span class="n">指向这一段</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id58">指令</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">mylogo</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id59">替代定义</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="o">|</span><span class="n">symbol</span> <span class="n">here</span><span class="o">|</span> <span class="n">image</span><span class="p">::</span> <span class="n">symbol</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="#id62">注释</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. 注释以两个点和一个空格开始。可以接除了脚注/引文、超谅解、指令或替代定义之外的任何东西。
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="rst-syntax-details">
+<span id="id5"></span><h2><a class="toc-backref" href="#id91">1.2&nbsp;&nbsp;&nbsp;语法细节</a><a class="headerlink" href="#rst-syntax-details" title="永久链接至标题">¶</a></h2>
+<p>下面的描述列出了”文档树元素”(文档树元素名称、XML DTD通用标识符)所对应的语法结构。想查看元素层次结构的细节，请阅读 <a class="reference external" href="../doctree.html">Docutils文档树</a> 和 <a class="reference external" href="../docutils.dtd">Docutils通用DTD</a> XML文档类型定义。</p>
+<div class="section" id="rst-whitespace">
+<span id="id6"></span><h3><a class="toc-backref" href="#id92">1.2.1&nbsp;&nbsp;&nbsp;空格</a><a class="headerlink" href="#rst-whitespace" title="永久链接至标题">¶</a></h3>
+<p>议使用空格进行 <a class="reference internal" href="#id8">缩进</a> ，但tab也可以使用。tab会转换为空格。tab会停在每个第八列。</p>
+<p>其他空白字符（form feeds [chr(12)] and vertical tabs [chr(11)]）会在处理前转为单个空格。</p>
+<div class="section" id="rst-blank-lines">
+<span id="id7"></span><h4><a class="toc-backref" href="#id93">1.2.1.1&nbsp;&nbsp;&nbsp;空行</a><a class="headerlink" href="#rst-blank-lines" title="永久链接至标题">¶</a></h4>
+<p>空行用于分隔段落和其他元素。除了在文本块（所有的空格被保留）中之外，多个连续的空行相当于一个空行。当标记使元素分离不明确时，空行会被忽略。文档的第一行会被当做其之前有一个空行，文档的最后一行会被当做其之后有一个空行。</p>
+</div>
+<div class="section" id="indentation">
+<span id="id8"></span><h4><a class="toc-backref" href="#id94">1.2.1.2&nbsp;&nbsp;&nbsp;缩进</a><a class="headerlink" href="#indentation" title="永久链接至标题">¶</a></h4>
+<p>缩进是用来表示引用块、定义（在定义列表项中）和本地嵌套内容的唯一重要标示:</p>
+<ul class="simple">
+<li>列表项内容（列表项多行内容和一个列表项中多个正文元素包括嵌套列表）</li>
+<li>文本块的内容</li>
+<li>显式标记块的内容</li>
+</ul>
+<p>任何文本的缩进少于当前级别，会结束当前级别的缩进</p>
+<p>因为所有的缩进都是重要的标志，因此缩进的级别应当一致。例如，缩进是引用块的唯一标记：</p>
+<p>这是一个顶级段落。</p>
+<blockquote>
+<div><p>该段落属于一级引用块。</p>
+<p>一级引用块的第二段。</p>
+</div></blockquote>
+<p>一个引用块内的多级缩进会导致复杂的结构：</p>
+<p>这是一个顶级段落。</p>
+<blockquote>
+<div><p>该段落属于一级引用块。</p>
+<blockquote>
+<div>该段落属于二级引用块</div></blockquote>
+</div></blockquote>
+<p>另一个顶级段落</p>
+<blockquote>
+<div><blockquote>
+<div>这一段属于二级引用块。</div></blockquote>
+<p>这一段属于一级引用块。上面的二级引用块在这个一级引用块里面。</p>
+</div></blockquote>
+<p>当一个段落或其他结构有不止一行文本，行应该左对齐:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是一个段落。段落各行
+左对齐。
+
+    这个段落有问题。行
+没有左对齐。除了潜在的误解，还会
+  由解析器生成警告和/或错误信息。
+</pre></div>
+</div>
+<p>几种结构以同一个标记开始，结构体必须以缩进与标记联系。对于使用简单标记的结构(<a class="reference internal" href="#id19">无序列表</a> 、<a class="reference internal" href="#id20">有序列表</a> 、<a class="reference internal" href="#id44">脚注</a> 、<a class="reference internal" href="#id51">引文</a> 、<a class="reference internal" href="#id52">超链接目标</a> 、<a class="reference internal" href="#id58">指令</a> 和 <a class="reference internal" href="#id62">注释</a> )，正文的缩进级别由文本第一行的位置决定，与标记在同一位置。举例，无序列表体必须必子弹字符缩进至少2列:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 这是无序列表项目的段落的第一行。
+  所有行必须与这一行对齐。 [1]_
+
+      这个缩进段落解释为一个引用块
+
+因为其没有充分缩进，
+这个段落不属于列表项。
+
+.. [1] 这里是脚注。第二行与
+   注标签对齐。&quot;..&quot;标记
+   用于决定缩进。
+</pre></div>
+</div>
+<p>对于使用复杂标记( <a class="reference internal" href="#id22">字段列表</a> 、 <a class="reference internal" href="#id31">选项列表</a> )的结构，标记可能包含任意文本，标记后的第一行的缩进决定了正文的左边。举例，字段列表可能有非常长的标记（包含字段名）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:Hello: 这个字段有一个很短的名字，因此
+        对齐到第一行就行了。
+
+:Number-of-African-swallows-required-to-carry-a-coconut: 这个
+    很难将字段体对齐到第一行左边。甚至可能与标记不在同一行开
+    始字段体。
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rst-escaping-mechanism">
+<span id="id9"></span><h3><a class="toc-backref" href="#id95">1.2.2&nbsp;&nbsp;&nbsp;转义机制</a><a class="headerlink" href="#rst-escaping-mechanism" title="永久链接至标题">¶</a></h3>
+<p>7位ASCII普遍适用，是有限的。不管用什么字符作标记，它们都会在文本中具有多重意义。因此，标记字符在文本中有时会出现，而不被认为是标记。任何严谨的标记系统都需要一个转义机制来重写标记字符的默认含义。我们使用与其他常用领域相同的转义字符，反斜杠。</p>
+<p>反斜杠可以将任何非空白字符转义为字符。转义的字符表示字符本身，并阻止其在标记中扮演任何角色。反斜杠会在输出时去除。反斜杠文本用两个反斜杠表示(第一个反斜杠转义第二个，阻止其变被解释为转义角色)。</p>
+<p>反斜杠转义空白字符会被从本文档中删除。在字符级 <a class="reference internal" href="#id65">行内标记</a> 中是允许的。</p>
+<p>在两种上下文中反斜杠没有特殊含义：文本块和行内文本。在这些上下文中，单个的反斜杠表示反斜杠文本，无须重复。</p>
+<p>注意：reSturcturedText规范和解析器不处理文本输入的表示或提取的问题（文本以如何和以何种形式到达解析器）。反斜杠与其他字符可能在特定的上下文中作为转义字符，其必须被合适的处理。例如，Python在字符串中使用反斜杠来转义特定字符，而不是其他的。在Python文档字符串中出现反斜杠最简单的处理方法就是使用原生文档字符串:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;This is a raw docstring.  Backslashes (\) are not touched.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-reference-names">
+<span id="id10"></span><h3><a class="toc-backref" href="#id96">1.2.3&nbsp;&nbsp;&nbsp;引用名称</a><a class="headerlink" href="#rst-reference-names" title="永久链接至标题">¶</a></h3>
+<p>简单引用名称是由字母和内部连字符、下划线、点、冒号和加号组成的单个单词，不能有空白或其他字符。脚注标签（<a class="reference internal" href="#id44">脚注</a> 和 <a class="reference internal" href="#id77">脚注引用</a> ）、引文标签（<a class="reference internal" href="#id51">引文</a> 和 <a class="reference internal" href="#id78">引文引用</a> ）、<a class="reference internal" href="#id73">解释文本</a> 角色以及某些 <a class="reference internal" href="#id75">超链接引用</a> 使用简单引用名称语法。</p>
+<p>引用名称使用标点符号或短语（2个或更多空格分隔的单词），被称为“短语引用”。短语引用由在反引号封闭的短语表示，并将反引号文本作为引用名称:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>想要学习 `我最喜欢的编程语言`_ ?
+
+.. _我最喜欢的编程语言: http://www.python.org
+</pre></div>
+</div>
+<p>简单引用名称也可以可选的使用反引号。</p>
+<p>引用名称是空白中立的且不区分大小写。在内部解析引用名称时：</p>
+<ul class="simple">
+<li>空白会被归一(一个或多个空格、横向或纵向的tabs、新行、换行会被解释为一个空格)</li>
+<li>大小写会被归一（所有字母被转为小写）</li>
+</ul>
+<p>举例，如下 <a class="reference internal" href="#id75">超链接引用</a> 是等价的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- `A HYPERLINK`_
+- `a    hyperlink`_
+- `A
+  Hyperlink`_
+</pre></div>
+</div>
+<p><a class="reference internal" href="#id52">超链接</a> 、<a class="reference internal" href="#id44">脚注</a> 和 <a class="reference internal" href="#id51">引文</a> 对于引用名称共享相同的命名空间。引文的标签（简单引用名称）和手动编号脚注（数字）会进入相同的数据库作为其他超链接名称。这意味着一个可以被脚注引用(<code class="docutils literal notranslate"><span class="pre">[1]_</span></code>)指向的脚注（定义为”.. [1]”）也可以被纯超链接引用 (<a class="reference internal" href="#id15">1</a>)指向。当然，每个类型的引用（超链接、脚注、引文）可能会以不同的方式处理和渲染。应该注意避免引用名称混淆。</p>
+</div>
+<div class="section" id="rst-document-structure">
+<span id="id11"></span><h3><a class="toc-backref" href="#id97">1.2.4&nbsp;&nbsp;&nbsp;文档结构</a><a class="headerlink" href="#rst-document-structure" title="永久链接至标题">¶</a></h3>
+<div class="section" id="rst-document">
+<span id="id12"></span><h4><a class="toc-backref" href="#id98">1.2.4.1&nbsp;&nbsp;&nbsp;文档</a><a class="headerlink" href="#rst-document" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：文档</p>
+<p>解析过的reStructuredText文档的顶级元素是”文档”元素。在初始化解析之后，文档元素是一个文档片段的简单容器，包含 <a class="reference internal" href="#id17">正文元素</a> 、 <a class="reference internal" href="#id16">过渡</a> 和 <a class="reference internal" href="#id13">章节</a> ，但不包括文档标题或其他目录元素。调用解析器的代码可以选择运行一个或多个可选的post-parse <a class="reference external" href="http://docutils.sourceforge.net/docutils/transforms/">transforms</a> ，将文档片段重新组织为一个带有标题和其他可能的元数据的完整文档（作者、日期等等。详见 <a class="reference internal" href="#id24">目录字段</a> ）。</p>
+<p>具体来说，没有办法在reStructuredText中显式的表示文档的标题和子标题。作为替代，一个长的顶级章节标题(见下面的 <a class="reference internal" href="#id13">章节</a> )可以作为文档标题。类似的，紧跟在”文档标题”之后的长的二级章节标题，可以作为文档的子标题。其他所有章节会提升一到两级。详见：<a class="reference external" href="http://docutils.sourceforge.net/docutils/transforms/frontmatter.py">文档标题转换</a> 。</p>
+</div>
+<div class="section" id="rst-sections">
+<span id="id13"></span><h4><a class="toc-backref" href="#id99">1.2.4.2&nbsp;&nbsp;&nbsp;章节</a><a class="headerlink" href="#rst-sections" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：章节、标题</p>
+<p>章节通过其标题识别，在标题文本下使用下划线进行标记或下划线和匹配的上划线。下划线/上划线是单个重复的标点字符，从左边第一列开始最少到与文档标题右边对齐。具体来说，一个下划线/上划线字符可以是任何非字母打印7位ASCII字符 <a class="footnote-reference" href="#id15" id="id14">[1]</a> 。当使用上划线时，上划线的长度与使用的字符必须与下划线相同。可以有任意数字级别的章节标题，但某些输出格式可能有限制（HTML只有6级标题）。</p>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[1]</a></td><td><p class="first">下面是有效的章节标题装饰字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! &quot; # $ % &amp; &#39; ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+</pre></div>
+</div>
+<p>有一些字符比其他字符更适用，建议使用它们:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>= - ` : . &#39; &quot; ~ ^ _ * + #
+</pre></div>
+</div>
+</td></tr>
+</tbody>
+</table>
+<p>相比强加一个固定数字和顺序的章节标题装饰风格，其执行的顺序是碰到每个标题的先后顺序。碰到的第一种类型是最外层标题（如HTML H1），第二种类型则成为子标题，第三种将成为子子标题，以此类推。</p>
+<p>下面是章节标题样式的例子:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>========
+章节标题
+========
+
+--------
+章节标题
+--------
+
+章节标题
+========
+
+章节标题
+--------
+
+章节标题
+````````
+
+章节标题
+&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+
+章节标题
+........
+
+章节标题
+~~~~~~~~
+
+章节标题
+********
+
+章节标题
+++++++++
+
+章节标题
+^^^^^^^^
+</pre></div>
+</div>
+<p>当一个标题同时有上下划线，标题文本可以插入，类似上述前两个例子。这只是为了美观而非必要的。只有下划线的标题文本 <em>不</em> 可以插入。</p>
+<p>标题后的空行是可选的。到下一个标题的所有文本块或更高级别会包含在章节中（或子章节，等等）。</p>
+<p>所有章节标题样式不需要使用，也不需要使用任何特定的段落标题样式。然而，一个文档使用的章节标题必须是一致的：一旦建立了标题样式的层次结构，章节必须使用该层次结构。</p>
+<p>每个章节标题会自动生成指向章节的超链接。超链接的文本（即引用名称）与章节标题一致。详见 <a class="reference internal" href="#id64">隐式超链接目标</a> 。</p>
+<p>章节可以包含 <a class="reference internal" href="#id17">正文元素</a> 、 <a class="reference internal" href="#id16">过渡</a> 和嵌套的章节。</p>
+</div>
+<div class="section" id="rst-transitions">
+<span id="id16"></span><h4><a class="toc-backref" href="#id100">1.2.4.3&nbsp;&nbsp;&nbsp;过渡</a><a class="headerlink" href="#rst-transitions" title="永久链接至标题">¶</a></h4>
+<p>文档元素：过渡</p>
+<blockquote>
+<div><p>取代小标题，段落之间的额外空间或类型装饰符可用来标记文本分隔或主
+题或重点的改变。</p>
+<p>(The Chicago Manual of Style, 14th edition, section 1.80)</p>
+</div></blockquote>
+<p>过渡常见于小说，作为一个跨越一行或多行的间隙，有或没有类似于一行星号的类型装饰符。过渡分隔其他正文元素。过渡不应开始或结束一个章节或文档，两个过渡也不应该直接相邻。</p>
+<p>过渡标记的语法是一排至少4个重复的标点符号。该语法与章节标题下划线一样。过渡标记前后需要空行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">段落</span>
+
+<span class="o">----------</span>
+
+<span class="n">段落</span>
+</pre></div>
+</div>
+<p>不像章节标题下划线，章节标题不需要体系结构。建议使用同一种风格。</p>
+<p>处理系统可以以任何其希望的方式在输出中渲染过渡。如，HTML中的&lt;hr&gt;输出是一种明显的选择。</p>
+</div>
+</div>
+<div class="section" id="rst-body-elements">
+<span id="id17"></span><h3><a class="toc-backref" href="#id101">1.2.5&nbsp;&nbsp;&nbsp;正文元素</a><a class="headerlink" href="#rst-body-elements" title="永久链接至标题">¶</a></h3>
+<div class="section" id="rst-paragraphs">
+<span id="id18"></span><h4><a class="toc-backref" href="#id102">1.2.5.1&nbsp;&nbsp;&nbsp;段落</a><a class="headerlink" href="#rst-paragraphs" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：段落</p>
+<p>段落包含没有任何标记指向其他正文元素的左对齐文本块。使用空行分隔段落及其他正文元素。段落可以包含 <a class="reference internal" href="#id65">行内标记</a> 。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="n">段落</span>                         <span class="o">|</span>
+<span class="o">|</span>                              <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+
+<span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="n">段落</span>                         <span class="o">|</span>
+<span class="o">|</span>                              <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-bullet-lists">
+<span id="id19"></span><h4><a class="toc-backref" href="#id103">1.2.5.2&nbsp;&nbsp;&nbsp;无序列表</a><a class="headerlink" href="#rst-bullet-lists" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：无序列表、列表项</p>
+<p>以一个 “*”, “+”, “-“开头，后面根一个空格的文本块是一个无序列表项。列表项正文必须与bullet缩进左对齐。文本紧接在bullet分隔符之后。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 这是第一个无序列表项。上面的空行是必须的。两个列表项
+  之间的空行（如这一段下面的）是可选的。
+
+- 这是列表第二项的第一个段落
+
+  这是列表第二项的第二个段落。
+  这一段上面的空行是必须的。段落的左边与上一个段落对其
+  所有的缩进与无序符号对齐。
+
+  - 这是一个子列表。无序符号与上一行的左边对其。
+    子列表是一个新的列表，因此要求上下都有空行。
+
+- 这是主列表的第三项
+
+这个段落不是列表的一部分。
+</pre></div>
+</div>
+<p>下面是一些 <strong>错误</strong> 的无序列表格式的例子:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 第一行没问题
+列表项与段落之间需要空行(警告)
+
+- 下面一行看似一个新的子列表，但实际上不是:
+  - 这是一个连续的段落而非子列表（因为没有空行）
+    这一行缩进也不对。
+  - 可能会生成警告。
+</pre></div>
+</div>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------+-----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;- &quot;</span> <span class="o">|</span> <span class="nb">list</span> <span class="n">item</span>             <span class="o">|</span>
+<span class="o">+------|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>      <span class="o">|</span>
+       <span class="o">+-----------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-enumerated-lists">
+<span id="id20"></span><h4><a class="toc-backref" href="#id104">1.2.5.3&nbsp;&nbsp;&nbsp;有序列表</a><a class="headerlink" href="#rst-enumerated-lists" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：有序列表、列表项</p>
+<p>有序列表与无序列表类似，但是用序号而非圆点。序号包含有序成员和格式，之后跟着空格。以下有序序列可以识别:</p>
+<ul class="simple">
+<li>任意数字：1 2 3 … (无上限)</li>
+<li>大写字母：A B C … Z</li>
+<li>小写字母：a b c … z</li>
+<li>大写罗马数字：I II III IV … MMMMCMXCIX(4999)</li>
+<li>小写罗马数字：i ii iii iv … mmmmcmxcix(4999)</li>
+</ul>
+<p>另外，自动编号符”#”可以用于自动编号列表。自动编号列表可以以显示的编号开始设置序列。完整的自动有序列表使用以1开始的任意数字(自动有序列表为
+Docutils 0.3.8新增)</p>
+<p>以下格式可以识别：</p>
+<ul class="simple">
+<li>以点为后缀：”1.” “A.” “a.”  “I.” “i.”</li>
+<li>以括号包围：”(1)” “(A)” “(a)” “(I)” “(i)”</li>
+<li>以右括号为后缀：”1)” “A)” “a)” “I)” “i)”</li>
+</ul>
+<p>解析一个有序列表时碰到下列情况，会开始一个新列表：</p>
+<ul class="simple">
+<li>碰到与当前列表序号的类型和格式不一致的序号（如，”1.”和”a.”分属两个列表）</li>
+<li>序号不在序列内有序（如，”1”、”3”产生连个独立的列表）</li>
+</ul>
+<p>建议使用1 (“1”, “A”, “a”, “I”, or “i”)作为第一个列表项的序号。当然以其他的数字开始也会被识别，但输出格式可能不支持。任何不以传统的1开始的列表都会生成一个一级[info]系统信息。</p>
+<p>使用罗马数字的列表必须以”I/i”或一个多字符值如”II”或”XV”开始。任何其他单字符罗马数字（”V”, “X”, “L”, “C”, “D”, “M”）会被解释为一个字母而非罗马数字。
+同样，使用字母开始的列表不能使用”I/i”，因为其会被识别为罗马数字1。</p>
+<p>有序列表项的第二行会被验证。这会阻止原始段落被解释为列表项。例如，下面的文本会被解释为原始的段落:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span> <span class="n">Einstein</span> <span class="n">was</span> <span class="n">a</span> <span class="n">really</span>
+<span class="n">smart</span> <span class="n">dude</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>但段落仅包含一行必然含糊不清。这段文本被解析为一个有序列表:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span> <span class="n">Einstein</span> <span class="n">was</span> <span class="n">a</span> <span class="n">really</span> <span class="n">smart</span> <span class="n">dude</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果一个单行段落以序号(“A.”, “1.”, “(b)”, “I)”, 等等)开始，第一个字符需要转义，以便其被解析为一个段落:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">A</span><span class="o">.</span> <span class="n">Einstein</span> <span class="n">was</span> <span class="n">a</span> <span class="n">really</span> <span class="n">smart</span> <span class="n">dude</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>嵌套的有序列表的例子:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Item</span> <span class="mi">1</span> <span class="n">initial</span> <span class="n">text</span><span class="o">.</span>
+
+   <span class="n">a</span><span class="p">)</span> <span class="n">Item</span> <span class="mi">1</span><span class="n">a</span><span class="o">.</span>
+   <span class="n">b</span><span class="p">)</span> <span class="n">Item</span> <span class="mi">1</span><span class="n">b</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">a</span><span class="p">)</span> <span class="n">Item</span> <span class="mi">2</span><span class="n">a</span><span class="o">.</span>
+   <span class="n">b</span><span class="p">)</span> <span class="n">Item</span> <span class="mi">2</span><span class="n">b</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;1. &quot;</span> <span class="o">|</span> <span class="nb">list</span> <span class="n">item</span>            <span class="o">|</span>
+<span class="o">+-------|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>     <span class="o">|</span>
+        <span class="o">+----------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-definition-lists">
+<span id="id21"></span><h4><a class="toc-backref" href="#id105">1.2.5.4&nbsp;&nbsp;&nbsp;定义列表</a><a class="headerlink" href="#rst-definition-lists" title="永久链接至标题">¶</a></h4>
+<p>文档树元素：定义列表、定义列表项、术语、分类器、定义</p>
+<p>每个定义列表项包含一个术语、可选的分类器和一个定义i。术语是一个简单的一行单词或句子。可选的分类器与术语在同一行，跟在它后面。每个分类器跟在一个行内”:”(空格冒号空格)之后。定义是一个块通，过缩进与术语联系，可以包含多个段落和其他正文元素。术语与定义块之间不允许有空格（这区分了定义列表与 <a class="reference internal" href="#id38">引用块</a> ）。定义列表第一行之前和最后一行之后需要空行，中间的列表项是否空行是可选的。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">术语</span> <span class="mi">1</span>
+    <span class="n">定义</span> <span class="mf">1.</span>
+
+<span class="n">术语</span> <span class="mi">2</span>
+    <span class="n">定义</span> <span class="mi">2</span><span class="p">,</span> <span class="n">段落</span> <span class="mf">1.</span>
+
+    <span class="n">定义</span> <span class="mi">2</span><span class="p">,</span> <span class="n">段落</span> <span class="mf">2.</span>
+
+<span class="n">术语</span> <span class="mi">3</span> <span class="p">:</span> <span class="n">分类器</span>
+    <span class="n">定义</span> <span class="mf">3.</span>
+
+<span class="n">术语</span> <span class="mi">4</span> <span class="p">:</span> <span class="n">分类器</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">分类器</span> <span class="mi">2</span>
+    <span class="n">定义</span> <span class="mf">4.</span>
+</pre></div>
+</div>
+<p>行内标记在术语行被解析，在分类器分隔符(“:”)被识别之前。分隔符仅在出现在任何行内标记之外时被识别。</p>
+<p>定义列表可用于多种用途，包括:</p>
+<ul class="simple">
+<li>作为一个字典或术语表。术语是单词本身，分类细可用于根据用途分类术语（动词、名词等等），定义跟在后面。</li>
+<li>用于描述程序变量。术语是变量名，分类器用于区分变量类型（字符串、整形等等），定义描述变量在程序中的用法。定义列表的该用途支持分类器语法 Grouch ，一种描述和执行Python对象约束的系统。</li>
+</ul>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----------------------------+</span>
+<span class="o">|</span> <span class="n">term</span> <span class="p">[</span> <span class="s2">&quot; : &quot;</span> <span class="n">classifier</span> <span class="p">]</span><span class="o">*</span> <span class="o">|</span>
+<span class="o">+--+-------------------------+--+</span>
+   <span class="o">|</span> <span class="n">definition</span>                 <span class="o">|</span>
+   <span class="o">|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>           <span class="o">|</span>
+   <span class="o">+----------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-field-lists">
+<span id="id22"></span><h4><a class="toc-backref" href="#id106">1.2.5.5&nbsp;&nbsp;&nbsp;字段列表</a><a class="headerlink" href="#rst-field-lists" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 字段列表、字段、字段名、字段正文</p>
+<p>字段列表作为扩展语法的一部分被使用，如 <a class="reference internal" href="#id58">指令</a> 的选项或等待进一步处理的类数据库记录。它们也被用于两列类列表结构类似于数据库记录（标签和数据对）。reStructuredText应用可以在特定上下文中识别字段名和变形字段或字段正文。例如，阅读下面的 <a class="reference internal" href="#id24">目录字段</a> 或 <a class="reference internal" href="#id58">指令</a> 中的 “<a class="reference external" href="directives.html#dt-image">图片</a>”和”<a class="reference external" href="meta">元</a>” 指令 .</p>
+<p>字段列表会映射字段名到字段正文，仿照 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc822.txt">RFC822</a> 头。一个字段名可以包含任何字符，但字段名中的冒号(“:”)必须使用反斜杠转义。行内标记被解析为字段名。在进一步处理或传输时，字段名大小写敏感。字段名. 字段名与一个单独的冒号前后缀一起构成字段标记。字段表及之后跟空格和字段正文。字段正文可以包含多个正文元素，缩进到字段标记处。字段名标记之后的第一行决定字段正文的缩进。如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:Date: 2001-08-16
+:Version: 1
+:Authors: - Me
+          - Myself
+          - I
+:Indentation: 因为字段标记可能很长，字段正文的第二行
+   及随后的行不必与第一行对齐，但必须缩进到字段名标记
+   处，且它们应当互相对齐。
+:Parameter i: integer
+</pre></div>
+</div>
+<p>一个多单词字段名中的单个词的解释是应用程序。该应用程序可以为该字段名指定一个语法。例如，第二个单词及其后面的单词可以被视为“参数”，引用短语可以被视为一个单一的参数，并可能会增加直接支持“键=值”的语法。</p>
+<p>除了潜在的可能导致误解的标准 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc822.txt">RFC822</a> 标题不能用于这种构造是因为它们模糊不清。以一个单词后面跟一个冒号开始一行是一种通用的书写文本。然而，在定义良好的上下文如当一个字段列表总是在文档的开头（PEPS和电子邮件）时，标准RFC822头可以使用。</p>
+<p>语法图(简化):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------+----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;:&quot;</span> <span class="n">field</span> <span class="n">name</span> <span class="s2">&quot;:&quot;</span> <span class="o">|</span> <span class="n">field</span> <span class="n">body</span>           <span class="o">|</span>
+<span class="o">+-------+------------+</span>                      <span class="o">|</span>
+        <span class="o">|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>                  <span class="o">|</span>
+        <span class="o">+-----------------------------------+</span>
+</pre></div>
+</div>
+<div class="section" id="rst-bibliographic-fields">
+<span id="id24"></span><h5><a class="toc-backref" href="#id107">1.2.5.5.1&nbsp;&nbsp;&nbsp;目录字段</a><a class="headerlink" href="#rst-bibliographic-fields" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: 文档信息、作者、多个作者、组织、 联系方式、版本、状态、日期、版权、字段、主题</p>
+<p>当一个字段列表是文档的第一个非注释元素时(只在文档标题之后，如果有)，它可以从字段转换为文档目录数据。这个目录数据对应一本书的封面，如标题页和版权页。</p>
+<p>特定的注册过的字段名(见下表)会被识别并转换为对应的文档树元素，大部分会变为”docinfo”元素的子元素。对于这些字段，没有顺序要求，但它们会被重新组织以适应文档的结构。 除非另有说明，每一个目录元素的字段正文只能包含一个段落。字段正文会被 <a class="reference internal" href="#rcs">RCS关键字</a> 检查和清理。任何不能识别的字段会被作为通用字段保留在docinfo元素中。</p>
+<p>注册过的目录字段名和它们对应的文档树元素如下:</p>
+<ul class="simple">
+<li>字段名 “Author”: 作者元素</li>
+<li>“Authors”: 作者.</li>
+<li>“Organization”: 组织.</li>
+<li>“Contact”: 联系方式.</li>
+<li>“Address”: 地址.</li>
+<li>“Version”: 版本.</li>
+<li>“Status”: 状态.</li>
+<li>“Date”: 日期.</li>
+<li>“Copyright”: 版权.</li>
+<li>“Dedication”: 主题.</li>
+<li>“Abstract”: 主题.</li>
+</ul>
+<p>“Authors”字段可以包含: 一个包含作者列表（冒号或逗号分隔）的段落；或一个无序列表，其每个元素包含一个单独的段落每作者。首先检查”;”，因此”Doe, Jane; Doe, John”是可以的。如果单个饼子包含逗号，使用分号结束它: “:Authors: Doe, Jane;”。</p>
+<p>“Address”字段用于多行邮件地址。新行和空格会被保留。</p>
+<p>“Dedication”和”Abstract”字段可以包含任意正文元素。每种一个。它们会称为紧跟在docinfo元素之后的使用”Dedication”或”Abstract”标题（或语言相等）的主题元素。</p>
+<p>这个字段名到元素的映射可以替换为其他语言。详见 <a class="reference external" href="http://docutils.sourceforge.net/docutils/transforms/frontmatter.py">文档信息转换</a> 实现文档。</p>
+<p>未注册/通用字段可以包含一个或多个段落或任意正文元素。</p>
+</div>
+<div class="section" id="rcs">
+<span id="rst-rcs-keywords"></span><h5><a class="toc-backref" href="#id108">1.2.5.5.2&nbsp;&nbsp;&nbsp;RCS关键字</a><a class="headerlink" href="#rcs" title="永久链接至标题">¶</a></h5>
+<p>被解析器识别的 <a class="reference internal" href="#id24">目录字段</a> 通常会检查并清理 RCS <a class="footnote-reference" href="#id28" id="id25">[2]</a> 关键字 <a class="footnote-reference" href="#id29" id="id26">[3]</a> 。RCS关键字会作为”$keyword$”进入源文件，一旦存储为 RCS 或
+CVS <a class="footnote-reference" href="#id30" id="id27">[4]</a> ，它们会扩展为”$keyword: expansion text $”。例如，一个”Status”字段会被转换为一个”status”元素:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:Status: $keyword: expansion text $
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id28" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id25">[2]</a></td><td>修订控制系统（Revision Control System）。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id29" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id26">[3]</a></td><td>RCS关键字处理可以关闭（未实现）。</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id30" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id27">[4]</a></td><td>并发版本系统（Concurrent Versions System）。CVS使用与RCS相同的关键字。</td></tr>
+</tbody>
+</table>
+<p>处理后，”status”元素的文本会变为简单的”扩展文本”。美元分隔符和开头的RCS关键字名会被去除。</p>
+<p>RCS关键字仅处理目录上下文（文档标题，如果有，之后的文档中第一个非注释结构）中的字段列表。</p>
+</div>
+</div>
+<div class="section" id="rst-option-lists">
+<span id="id31"></span><h4><a class="toc-backref" href="#id109">1.2.5.6&nbsp;&nbsp;&nbsp;选项列表</a><a class="headerlink" href="#rst-option-lists" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 选项列表、选项列表项、选项组、选项、选项字符串、选项参数、描述</p>
+<p>选项列表是一个包含命令行参数和描述的两列列表，用于记录程序的选项。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-a         输出全部
+-b         都输出(该描述有点
+           长)
+-c arg     只输出参数
+--long     整天输出
+
+-p         这个选项的描述有两段
+           这是第一段
+
+           这是第二段。选项间的空行可能被
+           忽略（像上面一样）或左对齐（像这里一样）
+
+--very-long-option  一个VMS风格的选项。注意调整
+                    必须的两个空格
+
+--an-even-longer-option
+           表述也可以从另一行开始
+
+-2, --two  这个选项有两个变量
+
+-f FILE, --file=FILE  这两个选项是同义词；
+                      都有参数。
+
+/V         一个VMS/DOS风格的选项
+</pre></div>
+</div>
+<p>reStructuredText能够识别几种类型的选项:</p>
+<ul class="simple">
+<li>POSIX短选项，由连字符和选项字符组成</li>
+<li>POSIX长选项，由两个连字符和一个选项单词组成；某些系统
+使用一个连字符。</li>
+<li>老式GNU风格”plus”选项，由一个plus和选项字符组成(“plus”
+选项已经被废弃了，不鼓励使用它们)。</li>
+<li>DOS/VMS选项，由一个斜杠和一个选项字符或单词组成。</li>
+</ul>
+<p>请注意：DOS或Windows软件可能使用POSIX风格和DOS/VMS风格的选项。
+这些和其他变体有时可能会混合使用。选择上面的名字只是为了方便。</p>
+<p>POSIX长/短选项的语法基于Python的 <a class="reference external" href="http://www.python.org/doc/current/lib/module-getopt.html">getopt.py</a> 模块所提供的语法，
+其实现一个类似于 <a class="reference external" href="http://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html">GNU libc getopt_long()</a> 函数但有某些约束的
+选项解析器。有许多不同的选项系统，reStructuredText并非全部都
+支持。</p>
+<p>尽管POSIX长选项和DOS/VMS选项单词可能允许在使用命令行时被操作
+系统或应用程序截取，但reStructuredText并不展示或支持这种方式。
+应提供完整的选项单词。</p>
+<p>选项可以跟在一个参数占位符之后，其角色和语法应该被解释为描述
+文本。使用空格或等号作为选项与选项参数占位符之间的分隔符；短
+选项(只有”-“或”+”前缀)可能会省略分隔符。选项参数有两种形式:</p>
+<ul class="simple">
+<li>字母(<code class="docutils literal notranslate"><span class="pre">[a-zA-Z]</span></code>)开头，其后紧跟字母、数字、下划线和连字符
+(<code class="docutils literal notranslate"><span class="pre">[a-zA-Z0-9_-]</span></code>)。</li>
+<li>以尖括号(<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>)开始，以反尖括号(<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>)结束；中间可以是除此
+之外的任何字符。</li>
+</ul>
+<p>多选项”同义词”可以列出并共享同一个描述。以逗号空格分隔。</p>
+<p>选项和描述之间至少需要两个空格描述可以包含多个正文元素。选项
+标记分隔符后的第一行缩进为描述。与其他类型的列表类似，第一个
+列表项之后和最后一个列表项之后需要一个空行，中间的空行可选。</p>
+<p>语法图(简化):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+----------------------------+-------------+</span>
+<span class="o">|</span> <span class="n">option</span> <span class="p">[</span><span class="s2">&quot; &quot;</span> <span class="n">argument</span><span class="p">]</span> <span class="s2">&quot;  &quot;</span> <span class="o">|</span> <span class="n">description</span> <span class="o">|</span>
+<span class="o">+-------+--------------------+</span>             <span class="o">|</span>
+        <span class="o">|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>                 <span class="o">|</span>
+        <span class="o">+----------------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-literal-blocks">
+<span id="id32"></span><h4><a class="toc-backref" href="#id110">1.2.5.7&nbsp;&nbsp;&nbsp;文本块</a><a class="headerlink" href="#rst-literal-blocks" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 文本块</p>
+<p>一个包含两个冒号(“::”)的段落表示接下来的文本由文本块组成。文本块
+必须缩进或引用（看下面）。文本块内的任何标记都不会被处理。它会被
+留下，通常适用等快字体渲染:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是一个典型的段落，后面跟着一个缩进的文本块。
+
+::
+
+    for a in [5,4,3,2,1]:   # this is program code, shown as-is
+        print a
+    print &quot;it&#39;s...&quot;
+    # a literal block continues until the indentation ends
+
+这段文本恢复了缩进，其在文本块之外，因此会被当做普通的段落。
+</pre></div>
+</div>
+<p>只包含”::”的段落会在输出时完全移除；不会保留空段落。</p>
+<p>为了方便，段落结尾处的”::”可以被识别。
+如果后面紧跟空格，输出时两个冒号都会被移除。当文本之后紧跟”::”，
+其中 <em>一个</em> 冒号违背保留(如，”::”会变为”:”)。</p>
+<p>换句话说，这些全部是等价的(请注意段落之后的冒号):</p>
+<ol class="arabic">
+<li><p class="first">扩展形式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">段落</span><span class="p">:</span>
+
+<span class="p">::</span>
+
+    <span class="n">文本块</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">部分最小化形式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">段落</span><span class="p">:</span> <span class="p">::</span>
+
+    <span class="n">文本块</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">完全最小化形式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">段落</span><span class="p">::</span>
+
+    <span class="n">文本块</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>所有的空白(包括折行，但不包括对于缩进文本块最低限度的缩进)会被保留。
+前后各需要一个空行，但这些空行不被认为是文本块的一部分。</p>
+<div class="section" id="rst-indented-literal-blocks">
+<span id="id33"></span><h5><a class="toc-backref" href="#id111">1.2.5.7.1&nbsp;&nbsp;&nbsp;缩进文本块</a><a class="headerlink" href="#rst-indented-literal-blocks" title="永久链接至标题">¶</a></h5>
+<p>缩进文本块通过缩进关联到包围的文本(每行以空白开头)。缩进文本块的每
+一行的最低限度的缩进会被移除。该文本块不需要是连续的，缩进文本的章
+节之间允许空行。该文本块以缩进的结束而结束。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="n">paragraph</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="n">ends</span> <span class="k">with</span> <span class="s2">&quot;::&quot;</span><span class="p">)</span>             <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+   <span class="o">+---------------------------+</span>
+   <span class="o">|</span> <span class="n">indented</span> <span class="n">literal</span> <span class="n">block</span>    <span class="o">|</span>
+   <span class="o">+---------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-quoted-literal-blocks">
+<span id="id34"></span><h5><a class="toc-backref" href="#id112">1.2.5.7.2&nbsp;&nbsp;&nbsp;引用文本块</a><a class="headerlink" href="#rst-quoted-literal-blocks" title="永久链接至标题">¶</a></h5>
+<p>引用文本块是非缩进的连续文本块，其每一行以相同的非字母可打印7位ASCII
+字符 <a class="footnote-reference" href="#id36" id="id35">[5]</a> 开始。引用文本快由空行结束。引用文本快会在处理过的文档中保
+存。</p>
+<table class="docutils footnote" frame="void" id="id36" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id35">[5]</a></td><td><p class="first">以下是所有有效缩进字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! &quot; # $ % &amp; &#39; ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+</pre></div>
+</div>
+<p class="last">注意：这与有效的 <a class="reference internal" href="#id13">章节</a> 标题装饰相同。</p>
+</td></tr>
+</tbody>
+</table>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="n">paragraph</span>                    <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="n">ends</span> <span class="k">with</span> <span class="s2">&quot;::&quot;</span><span class="p">)</span>             <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+<span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;&gt;&quot;</span> <span class="n">per</span><span class="o">-</span><span class="n">line</span><span class="o">-</span><span class="n">quoted</span>          <span class="o">|</span>
+<span class="o">|</span> <span class="s2">&quot;&gt;&quot;</span> <span class="n">contiguous</span> <span class="n">literal</span> <span class="n">block</span> <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rst-line-blocks">
+<span id="id37"></span><h4><a class="toc-backref" href="#id113">1.2.5.8&nbsp;&nbsp;&nbsp;行块</a><a class="headerlink" href="#rst-line-blocks" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 行块、行(Docutils 0.3.5新增)</p>
+<p>行块对于地址块很有用。诗(诗歌、歌词)和无装饰列表等行结构有重要
+意义。行块是一组由竖线(“|”)前缀开头的行。每个竖线前缀表示一个新
+行，因此折行会被保留。初始缩进对于嵌套结构也很重要。支持行内标
+记。连续行辈包装为一个长的行，他们以一个空格代替竖线开始，左边
+必须对其，但不需要与上面的文字的左边对其。行块以空行结束。</p>
+<p>这个例子展示了连续行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Lend</span> <span class="n">us</span> <span class="n">a</span> <span class="n">couple</span> <span class="n">of</span> <span class="n">bob</span> <span class="n">till</span> <span class="n">Thursday</span><span class="o">.</span>
+<span class="o">|</span> <span class="n">I</span><span class="s1">&#39;m absolutely skint.</span>
+<span class="o">|</span> <span class="n">But</span> <span class="n">I</span><span class="s1">&#39;m expecting a postal order and I can pay you back</span>
+  <span class="k">as</span> <span class="n">soon</span> <span class="k">as</span> <span class="n">it</span> <span class="n">comes</span><span class="o">.</span>
+<span class="o">|</span> <span class="n">Love</span><span class="p">,</span> <span class="n">Ewan</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>这个例子展示了嵌套的行块，通过初始缩进表示新行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Take it away, Eric the Orchestra Leader!
+
+    | A one, two, a one two three four
+    |
+    | Half a bee, philosophically,
+    |     must, *ipso facto*, half not be.
+    | But half the bee has got to be,
+    |     *vis a vis* its entity.  D&#39;you see?
+    |
+    | But can a bee be said to be
+    |     or not to be an entire bee,
+    |         when half the bee is not a bee,
+    |             due to some ancient injury?
+    |
+    | Singing...
+</pre></div>
+</div>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------+-----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;| &quot;</span> <span class="o">|</span> <span class="n">line</span>                  <span class="o">|</span>
+<span class="o">+------|</span> <span class="n">continuation</span> <span class="n">line</span>     <span class="o">|</span>
+       <span class="o">+-----------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-block-quotes">
+<span id="id38"></span><h4><a class="toc-backref" href="#id114">1.2.5.9&nbsp;&nbsp;&nbsp;引用块</a><a class="headerlink" href="#rst-block-quotes" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 引用块、属性</p>
+<p>一个以缩进与前面的文本关联的文本块，前面没有标记表示其为文被快或其他内容的，是引用块。里面的所有标记会被连续处理（对于正文元素和行内标记):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是一个原始段落，介绍引用快。
+
+    &quot;It is my business to know things.  That is my trade.&quot;
+
+    -- Sherlock Holmes
+</pre></div>
+</div>
+<p>引用块可能以一个属性结束: 以”–”或”—”开始的文本块。如果属性包含多行，第二行及随后的行必须对其。</p>
+<p>如果以属性结束，可能连续出现多个引用快。</p>
+<blockquote>
+<div><p>非缩进段落</p>
+<blockquote>
+<div><p>引用块 1.</p>
+<p class="attribution">&mdash;属性 1</p>
+</div></blockquote>
+<blockquote>
+<div>引用块 2.</div></blockquote>
+</div></blockquote>
+<p><a class="reference internal" href="#id63">空注释</a> 用于显式的结束前面可能会被当做一个引用块的结构:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">列表项</span>
+
+<span class="o">..</span>
+
+    <span class="n">引用块</span> <span class="mf">3.</span>
+</pre></div>
+</div>
+<p>空注释也可以用来分隔引用快:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">引用块</span> <span class="mf">4.</span>
+
+<span class="o">..</span>
+
+    <span class="n">引用块</span> <span class="mf">5.</span>
+</pre></div>
+</div>
+<p>前后均需要空行，但空行不是引用块的一部分。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------------+</span>
+<span class="o">|</span> <span class="p">(</span><span class="n">current</span> <span class="n">level</span> <span class="n">of</span>            <span class="o">|</span>
+<span class="o">|</span> <span class="n">indentation</span><span class="p">)</span>                 <span class="o">|</span>
+<span class="o">+------------------------------+</span>
+   <span class="o">+---------------------------+</span>
+   <span class="o">|</span> <span class="n">block</span> <span class="n">quote</span>               <span class="o">|</span>
+   <span class="o">|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>          <span class="o">|</span>
+   <span class="o">|</span>                           <span class="o">|</span>
+   <span class="o">|</span> <span class="o">--</span> <span class="n">attribution</span> <span class="n">text</span>       <span class="o">|</span>
+   <span class="o">|</span>    <span class="p">(</span><span class="n">optional</span><span class="p">)</span>             <span class="o">|</span>
+   <span class="o">+---------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-doctest-blocks">
+<span id="id39"></span><h4><a class="toc-backref" href="#id115">1.2.5.10&nbsp;&nbsp;&nbsp;测试文档块</a><a class="headerlink" href="#rst-doctest-blocks" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 测试文档块</p>
+<p>测试文档块是交互式Python会话剪切粘贴到文档字符串。它们是通过例子来做
+使用说明，并通过Python标准库中的 <a class="reference external" href="http://www.python.org/doc/current/lib/module-doctest.html">测试文档模块</a> 一个优雅且强大的测试环境。</p>
+<p>测试文档块是以Python交互式解释器的主要提示符 <code class="docutils literal notranslate"><span class="pre">&quot;&gt;&gt;&gt;</span> <span class="pre">&quot;</span></code> 开头的文本块，
+并以空行结束。测试为本快会被当做文本块的特殊例子，不需要使用文本块
+语法。如果都提供了，文本块语法优先于测试文本块语法:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是一个原始段落。
+
+&gt;&gt;&gt; print &#39;这是一个测试文本块&#39;
+这是一个测试文本块
+
+以下是一个文本块::
+
+    &gt;&gt;&gt; 这里不会被识别为测试文本块。但它仍 *会* 被测试文档模块
+    识别。
+</pre></div>
+</div>
+<p>测试文档块不需要缩进。</p>
+</div>
+<div class="section" id="rst-tables">
+<span id="id40"></span><h4><a class="toc-backref" href="#id116">1.2.5.11&nbsp;&nbsp;&nbsp;表格</a><a class="headerlink" href="#rst-tables" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 表格、表格组、行、表头、表正文、行、入口</p>
+<p>ReStructuredText提供两种语法来处理表格单元: <a class="reference internal" href="#id41">网格表格</a> 和 <a class="reference internal" href="#id42">简单表格</a> 。</p>
+<p>类似于其他正文元素，表格前后都需要空行。表格应当与前面的文本块左对齐。
+如果缩进，表格会被当做引用块的一部分。</p>
+<p>一旦隔离，每个表格单元会被当做一个小型文档；顶部和底部的单元格分界线
+作为分隔空行。每个单元格包含0个或多个正文元素。单元格的内容可以包含左
+和/或右边距，其会在处理时删除。</p>
+<div class="section" id="rst-grid-tables">
+<span id="id41"></span><h5><a class="toc-backref" href="#id117">1.2.5.11.1&nbsp;&nbsp;&nbsp;网格表格</a><a class="headerlink" href="#rst-grid-tables" title="永久链接至标题">¶</a></h5>
+<p>网格表格通过类网格”ASCII art”提供一个完整的表格表示。网格表格允许任意
+单元格内容（正文元素），及跨行和列。但网格表格难以生成，特别是对于简单
+数据集合来说。 <a class="reference external" href="http://table.sourceforge.net/">Emacs表格模式</a> 是一个Emacs中允许简单编辑网格表格的
+工具。查看 <a class="reference internal" href="#id42">简单表格</a> 以获取一个简单（但有限制）的表示。</p>
+<p>网格表格通过字符”-“、”=”、”|”和”+”被描述为一个视觉网格。连字符(“-“)被
+用于行行(行分隔符)。等号(“=”)可以用作分隔可选的标题行与表格正文(不被 <a class="reference external" href="http://table.sourceforge.net/">Emacs表格模式</a> 支持)。竖线 (“|”)用于竖行(列分隔符)。加号用于横行与竖行的交叉。例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------+------------+----------+----------+</span>
+<span class="o">|</span> <span class="n">Header</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">Header</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">Header</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">Header</span> <span class="mi">4</span> <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="n">header</span> <span class="n">rows</span> <span class="n">optional</span><span class="p">)</span> <span class="o">|</span>            <span class="o">|</span>          <span class="o">|</span>          <span class="o">|</span>
+<span class="o">+========================+============+==========+==========+</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">column</span> <span class="mi">1</span>   <span class="o">|</span> <span class="n">column</span> <span class="mi">2</span>   <span class="o">|</span> <span class="n">column</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">column</span> <span class="mi">4</span> <span class="o">|</span>
+<span class="o">+------------------------+------------+----------+----------+</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">2</span>             <span class="o">|</span> <span class="n">Cells</span> <span class="n">may</span> <span class="n">span</span> <span class="n">columns</span><span class="o">.</span>          <span class="o">|</span>
+<span class="o">+------------------------+------------+---------------------+</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">3</span>             <span class="o">|</span> <span class="n">Cells</span> <span class="n">may</span>  <span class="o">|</span> <span class="o">-</span> <span class="n">Table</span> <span class="n">cells</span>       <span class="o">|</span>
+<span class="o">+------------------------+</span> <span class="n">span</span> <span class="n">rows</span><span class="o">.</span> <span class="o">|</span> <span class="o">-</span> <span class="n">contain</span>           <span class="o">|</span>
+<span class="o">|</span> <span class="n">body</span> <span class="n">row</span> <span class="mi">4</span>             <span class="o">|</span>            <span class="o">|</span> <span class="o">-</span> <span class="n">body</span> <span class="n">elements</span><span class="o">.</span>    <span class="o">|</span>
+<span class="o">+------------------------+------------+---------------------+</span>
+</pre></div>
+</div>
+<p>必须小心避免不需要的一起活动。例如，下面的表格第2行包含一个横跨三列的
+单元格，从第二列到第四列</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------+----------+-----------+-----------+</span>
+<span class="o">|</span> <span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">column</span> <span class="mi">2</span> <span class="o">|</span> <span class="n">column</span> <span class="mi">3</span>  <span class="o">|</span> <span class="n">column</span> <span class="mi">4</span>  <span class="o">|</span>
+<span class="o">+--------------+----------+-----------+-----------+</span>
+<span class="o">|</span> <span class="n">row</span> <span class="mi">2</span>        <span class="o">|</span>                                  <span class="o">|</span>
+<span class="o">+--------------+----------+-----------+-----------+</span>
+<span class="o">|</span> <span class="n">row</span> <span class="mi">3</span>        <span class="o">|</span>          <span class="o">|</span>           <span class="o">|</span>           <span class="o">|</span>
+<span class="o">+--------------+----------+-----------+-----------+</span>
+</pre></div>
+</div>
+<p>如果在单元格文本中使用了竖线，它会起到非缩进效果（如果与列分界线对其）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+--------------+----------+-----------+-----------+
+| row 1, col 1 | column 2 | column 3  | column 4  |
++--------------+----------+-----------+-----------+
+| row 2        | Use the command ``ls | more``.   |
++--------------+----------+-----------+-----------+
+| row 3        |          |           |           |
++--------------+----------+-----------+-----------+
+</pre></div>
+</div>
+<p>有几种解决办法。所有都是只需要将连续的单元格分开。一个可行的办法
+是变换文本，在前面添加额外的空格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+--------------+----------+-----------+-----------+
+| row 1, col 1 | column 2 | column 3  | column 4  |
++--------------+----------+-----------+-----------+
+| row 2        |  Use the command ``ls | more``.  |
++--------------+----------+-----------+-----------+
+| row 3        |          |           |           |
++--------------+----------+-----------+-----------+
+</pre></div>
+</div>
+<p>另一个可行的办法是在其中添加额外的行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+--------------+----------+-----------+-----------+
+| row 1, col 1 | column 2 | column 3  | column 4  |
++--------------+----------+-----------+-----------+
+| row 2        | Use the command ``ls | more``.   |
+|              |                                  |
++--------------+----------+-----------+-----------+
+| row 3        |          |           |           |
++--------------+----------+-----------+-----------+
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-simple-tables">
+<span id="id42"></span><h5><a class="toc-backref" href="#id118">1.2.5.11.2&nbsp;&nbsp;&nbsp;简单表格</a><a class="headerlink" href="#rst-simple-tables" title="永久链接至标题">¶</a></h5>
+<p>简单表格为简单数据集合提供一个简洁、容易的输入但有限的行导向的
+表格表示方式。单元格的内容是典型的单个段落，但任意的征文元素可
+以表现在大部分单元格中。简单表格允许跨行的行（除了第一列之外的
+所有行）和跨列，但不允许跨行。参见上面的 <a class="reference internal" href="#id41">网格表格</a> 以获取完整的
+表格表现形式。</p>
+<p>简单表格被描述为使用由等号”=”组成的横向边框和连字符”-“组成。等号
+(“=”)用于表格的顶部和底部边框，也用于分隔可选的标题行。连字符
+(“-“)通过下划线合并列，用于在一个单行中展示列，可以可选的用于显式
+和/或可视的分隔行。</p>
+<p>一个简单表格以由等号组成的顶部边框和以空格（建议两个或以上）作为
+每列的分界线开始。无论何种跨度，顶边 <em>必须</em> 完全描述整个表格列。
+表格必须有至少两列（以便将其与章节标题区分开）。顶边之后可以是标
+题行，且最后一个可选标题行以’=’作为下划线及以空格作为列分界线。标
+题行分隔符下不可以有空行；其会被解释为表格的底边。表格的底边分界线
+由’=’下划线组成，也以空格分隔列边界。例如，下面是一个正向表格，一个
+三列表格，包含一个标题行和4个正文行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+  <span class="n">A</span>      <span class="n">B</span>    <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+<span class="kc">False</span>  <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">False</span>  <span class="kc">True</span>   <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">True</span>   <span class="kc">True</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+</pre></div>
+</div>
+<p>下划线’-‘可以用于展示列跨度。列跨度下华夏必须完整(必须覆盖所有列)并与
+已建立的列边界对其。包含列跨度下划线的文本行不能包含任何其他文本。一个
+列跨度下划线仅对其紧邻的上一行起效。例如，下面是一个在标题中包含列跨度
+的表格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+   <span class="n">Inputs</span>     <span class="n">Output</span>
+<span class="o">------------</span>  <span class="o">------</span>
+  <span class="n">A</span>      <span class="n">B</span>    <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+<span class="kc">False</span>  <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">False</span>  <span class="kc">True</span>
+<span class="kc">False</span>  <span class="kc">True</span>   <span class="kc">True</span>
+<span class="kc">True</span>   <span class="kc">True</span>   <span class="kc">True</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+</pre></div>
+</div>
+<p>每一行文本必须在列边界处包含空格，处理被列跨度合并的单元格。每行文本
+开启一个新行，除非第一列有一个空行。如果是那样，该行文本被解析为连续
+行。因此，新行( <em>非</em> 连续行)的第一列单元格单元格 <em>必须</em> 包含某些文本；
+空单元格会导致误解(但看看下面的tip)。同时，该机制限制第一列单元格为单
+行文本。如果不能接受这些限制，请使用 <a class="reference internal" href="#id41">网格表格</a> 。</p>
+<div class="admonition tip">
+<p class="first admonition-title">小技巧</p>
+<p>要在第一列没有文本需要处理输出的简单表格中开启一个新行，使用下列一种:</p>
+<ul class="last simple">
+<li>一个空注释(“..”)，其会在输出时忽略掉(详见 <a class="reference internal" href="#id62">注释</a> )</li>
+<li>一个反斜杠转义(“<code class="docutils literal notranslate"><span class="pre">\</span></code>”)后面跟一个空格(见上面的 <a class="reference internal" href="#id9">转义机制</a> )</li>
+</ul>
+</div>
+<p>下划线’-‘也可用于可视的分隔行，即使没有跨列。这对行里有许多行的长表格特
+别有用。</p>
+<p>简单表格内允许空行。它们的表现取决于上下文。行 <em>之间</em> 的空行会被忽略。
+多行行 <em>中</em> 的空行能够分隔单元格中的段落或其他正文元素。</p>
+<p>最右边的列是无限的；文本可以超出表格边界(表格边框表示)。但建议输入足够
+长的边界来包含整个文本。</p>
+<p>下面的例子展示了连续行(第二行包含2航文本，第三行包含四行文本)、一个空行分
+隔段落（第三行第二列）、文本扩展到超出表格右边和第一列中没有文本需要处理
+输出的新行（第四行）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>
+<span class="n">col</span> <span class="mi">1</span>  <span class="n">col</span> <span class="mi">2</span>
+<span class="o">=====</span>  <span class="o">=====</span>
+<span class="mi">1</span>      <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">1.</span>
+<span class="mi">2</span>      <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">2.</span>
+       <span class="n">Second</span> <span class="n">line</span> <span class="n">of</span> <span class="n">paragraph</span><span class="o">.</span>
+<span class="mi">3</span>      <span class="o">-</span> <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">3.</span>
+
+       <span class="o">-</span> <span class="n">Second</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bullet</span>
+         <span class="nb">list</span> <span class="p">(</span><span class="n">row</span> <span class="mi">3</span><span class="p">,</span> <span class="n">column</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span>
+\      <span class="n">Row</span> <span class="mi">4</span><span class="p">;</span> <span class="n">column</span> <span class="mi">1</span> <span class="n">will</span> <span class="n">be</span> <span class="n">empty</span><span class="o">.</span>
+<span class="o">=====</span>  <span class="o">=====</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rst-explicit-markup-blocks">
+<span id="id43"></span><h4><a class="toc-backref" href="#id119">1.2.5.12&nbsp;&nbsp;&nbsp;显式标记块</a><a class="headerlink" href="#rst-explicit-markup-blocks" title="永久链接至标题">¶</a></h4>
+<p>显示标记快是一个文本块:</p>
+<ul class="simple">
+<li>其第一行以”..”之后紧跟空格(显式标记开始）开始</li>
+<li>其第二行和接下来的行（如果有）以缩进与第一行关联</li>
+<li>以非缩进行结束</li>
+</ul>
+<p>显式标记块与无序列表项相似，使用”..”作为无序符号。文本紧跟在显式标记
+开始分隔符缩进的正文块。最常用缩进总是会被从第二行及其后的行的正文块
+中删除。因此，如果第一个结构满足只有一行，且第一和第二个结构的缩进应
+该不一样，第一个结构应该不与显式标记开始的地方同一行。</p>
+<p>显式标记块和其他元素之间需要空行，但显式标记块之间的空行是可选。</p>
+<p>显式标记语法用于脚注、引文、超链接、指令、替代定义和注释。</p>
+<div class="section" id="rst-footnotes">
+<span id="id44"></span><h5><a class="toc-backref" href="#id120">1.2.5.12.1&nbsp;&nbsp;&nbsp;脚注</a><a class="headerlink" href="#rst-footnotes" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: 脚注、标签</p>
+<p>每个脚注由一个以(“.. “)开头的显式标记、一个左方括号、一个
+脚注标签、一个右方括号和一个空格组成。脚注标签可以是:</p>
+<ul class="simple">
+<li>由一个或多个数字组成的完整的十进制数</li>
+<li>一个单独的”#”(表示 <a class="reference internal" href="#id45">自动编号脚注</a> ),</li>
+<li>一个”#”后紧跟一个简单的引用名称(一个 <a class="reference internal" href="#autonumber-label">自动编号标签</a> )，</li>
+<li>一个单独的”*”(表示 <a class="reference internal" href="#id46">自动符号脚注</a> )。</li>
+</ul>
+<p>脚注内容（正文元素）必须包含缩进（至少3个空格）并且左对齐。脚注的第一个正文元素一般与脚注标签在同一行中。但如果第一个元素适合单独成行，且缩进与其他元素不同，那么第一个元素必须在脚注标签下一行开始，否则无法检测到缩进的区别。</p>
+<p>脚注可以在文档的任何位置，而非仅在末尾。在哪里及怎样处理后输出取决于处理下系统。</p>
+<p>这是一个手动编号脚注:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">这是正文元素</span>
+</pre></div>
+</div>
+<p>每个脚注自动生成一个指向自己的超链接目标。超链接目标名字的文本与脚注标签相同。<a class="reference internal" href="#id45">自动编号脚注</a> 生成一个数字标签及引用名。详见 <a class="reference internal" href="#id64">隐式超链接目标</a> 。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+-------------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;.. &quot;</span> <span class="o">|</span> <span class="s2">&quot;[&quot;</span> <span class="n">label</span> <span class="s2">&quot;]&quot;</span> <span class="n">footnote</span>  <span class="o">|</span>
+<span class="o">+-------+</span>                         <span class="o">|</span>
+        <span class="o">|</span> <span class="p">(</span><span class="n">body</span> <span class="n">elements</span><span class="p">)</span><span class="o">+</span>        <span class="o">|</span>
+        <span class="o">+-------------------------+</span>
+</pre></div>
+</div>
+<div class="section" id="rst-auto-numbered-footnotes">
+<span id="id45"></span><h6><a class="toc-backref" href="#id121">1.2.5.12.1.1&nbsp;&nbsp;&nbsp;自动编号脚注</a><a class="headerlink" href="#rst-auto-numbered-footnotes" title="永久链接至标题">¶</a></h6>
+<p>一个数字符号(“#”)可以用作脚注标签的第一个字符以便自动编号脚注或脚注引用。</p>
+<p>第一个需要自动编号的脚注的标签为”1”，第二个为”2”，依次类推(如果没有手动编号脚注出现；详见 <a class="reference internal" href="#id50">混合手动和自动编号脚注</a> 和 <a class="reference internal" href="#id45">自动编号脚注</a> )。一个标签为”1”的脚注会生成一个名为”1”的隐式超链接目标，就像该标签被显式的指定了。</p>
+<p id="autonumber-label">脚注在使用自动编号的同时还可一个显式的指定一个标签: <code class="docutils literal notranslate"><span class="pre">[#label]</span></code>。这些标签称为自动编号标签。自动编号标签做两件事:</p>
+<ul>
+<li><p class="first">在脚注上，它生成一个超链接目标，其名字为自动编号标签（不包括”#”）</p>
+</li>
+<li><p class="first">它允许一个自动编号脚注被多次引用，就像是一个超链接引用。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>如果 [#note]_ 是第一个脚注引用，它会表示为&quot;[1]&quot;。我们可以将其作为[#note]_ 再次指向它并在次看到&quot;[1]&quot;。我们也可以将其作为note_ （一个原
+始内部超链接引用）再次指向它
+
+.. [#note] 这是标签为&quot;note&quot;的脚注。
+</pre></div>
+</div>
+</li>
+</ul>
+<p>编号由脚注的顺序决定，而非引用的顺序。对于没有自动编号标签
+(<code class="docutils literal notranslate"><span class="pre">[#]_</span></code>)的脚注引用，脚注和脚注引用必须必须以相同的编号关
+联，但无需使用lock-step替代。如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="c1">#]_ 是指向脚注1的引用，[#]_ 是指向脚注2的引用</span>
+
+<span class="o">..</span> <span class="p">[</span><span class="c1">#] 这是脚注 1.</span>
+<span class="o">..</span> <span class="p">[</span><span class="c1">#] 这是脚注 2.</span>
+<span class="o">..</span> <span class="p">[</span><span class="c1">#] 这是脚注 3.</span>
+
+<span class="p">[</span><span class="c1">#]_ 这是指向脚注3的引用</span>
+</pre></div>
+</div>
+<p>如果脚注包含自动编号引用或多个引用在相近的位置生成，则必须
+特别小心。脚注和引用会被按照其在文档中生成的顺序记录，这与
+人们阅读的顺序不一定相同。</p>
+</div>
+<div class="section" id="rst-auto-symbol-footnotes">
+<span id="id46"></span><h6><a class="toc-backref" href="#id122">1.2.5.12.1.2&nbsp;&nbsp;&nbsp;自动符号脚注</a><a class="headerlink" href="#rst-auto-symbol-footnotes" title="永久链接至标题">¶</a></h6>
+<p>一个星号(“*”)可以用于需要自动符号生成脚注标签。星号可以是标
+签中的单个字符。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>只是一个符号脚注引用: [*]_ 。
+
+.. [*] 这是脚注。
+</pre></div>
+</div>
+<p>符号会被转变为标签指向对应的脚注和脚注引用。引用的数量必须
+与脚注的数量相等。一个符号脚注不可以被多次引用。</p>
+<p>标准Docutils系统使用如下符号和脚注标记 <a class="footnote-reference" href="#id48" id="id47">[6]</a>:</p>
+<ul class="simple">
+<li>型号 (“*”)</li>
+<li>dagger (HTML character entity “&amp;dagger;”, Unicode U+02020)</li>
+<li>double dagger (“&amp;Dagger;”/U+02021)</li>
+<li>章节标记 (“&amp;sect;”/U+000A7)</li>
+<li>段落标记 (“&amp;para;”/U+000B6)</li>
+<li>数字符号 (“#”)</li>
+<li>黑桃 (“&amp;spades;”/U+02660)</li>
+<li>红心 (“&amp;hearts;”/U+02665)</li>
+<li>方片 (“&amp;diams;”/U+02666)</li>
+<li>梅花 (“&amp;clubs;”/U+02663)</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id48" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id47">[6]</a></td><td>这个列表受到了”Note Reference Marks”符号列表（The Chicago Manual of Style, 14th edition, section 12.51.）的影响。</td></tr>
+</tbody>
+</table>
+<p>如果需要多余10个符号，相同的符号会被重用、双用或三用，依此类推(“**”等等)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">当使用自动符号脚注时，选择输出的编码很重要。许多符号
+在特定的普通文本（如使用Latin-1编码的）中无法被编码。建议使
+用UTF-8作为输出编码。对于HTML和XML输出，可以使用
+“xmlcharref替代” <a class="reference external" href="../../user/config.html#output-encoding-error-handler">输出编码错误处理程序</a>.</p>
+</div>
+</div>
+<div class="section" id="rst-mixed-manual-and-auto-numbered-footnotes">
+<span id="id50"></span><h6><a class="toc-backref" href="#id123">1.2.5.12.1.3&nbsp;&nbsp;&nbsp;混合手动和自动编号脚注</a><a class="headerlink" href="#rst-mixed-manual-and-auto-numbered-footnotes" title="永久链接至标题">¶</a></h6>
+<p>手动和自动脚注编号可能在同一个文档中使用，因此结果有时会不符合
+预期。手动编号优先级较高。只有未使用的脚注编号会分配给自动编号
+脚注。下面的例子可以展示这点:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[2]_ will be &quot;2&quot; (manually numbered),
+[#]_ will be &quot;3&quot; (anonymous auto-numbered), and
+[#label]_ will be &quot;1&quot; (labeled auto-numbered).
+
+.. [2] 这个脚注是手动标签，因此数字被固定了。
+
+.. [#label] 这个自动编号标签会是&quot;1&quot;
+   它是第一个自动编号脚注，且没有其他标签为&quot;1&quot;的脚注存在。
+   脚注的顺序用于决定数字，而非脚注引用。
+
+.. [#] 这个脚注的标签为&quot;3&quot;。它是第二个自动编号脚注，但脚注
+   标签&quot;2&quot;已经被占用了。
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rst-citations">
+<span id="id51"></span><h5><a class="toc-backref" href="#id124">1.2.5.12.2&nbsp;&nbsp;&nbsp;引文</a><a class="headerlink" href="#rst-citations" title="永久链接至标题">¶</a></h5>
+<p>引文被展示位非数字标签的脚注，如``[note]``或``[GVR2001]``。引文
+标签是简单的 <a class="reference internal" href="#id10">引用名称</a> （大小写不敏感的单个单词，包含由连字符连
+接的字母、下划线和点，不包括空格）。引文会被独立于脚注进行渲染，
+如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是一个引文引用: [CIT2002]_.
+
+.. [CIT2002] 这是引文。除标签文本外，它类似于脚注。
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-hyperlinks-targets">
+<span id="id52"></span><h5><a class="toc-backref" href="#id125">1.2.5.12.3&nbsp;&nbsp;&nbsp;超链接目标</a><a class="headerlink" href="#rst-hyperlinks-targets" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: target</p>
+<p>也被称为 <span class="target" id="id53">显式超链接目标</span> , 用于区分下面定义的 <a class="reference internal" href="#id64">隐式超链接目标</a> 。</p>
+<p>超链接目标定义了文档内或文档外可以通过 <a class="reference internal" href="#id75">超链接引用</a> 链接
+的一个位置。</p>
+<p>超链接目标可以是命名的或匿名的。命名的超链接目标包含一个
+以(“..”)开头的显式标记、一个下划线、引用名没有尾部下划
+线）、一个冒号、一个空格和一个行块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_hyperlink</span><span class="o">-</span><span class="n">name</span><span class="p">:</span> <span class="n">link</span><span class="o">-</span><span class="n">block</span>
+</pre></div>
+</div>
+<p>引用名称是自然空格的且大小写不敏感。详见 <a class="reference internal" href="#id10">引用名称</a> 。</p>
+<p>匿名超链接目标包含一个以(“..”)开头的显式标记、两个个下
+划线、一个冒号、一个空格和一个行块，没有引用名称:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">__</span><span class="p">:</span> <span class="n">anonymous</span><span class="o">-</span><span class="n">hyperlink</span><span class="o">-</span><span class="n">target</span><span class="o">-</span><span class="n">link</span><span class="o">-</span><span class="n">block</span>
+</pre></div>
+</div>
+<p>匿名超链接有一个替代语法，包括两个下划线、一个空格和一个
+行块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__</span> <span class="n">anonymous</span><span class="o">-</span><span class="n">hyperlink</span><span class="o">-</span><span class="n">target</span><span class="o">-</span><span class="n">link</span><span class="o">-</span><span class="n">block</span>
+</pre></div>
+</div>
+<p>详见 <a class="reference internal" href="#id57">匿名超链接</a> 。</p>
+<p>有三种形式的超链接目标：内部、扩展和间接。</p>
+<p>1. <span class="target" id="id54">内部超链接目标</span> 有空行块。它们支持允许超链接连接的文档
+内的结束位置。内部超链接目标指向后面跟着目标的元素。如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    点击内部超链接会将我们带到下面的 target_ 处。
+
+    .. _target:
+
+    上面的超链接目标指向这一段。
+
+内部超链接目标可以是链式的。多个临近的内部超链接目标全
+部指向同一个元素::
+
+    .. _target1:
+    .. _target2:
+
+    目标&quot;target1&quot;和&quot;target2&quot;是同义词；它们同时指向这一段。
+
+如果元素所&quot;指向&quot;的是一个扩展超链接目标(其行块中有一个URI。
+见#2)从扩展超链接目标传播到内部超链接目标，它们全都会&quot;指向&quot;
+同一个URI。没必要重复一个URI。例如，下面三个超链接目标指向
+同一个URI::
+
+    .. _Python DOC-SIG mailing list archive:
+    .. _archive:
+    .. _Doc-SIG: http://mail.python.org/pipermail/doc-sig/
+
+内部超链接目标的行内形式是有效的。详见 行内内部目标_ 。
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first"><span class="target" id="id55">扩展超链接目标</span> 的文本块内有一个绝对或相对URI或email地址。
+如下面的输入:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>详见 Python_ 主页。
+
+写给我_ 你的问题。
+
+.. _Python: http://www.python.org
+.. _写给我: jdoe@example.com
+</pre></div>
+</div>
+<p>在处理成HTML后，超链接可能扩展为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>详见 &lt;a href=&quot;http://www.python.org&quot;&gt;Python&lt;/a&gt; 主页。
+
+&lt;a href=&quot;mailto:jdoe@example.com&quot;&gt;写给我&lt;/a&gt; 你的问题
+</pre></div>
+</div>
+<p>扩展超链接的URI可以在同一行开始，类似显式标记开始和目标名
+称或其也可以以一个紧跟在后面中间没有空行的缩进文本块开始。
+如果文本块有多行，它们会被连接在一起。任何空格都会被移除（
+空行为行包装器所允许)。下面的扩展超链接目标是等价的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_one</span><span class="o">-</span><span class="n">liner</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docutils</span><span class="o">.</span><span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">rst</span><span class="o">.</span><span class="n">html</span>
+
+<span class="o">..</span> <span class="n">_starts</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">this</span><span class="o">-</span><span class="n">line</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span>
+   <span class="n">docutils</span><span class="o">.</span><span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">rst</span><span class="o">.</span><span class="n">html</span>
+
+<span class="o">..</span> <span class="n">_entirely</span><span class="o">-</span><span class="n">below</span><span class="p">:</span>
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docutils</span><span class="o">.</span>
+   <span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">rst</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>如果一个扩展超链接的目标包含下划线为其最后一个字符，下划线
+必须被转移以避免与间接超链接目标混淆:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这个 链接_ 指向一个名为``underscore_``的文件.
+
+.. _link: underscore\_
+</pre></div>
+</div>
+<p>可以（但不推荐）在超链接引用中直接包含URI。详见 <a class="reference internal" href="#uri">嵌套URI和别名</a>
+below.</p>
+</li>
+<li><p class="first"><span class="target" id="id56">间接超链接目标</span> 在其链接块中有一个超链接引用。在下面的例子中，
+目标一展示了引用，无论目标二引用是什么，目标而引用了目标三，一个内部超链接目标。实际上，这三个引用是一样的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_one</span><span class="p">:</span> <span class="n">two_</span>
+<span class="o">..</span> <span class="n">_two</span><span class="p">:</span> <span class="n">three_</span>
+<span class="o">..</span> <span class="n">_three</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>类似于文档任何位置的`超链接引用`_ ，如果在一个链接中使用了一个
+段落引用，其必须使用反引号封闭。类似于 <a class="reference internal" href="#id55">扩展超链接目标</a> ，间接
+超链接目标的链接块必须与显式标记的开始在同一行或下一行。其也可
+以分割多行，这样行会在变为正常时被空格连接。</p>
+<p>例如，下面的间接超链接目标是等价的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. _one-liner: `A HYPERLINK`_
+.. _entirely-below:
+   `a    hyperlink`_
+.. _split: `A
+   Hyperlink`_
+</pre></div>
+</div>
+<p>可以在超链接引用中直接包含别名。详见 <a class="reference internal" href="#uri">嵌套URI和别名</a> 。</p>
+</li>
+</ol>
+<p>如果应用名称包含任何冒号:</p>
+<ul>
+<li><p class="first">该短语必须使用反引号封闭:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. _`FAQTS: Computers: Programming: Languages: Python`:
+   http://python.faqts.com/
+</pre></div>
+</div>
+</li>
+<li><p class="first">或将链接目标中的冒号转义:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_Chapter</span> <span class="n">One</span>\<span class="p">:</span> <span class="s2">&quot;Tadpole Days&quot;</span><span class="p">:</span>
+
+<span class="n">It</span><span class="s1">&#39;s not easy being green...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>参见 <a class="reference internal" href="#id64">隐式超链接目标</a> 解决引用名称重复问题。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;.. &quot;</span> <span class="o">|</span> <span class="s2">&quot;_&quot;</span> <span class="n">name</span> <span class="s2">&quot;:&quot;</span> <span class="n">link</span>    <span class="o">|</span>
+<span class="o">+-------+</span> <span class="n">block</span>                <span class="o">|</span>
+        <span class="o">|</span>                      <span class="o">|</span>
+        <span class="o">+----------------------+</span>
+</pre></div>
+</div>
+<div class="section" id="rst-anonymous-hyperlinks">
+<span id="id57"></span><h6><a class="toc-backref" href="#id126">1.2.5.12.3.1&nbsp;&nbsp;&nbsp;匿名超链接</a><a class="headerlink" href="#rst-anonymous-hyperlinks" title="永久链接至标题">¶</a></h6>
+<p><a class="reference external" href="http://www.w3.org/">万维网联盟</a> 在他们的`为网页内容可访问性指南提供的HTML技术`_ 中
+建议作者应当”清楚的识别每个连接的目标”。超链接引用应当尽可能的长，
+但在目标中重复一个长超链接名称是繁重且容易出错的。匿名超链接就是
+为了方便长超链接引用设计的，同时也类似于`自动编号脚注`_ 。他们通
+常在短小的或单个文档中很有用。但是，该功能很可能遭到滥用，并导致
+纯文本不可读和/或不可维护的文档。建议慎用。</p>
+<p>匿名`超链接引用`_ 由两个下划线指定，而不是一个:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>参见`我最爱的编程语言的网站`__.
+</pre></div>
+</div>
+<p>匿名目标以”.. __:”开始，不需要也不允许使用引用名称:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">__</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>作为一个方便的替代，匿名目标可以只以”__”开始:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>该引用的引用名称不用于匹配引用和目标。取而代之，文档内的匿名超链接引用和目标的顺序是有很重要的: 第一个匿名引用会连接到第一个匿名目标。
+文档中匿名超链接引用的个数必须与匿名目标的个数匹配。为了便于阅读，建议目标与引用在一起。小心编辑带有匿名引用的文本，添加、删除、重新组织
+引用需要注意对应目标的顺序。</p>
+</div>
+</div>
+<div class="section" id="rst-directives">
+<span id="id58"></span><h5><a class="toc-backref" href="#id127">1.2.5.12.4&nbsp;&nbsp;&nbsp;指令</a><a class="headerlink" href="#rst-directives" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: 取决于指令.</p>
+<p>指令是reStructuredText的扩展机制，一种添加支持新结构而不用添加新的
+语法（指令支持额外的本地语法）的方法。所有的标准指令(那些已经在
+reStructuredText解析器中实现和注册过的)在`指令`_ 文档中都有描述，它
+们是特定域的，在处理文档时，可能需要特定操作以使其生效。</p>
+<p>例如，这是 <a class="reference external" href="directives.html#dt-image">图片</a> 如何被定位:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">mylogo</span><span class="o">.</span><span class="n">jpeg</span>
+</pre></div>
+</div>
+<p>一个 <a class="reference external" href="directives.html#figure">figure</a> (带一个标题的图片)这样定位:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">figure</span><span class="p">::</span> <span class="n">larch</span><span class="o">.</span><span class="n">png</span>
+
+   <span class="n">The</span> <span class="n">larch</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>一个 <a class="reference external" href="directives.html#dt-admonitions">admonition</a> (注意、小心，等等)包含其他正文元素:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. note:: 这是一个段落
+
+   - 这是一个无序列表。
+</pre></div>
+</div>
+<p>指令由以开始后跟指令类型、两个冒号、空格（一起被称为指令标记）的显式标记展示。指令类型是大小写不敏感的单个单词(字母+单个连字符、冒号、点
+不包括空格)。指令类型后使用两个冒号是因为:</p>
+<ul>
+<li><p class="first">两个冒号更有特色，且不太会被用于普通文本</p>
+</li>
+<li><p class="first">两个冒号可以避免与普通的注释文本冲突:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. Danger: modify at your own risk!
+</pre></div>
+</div>
+</li>
+<li><p class="first">如果reStructuredText的某种实现不能识别一个指令(如，指令处理器未安装
+)，会生成一个3级(error)系统信息，且整个指令块(包括指令本身)会被包含
+为一个文本块。因为”::”是一个自然选择。</p>
+</li>
+</ul>
+<p>指令块由指令标记后的指令所在的第一行所包含的任何文本和任何紧跟的缩进文本组成。指令块的解释由指令代码完成。指令块有三个逻辑部分:</p>
+<ol class="arabic simple">
+<li>指令参数</li>
+<li>指令选项</li>
+<li>指令内容</li>
+</ol>
+<p>个别指令可以采用这些部件的任何组合。指令参数可以是文件系统路径、URL、
+标题文本，等等。指令选项使用 <a class="reference internal" href="#id22">字段列表</a> 表示。字段名和内容由指令指
+定。参数和选项必须组成一个在指令第一、二行开始的连续的块。空行表示
+指令内容块开始了。如果参数和/或选项被指令所使用，必须用一个空行分将他
+们与指令内容分隔开。
+“figure”指令使用所有这三个部分:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">figure</span><span class="p">::</span> <span class="n">larch</span><span class="o">.</span><span class="n">png</span>
+   <span class="p">:</span><span class="n">scale</span><span class="p">:</span> <span class="mi">50</span>
+
+   <span class="n">The</span> <span class="n">larch</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>简单指令可以不需要内容。如果一个指令不使用内容块而后面跟着任何缩进的
+文本，会产生一个错误。如果一个引用块后立即是一个指令，使用空注释(见 <a class="reference internal" href="#id62">注释</a> )分隔它们。</p>
+<p>在指令内容块或随后的文本块中，指令和解释文本所作的任何动作都取决于指令。详见 <a class="reference internal" href="#id58">指令</a> 。</p>
+<p>指令是对其内容的处理，它可以被转换成一些可能与原文无关的东西。它也可能被用来作为编译指令、修改解析器的行为，如实验替代语法。目前没有解析器支持此功能。如果发现一个对编译器指令是合理的需求，它们可能会支持。</p>
+<p>指令不会生成”指令”元素，它们只是一个”解析器结构”，在reStructuredText
+以外没有任何意义。解析器会将可以识别的指令变形为文档元素。未知的指令
+会触发3级系统信息（错误）。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+-------------------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;.. &quot;</span> <span class="o">|</span> <span class="n">directive</span> <span class="nb">type</span> <span class="s2">&quot;::&quot;</span> <span class="n">directive</span> <span class="o">|</span>
+<span class="o">+-------+</span> <span class="n">block</span>                         <span class="o">|</span>
+        <span class="o">|</span>                               <span class="o">|</span>
+        <span class="o">+-------------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-substitution-definitions">
+<span id="id59"></span><h5><a class="toc-backref" href="#id128">1.2.5.12.5&nbsp;&nbsp;&nbsp;替代定义</a><a class="headerlink" href="#rst-substitution-definitions" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: 替代定义</p>
+<p>替代定义由一个以(“.. “)开始后面跟着竖线、替代文本、竖线、空格和
+定义块的显式标记。替代文本不能以空格开始或结束。一个替代定义块
+包含一个嵌套的行内兼容指令(没有开头的”.. “)，如” <a class="reference external" href="directives.html#dt-image">图片</a> “或”<a class="reference external" href="directives.html#dt-replace">替代</a>”。举例，:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="o">|</span><span class="n">biohazard</span><span class="o">|</span> <span class="n">symbol</span> <span class="n">must</span> <span class="n">be</span> <span class="n">used</span> <span class="n">on</span> <span class="n">containers</span> <span class="n">used</span> <span class="n">to</span>
+<span class="n">dispose</span> <span class="n">of</span> <span class="n">medical</span> <span class="n">waste</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">biohazard</span><span class="o">|</span> <span class="n">image</span><span class="p">::</span> <span class="n">biohazard</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>替代定义块直接或间接包含一个子替代引用会发生一个错误。</p>
+<p><a class="reference internal" href="#id79">替代引用</a> 会在行内被处理过的定义对应的内容所替代。匹配是大小写敏感但可以宽容的，如果没有发现匹配，会尝试大小写不敏感的短语。</p>
+<p>替代指令允许在行内文本共享强大而灵活的块级 <a class="reference internal" href="#id58">指令</a> 。它们是一种在文本内包含任意复杂行内结构并将细节保存在文本之外的方法。等价于SGML/XML的命
+名实例或编程语言的宏。</p>
+<p>没有替代机制，无论何时需要具体应用新行内结构，都必须改变语法。
+通过与现有的指令语法结合，任何行内结构都可以使用而无需新的语法（除非
+可能是一个新指令)。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+-----------------------------------------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;.. &quot;</span> <span class="o">|</span> <span class="s2">&quot;|&quot;</span> <span class="n">substitution</span> <span class="n">text</span> <span class="s2">&quot;| &quot;</span> <span class="n">directive</span> <span class="nb">type</span> <span class="s2">&quot;::&quot;</span> <span class="n">data</span> <span class="o">|</span>
+<span class="o">+-------+</span> <span class="n">directive</span> <span class="n">block</span>                                     <span class="o">|</span>
+        <span class="o">|</span>                                                     <span class="o">|</span>
+        <span class="o">+-----------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>下面是替代机制的一些例子。请注意，大部分嵌入指令只能在例子中使用，其
+尚未被实现。</p>
+<dl class="docutils">
+<dt>对象</dt>
+<dd><p class="first">替代引用可以用于关联含糊的文本到一个唯一的对象识别符</p>
+<p>例如，许多网站可能希望实现一个行内”用户”指令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">Michael</span><span class="o">|</span> <span class="ow">and</span> <span class="o">|</span><span class="n">Jon</span><span class="o">|</span> <span class="n">are</span> <span class="n">our</span> <span class="n">widget</span><span class="o">-</span><span class="n">wranglers</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">Michael</span><span class="o">|</span> <span class="n">user</span><span class="p">::</span> <span class="n">mjones</span>
+<span class="o">..</span> <span class="o">|</span><span class="n">Jon</span><span class="o">|</span>     <span class="n">user</span><span class="p">::</span> <span class="n">jhl</span>
+</pre></div>
+</div>
+<p>根据网站的需求，这些可能用于索引文件供以后检索、以各种方式链接文本（邮件，网页，鼠标悬停JavaScript的简介和联系信息，等）或自定义文字显示（包括内联文本，包括旁边的用户名文本，链接图标图像使文字加粗或不同的颜色，等等）。</p>
+<p>同样的目的可用于在需要经常引用具有独特标识符但具有模糊的通用名称的的一个特定类型对象的文档中。电影、唱片、书籍、照片、法庭案件和法律都是可能的。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">The</span> <span class="n">Transparent</span> <span class="n">Society</span><span class="o">|</span> <span class="n">offers</span> <span class="n">a</span> <span class="n">fascinating</span> <span class="n">alternate</span> <span class="n">view</span>
+<span class="n">on</span> <span class="n">privacy</span> <span class="n">issues</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">The</span> <span class="n">Transparent</span> <span class="n">Society</span><span class="o">|</span> <span class="n">book</span><span class="p">::</span> <span class="n">isbn</span><span class="o">=</span><span class="mi">0738201448</span>
+</pre></div>
+</div>
+<p>模块名或类名不明确和/或解释文本不能使用的上下文中的类或函数，是
+另一种可能:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span><span class="n">XSLT</span> <span class="n">has</span> <span class="n">the</span> <span class="n">convenience</span> <span class="n">method</span> <span class="o">|</span><span class="n">runString</span><span class="o">|</span><span class="p">,</span> <span class="n">so</span> <span class="n">you</span> <span class="n">don</span><span class="s1">&#39;t</span>
+<span class="n">have</span> <span class="n">to</span> <span class="n">mess</span> <span class="k">with</span> <span class="n">DOM</span> <span class="n">objects</span> <span class="k">if</span> <span class="nb">all</span> <span class="n">you</span> <span class="n">want</span> <span class="ow">is</span> <span class="n">the</span>
+<span class="n">transformed</span> <span class="n">output</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">runString</span><span class="o">|</span> <span class="n">function</span><span class="p">::</span> <span class="n">module</span><span class="o">=</span><span class="n">xml</span><span class="o">.</span><span class="n">xslt</span> <span class="n">class</span><span class="o">=</span><span class="n">Processor</span>
+</pre></div>
+</div>
+</dd>
+<dt>图片</dt>
+<dd><p class="first">图片是替代引用的一种普遍用法:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">West</span> <span class="n">led</span> <span class="n">the</span> <span class="o">|</span><span class="n">H</span><span class="o">|</span> <span class="mi">3</span><span class="p">,</span> <span class="n">covered</span> <span class="n">by</span> <span class="n">dummy</span><span class="s1">&#39;s |H| Q, East&#39;</span><span class="n">s</span> <span class="o">|</span><span class="n">H</span><span class="o">|</span> <span class="n">K</span><span class="p">,</span>
+<span class="ow">and</span> <span class="n">trumped</span> <span class="ow">in</span> <span class="n">hand</span> <span class="k">with</span> <span class="n">the</span> <span class="o">|</span><span class="n">S</span><span class="o">|</span> <span class="mf">2.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">H</span><span class="o">|</span> <span class="n">image</span><span class="p">::</span> <span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">heart</span><span class="o">.</span><span class="n">png</span>
+   <span class="p">:</span><span class="n">height</span><span class="p">:</span> <span class="mi">11</span>
+   <span class="p">:</span><span class="n">width</span><span class="p">:</span> <span class="mi">11</span>
+<span class="o">..</span> <span class="o">|</span><span class="n">S</span><span class="o">|</span> <span class="n">image</span><span class="p">::</span> <span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">spade</span><span class="o">.</span><span class="n">png</span>
+   <span class="p">:</span><span class="n">height</span><span class="p">:</span> <span class="mi">11</span>
+   <span class="p">:</span><span class="n">width</span><span class="p">:</span> <span class="mi">11</span>
+
+<span class="o">*</span> <span class="o">|</span><span class="n">Red</span> <span class="n">light</span><span class="o">|</span> <span class="n">means</span> <span class="n">stop</span><span class="o">.</span>
+<span class="o">*</span> <span class="o">|</span><span class="n">Green</span> <span class="n">light</span><span class="o">|</span> <span class="n">means</span> <span class="n">go</span><span class="o">.</span>
+<span class="o">*</span> <span class="o">|</span><span class="n">Yellow</span> <span class="n">light</span><span class="o">|</span> <span class="n">means</span> <span class="n">go</span> <span class="n">really</span> <span class="n">fast</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">Red</span> <span class="n">light</span><span class="o">|</span>    <span class="n">image</span><span class="p">::</span> <span class="n">red_light</span><span class="o">.</span><span class="n">png</span>
+<span class="o">..</span> <span class="o">|</span><span class="n">Green</span> <span class="n">light</span><span class="o">|</span>  <span class="n">image</span><span class="p">::</span> <span class="n">green_light</span><span class="o">.</span><span class="n">png</span>
+<span class="o">..</span> <span class="o">|</span><span class="n">Yellow</span> <span class="n">light</span><span class="o">|</span> <span class="n">image</span><span class="p">::</span> <span class="n">yellow_light</span><span class="o">.</span><span class="n">png</span>
+
+<span class="o">|-&gt;&lt;-|</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">official</span> <span class="n">symbol</span> <span class="n">of</span> <span class="n">POEE_</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|-&gt;&lt;-|</span> <span class="n">image</span><span class="p">::</span> <span class="n">discord</span><span class="o">.</span><span class="n">png</span>
+<span class="o">..</span> <span class="n">_POEE</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">poee</span><span class="o">.</span><span class="n">org</span><span class="o">/</span>
+</pre></div>
+</div>
+<p class="last">“<a class="reference external" href="directives.html#dt-image">图片</a>”指令已经被实现了。</p>
+</dd>
+<dt>风格 <a class="footnote-reference" href="#id61" id="id60">[7]</a></dt>
+<dd><p class="first">替代引用可以用于将行内文本关联到一种扩展定义的表示风格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Even</span> <span class="o">|</span><span class="n">the</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">Texas</span><span class="o">|</span> <span class="ow">is</span> <span class="n">big</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">the</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">Texas</span><span class="o">|</span> <span class="n">style</span><span class="p">::</span> <span class="n">big</span>
+</pre></div>
+</div>
+<p>在某些特定输出上下文(HTML输出的CSS类名、LaTeX风格名，等等)中风格名有有意义的，其会被另一种输出格式（如纯文本）忽略。</p>
+<table class="last docutils footnote" frame="void" id="id61" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id60">[7]</a></td><td>有可能有足够的必要的“风格”机制，以保证简单的语法，如扩
+展到解释的文本角色的语法。简单的文本样式的替换机制是繁
+琐的。</td></tr>
+</tbody>
+</table>
+</dd>
+<dt>模板</dt>
+<dd><p class="first">行内标记可能会稍后被一个模板引擎处理。如，一个 <a class="reference external" href="http://www.zope.com/">Zope</a> 作者可能这么写:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Welcome back, |name|!
+
+.. |name| tal:: 替代 user/getUserName
+</pre></div>
+</div>
+<p>处理后，这个ZPT的输出结果可能是:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Welcome back,
+&lt;span tal:替代=&quot;user/getUserName&quot;&gt;name&lt;/span&gt;!
+</pre></div>
+</div>
+<p class="last">然后Zope在你某个实际用户的会话中将这个传递给某些类似于”Welcome back, David!”的东西。</p>
+</dd>
+<dt>替换文本</dt>
+<dd><p class="first">替代机制可以用于简单的宏替代。替换文本在一个或多个文档中重复多次，特别是在以后可能需要更改时，这可能是适当的。一个简短的例子是不可避免:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">RST</span><span class="o">|</span><span class="n">_</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">little</span> <span class="n">annoying</span> <span class="n">to</span> <span class="nb">type</span> <span class="n">over</span> <span class="ow">and</span> <span class="n">over</span><span class="p">,</span> <span class="n">especially</span>
+<span class="n">when</span> <span class="n">writing</span> <span class="n">about</span> <span class="o">|</span><span class="n">RST</span><span class="o">|</span> <span class="n">itself</span><span class="p">,</span> <span class="ow">and</span> <span class="n">spelling</span> <span class="n">out</span> <span class="n">the</span>
+<span class="n">bicapitalized</span> <span class="n">word</span> <span class="o">|</span><span class="n">RST</span><span class="o">|</span> <span class="n">every</span> <span class="n">time</span> <span class="n">isn</span><span class="s1">&#39;t really necessary for</span>
+<span class="o">|</span><span class="n">RST</span><span class="o">|</span> <span class="n">source</span> <span class="n">readability</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="o">|</span><span class="n">RST</span><span class="o">|</span> <span class="n">替代</span><span class="p">::</span> <span class="n">reStructuredText</span>
+<span class="o">..</span> <span class="n">_RST</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">docutils</span><span class="o">.</span><span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">rst</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>注意：第一个替代引用的最后的下划线。它表示引用对应的超链接目标。</p>
+<p>替代适用于当替换文本不能用其他行内结构表示或非常长的时候:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>But still, that&#39;s nothing compared to a name like
+|j2ee-cas|__.
+
+.. |j2ee-cas| 替代::
+   the Java `TM`:super: 2 Platform, Enterprise Edition Client
+   Access Services
+__ http://developer.java.sun.com/developer/earlyAccess/
+   j2eecas/
+</pre></div>
+</div>
+<p class="last">“<a class="reference external" href="directives.html#dt-replace">替代</a>”指令已被实现.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="rst-comments">
+<span id="id62"></span><h5><a class="toc-backref" href="#id129">1.2.5.12.6&nbsp;&nbsp;&nbsp;注释</a><a class="headerlink" href="#rst-comments" title="永久链接至标题">¶</a></h5>
+<p>文档树元素: 注释</p>
+<p>任意缩进文本可以跟在显示标记开始且会被处理为一个注释元素的后面。注释块文本不会再做处理。一个注释包含一个单独的”text blob”。取决于输出格
+式，注释可能被处理后的输出移除。
+对于注释唯一的限制是，它们与其他任何显式标记机构使用不同的语法:
+替代定义、指令、脚注、引文或超链接目标。为了确保其他任何显式标记结构
+都能被识别，在行中只使用”..”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. This is a 注释
+..
+   _so: is this!
+..
+   [and] this!
+..
+   this:: too!
+..
+   |even| this:: !
+</pre></div>
+</div>
+<p id="id63">一个显示标记开始，后面跟着空行且没有其他东西（除了空白）是一个
+“<span class="target" id="empty">empty 注释</span>”。它用于结束一个前面的结构且 <strong>不</strong> 需要跟任何缩
+进文本。需要一个块引用跟在一个列表或任何缩进结构之后，在它们之间
+插入一个空注释即可。</p>
+<p>语法图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-------+----------------------+</span>
+<span class="o">|</span> <span class="s2">&quot;.. &quot;</span> <span class="o">|</span> <span class="n">注释</span>                 <span class="o">|</span>
+<span class="o">+-------+</span> <span class="n">块</span>                   <span class="o">|</span>
+        <span class="o">|</span>                      <span class="o">|</span>
+        <span class="o">+----------------------+</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rst-implicit-hyperlink-targets">
+<span id="id64"></span><h3><a class="toc-backref" href="#id130">1.2.6&nbsp;&nbsp;&nbsp;隐式超链接目标</a><a class="headerlink" href="#rst-implicit-hyperlink-targets" title="永久链接至标题">¶</a></h3>
+<p>隐式超链接目标由章节标题、脚注、引文生成，也可以由扩展结构生成。
+隐式超链接目标的行为也可能表现为显式的 <a class="reference internal" href="#id52">超链接目标</a> .</p>
+<p>通过以下步骤避免了重复的隐式和显式引用名称的歧义问题：</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#id53">显式超链接目标</a> 重写任何包含相同引用名称的隐式目标。
+隐式超链接目标会被移除，1级系统信息（info）会被插入。</li>
+<li>重复的隐式超链接目标会被移除，1级系统信息（info）会被插入。例如，
+如果两个或更多章节名称相同（如文档必须的结构”Introduction”子标
+题），会出现重复的隐式超链接目标。</li>
+<li>重复的显式超链接目标会被移除，2级系统信息(warning)。除了: 重复
+的 <a class="reference internal" href="#id55">扩展超链接目标</a> (表示为超链接名称和应用URI)不会混淆，也不会
+被移除。</li>
+</ol>
+<p>系统信息会被插入目标连接被移除处。详见 <a class="reference external" href="../../peps/pep-0258.html">PEP 258</a> 中的”错误处理”。</p>
+<p>解析器必须返回一个 <em>唯一</em> 超链接目标的集合。调用软件(如 <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> )可以警告无法解决的连接，给出原因信息。</p>
+</div>
+<div class="section" id="rst-inline-markup">
+<span id="id65"></span><h3><a class="toc-backref" href="#id131">1.2.7&nbsp;&nbsp;&nbsp;行内标记</a><a class="headerlink" href="#rst-inline-markup" title="永久链接至标题">¶</a></h3>
+<p>在reStructuredText中，行内标记是提供给文本块中的单词或句子的。在书写
+的文本中使用相同的空白和标点符号用于分隔单词，就是行内标记语法结构。
+含有行内标记的文本不能以空白开始或结束。任意 <a class="reference internal" href="#id70">字符级行内标记</a> 都能
+被支持，但并不鼓励。行内标记不能嵌套。</p>
+<p>有9个行内标记结构。5个结构使用相同的开始字符和结束字符来表示标记:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id71">斜体</a>: “*”</li>
+<li><a class="reference internal" href="#id72">粗体</a>: “**”</li>
+<li><a class="reference internal" href="#id73">解释文本</a>: “`”</li>
+<li><a class="reference internal" href="#id74">行内文本</a>: “``”</li>
+<li><a class="reference internal" href="#id79">替代引用</a>: “|”</li>
+</ul>
+<p>三种结构使用不同的开始与结构字符:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id76">行内内部目标</a>: “_`”和”`”</li>
+<li><a class="reference internal" href="#id77">脚注引用</a>: “[“和”]_”</li>
+<li><a class="reference internal" href="#id75">超链接引用</a>: “`”和”`_” (句子)，或只有一个单独的”_”(单个单词)</li>
+</ul>
+<p><a class="reference internal" href="#id80">独立超链接</a> 能被隐式的识别，且不适用额外的标记。</p>
+<div class="section" id="rst-inline-markup-recognition-rules">
+<span id="id66"></span><h4><a class="toc-backref" href="#id132">1.2.7.1&nbsp;&nbsp;&nbsp;行内标记识别规则</a><a class="headerlink" href="#rst-inline-markup-recognition-rules" title="永久链接至标题">¶</a></h4>
+<p>行内标记开始、结束字符只要在所有条件都满足的情况下才会被识别:</p>
+<ol class="arabic simple">
+<li>行内标记开始字符必须开始一个文本块或前面紧接着<ul>
+<li>空白</li>
+<li>ASCII字符中的一个 <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">:</span> <span class="pre">/</span> <span class="pre">'</span> <span class="pre">&quot;</span> <span class="pre">&lt;</span> <span class="pre">(</span> <span class="pre">[</span> <span class="pre">{</span></code> 或</li>
+<li>一个使用 <a class="reference external" href="http://www.unicode.org/Public/5.1.0/ucd/UCD.html#General_Category_Values">Unicode category</a> <cite>Pd</cite> (Dash)、<cite>Po</cite> (Other)、
+<cite>Ps</cite> (Open)、<cite>Pi</cite> (Initial quote)或`Pf` (Final quote) <a class="footnote-reference" href="#pipf" id="id67">[8]</a> 的非ASCII标点符号。</li>
+</ul>
+</li>
+<li>行内标记开始字符必须紧跟在非空白之后</li>
+<li>行内标记结束字符必须之后必须是非空白字符</li>
+<li>行内标记结束字符必须结束一个文本块或后面紧接<ul>
+<li>空白</li>
+<li>ASCII字符中的一个 <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">.</span> <span class="pre">,</span> <span class="pre">:</span> <span class="pre">;</span> <span class="pre">!</span> <span class="pre">?</span> <span class="pre">\</span> <span class="pre">/</span> <span class="pre">'</span> <span class="pre">&quot;</span> <span class="pre">)</span> <span class="pre">]</span> <span class="pre">}</span> <span class="pre">&gt;</span></code> 或</li>
+<li>一个使用 <a class="reference external" href="http://www.unicode.org/Public/5.1.0/ucd/UCD.html#General_Category_Values">Unicode category</a> <cite>Pd</cite> (Dash)、<cite>Po</cite> (Other)、
+<cite>Ps</cite> (Open)、<cite>Pi</cite> (Initial quote)或`Pf` (Final quote) <a class="footnote-reference" href="#pipf" id="id68">[8]</a> 的非ASCII标点符号。</li>
+</ul>
+</li>
+<li>如果一个行内标记开始字符之前是一个ASCII字符 <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">&quot;</span> <span class="pre">&lt;</span> <span class="pre">(</span> <span class="pre">[</span> <span class="pre">{</span></code> ，或
+一个使用Unicode字符category <cite>Ps</cite>, <cite>Pi</cite>, or <cite>Pf`的字符，其之后必
+须是对应的 [#corresponding_quotes]_ 结束字符
+`</cite>’ ” ) ] } &gt;`` 或categories <cite>Pe</cite>, <cite>Pf</cite>, or <cite>Pi</cite>.</li>
+<li>行内开始、结束字符之间必须至少有个一个字符</li>
+<li>一个没有转义的反斜杠在开始或结束字符之前会终止标记识别，除非
+是 <a class="reference internal" href="#id74">行内文本</a> 结束字符。详见 <a class="reference internal" href="#id9">转义机制</a> 。</li>
+</ol>
+<table class="docutils footnote" frame="void" id="pipf" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[8]</td><td><em>(<a class="fn-backref" href="#id67">1</a>, <a class="fn-backref" href="#id68">2</a>)</em> <cite>Pi</cite> (Punctuation, Initial quote) characters are “usually
+closing, sometimes opening”. <cite>Pf</cite> (Punctuation, Final quote)
+characters are “usually closing, sometimes opening”.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="corresponding-quotes" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[9]</td><td>对于引文，对应字符可以是任
+何 <a class="reference external" href="http://en.wikipedia.org/wiki/Quotation_mark,_non-English_usage">quotation marks in international usage</a></td></tr>
+</tbody>
+</table>
+<p>行内识别规则计划允许90%的非标记使用”*”、”`”、”_”、和”|”而无需转义。
+例如，下面的属于没有一个会被识别为包含行内标记的字符:</p>
+<ul class="simple">
+<li>2*x a**b O(N**2) e**(x*y) f(x)*f(y) a|b file*.* (breaks 1)</li>
+<li>2 * x  a ** b  (* BOM32_* ` `` _ __ | (breaks 2)</li>
+<li>“*” ‘|’ (*) [*] {*} &lt;*&gt; (breaks 5)</li>
+<li>|| (breaks 6)</li>
+<li>__init__ __init__()</li>
+</ul>
+<p>下列行内标记的例子不需要转义:</p>
+<ul class="simple">
+<li><em>2 * x  *a **b *.txt</em> (breaks 3)</li>
+<li><em>2*x a**b O(N**2) e**(x*y) f(x)*f(y) a*(1+2)</em> (breaks 4)</li>
+</ul>
+<p>其中一些可能别描述为使用 <a class="reference internal" href="#id74">行内文本</a> ，特鄙视如果它们表现为代码段。
+这是一个判断调用。</p>
+</div>
+<div class="section" id="rst-recognition-order">
+<span id="id69"></span><h4><a class="toc-backref" href="#id133">1.2.7.2&nbsp;&nbsp;&nbsp;识别顺序</a><a class="headerlink" href="#rst-recognition-order" title="永久链接至标题">¶</a></h4>
+<p>行内标记分隔符被用于多个结构，因为为了避免混淆，必须有特定的识别
+顺序。行内标记识别顺序如下:</p>
+<ul class="simple">
+<li>星号: <a class="reference internal" href="#id72">粗体</a> (“**”) 先于 <a class="reference internal" href="#id71">斜体</a> (“*”)被识别。</li>
+<li>反引号: <a class="reference internal" href="#id74">行内文本</a> (“``”)、<a class="reference internal" href="#id76">行内内部目标</a> (以”_`”开头，”`”结
+尾)相互独立，会在短语 <a class="reference internal" href="#id75">超链接引用</a> (以”`”开头，”`_”结尾) <a class="reference internal" href="#id73">解释文本</a> (“`”)之前被解析。</li>
+<li>后面的下划线: 脚注引用(“[” + label + “]_”)和简单 <a class="reference internal" href="#id75">超链接引用</a>
+(name + trailing “_”) 相互独立。</li>
+<li>竖线: <a class="reference internal" href="#id79">替代引用</a> (“|”)会被独立识别</li>
+<li><a class="reference internal" href="#id80">独立超链接</a> 最后一个被识别。</li>
+</ul>
+</div>
+<div class="section" id="rst-character-level-inline-markup">
+<span id="id70"></span><h4><a class="toc-backref" href="#id134">1.2.7.3&nbsp;&nbsp;&nbsp;字符级行内标记</a><a class="headerlink" href="#rst-character-level-inline-markup" title="永久链接至标题">¶</a></h4>
+<p>可以使用反斜扛转义，在单词内制造独立字符(见 <a class="reference internal" href="#id9">转义机制</a> )。反斜杠转义
+可以用在行内标记之后的任何文本上:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Python ``list``\s use square bracket syntax.
+</pre></div>
+</div>
+<p>反斜杠会在处理文档后消失。单词”list”会作为行内文本呈现，且字母”s”会
+紧跟在它后面作为普通文本，中间无需空格。</p>
+<p>行内标记之前的任意文本可以使用反斜杠空格:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Possible in *re*\ ``Structured``\ *Text*, though not encouraged.
+</pre></div>
+</div>
+<p>反斜杠和空格分隔”re”、”Structured”和”Text”，并会在文档处理后消失。</p>
+<div class="admonition caution">
+<p class="first admonition-title">警告</p>
+<p class="last">不建议在字符级行内标记使用反斜杠转义。这种用法是丑陋的，对未经处
+理的文档的可读性是有害的。请只在确实需要的地方使用该功能。</p>
+</div>
+</div>
+<div class="section" id="rst-emphasis">
+<span id="id71"></span><h4><a class="toc-backref" href="#id135">1.2.7.4&nbsp;&nbsp;&nbsp;斜体</a><a class="headerlink" href="#rst-emphasis" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 斜体</p>
+<p>开始字符 ，结束字符 = “*”.</p>
+<p>以单个星号封闭的文本是斜体:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="o">*</span><span class="n">emphasized</span> <span class="n">text</span><span class="o">*.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-strong-emphasis">
+<span id="id72"></span><h4><a class="toc-backref" href="#id136">1.2.7.5&nbsp;&nbsp;&nbsp;粗体</a><a class="headerlink" href="#rst-strong-emphasis" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: strong.</p>
+<p>开始字符 = 结束字符 = “**”.</p>
+<p>被双星号封闭的文本是粗体:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">这是</span> <span class="o">**</span><span class="n">粗体文本</span><span class="o">**.</span>
+</pre></div>
+</div>
+<p>强调文本通常以粗体显示。</p>
+</div>
+<div class="section" id="rst-interpreted-text">
+<span id="id73"></span><h4><a class="toc-backref" href="#id137">1.2.7.6&nbsp;&nbsp;&nbsp;解释文本</a><a class="headerlink" href="#rst-interpreted-text" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 取决于显式或隐式角色和处理</p>
+<p>开始字符 = 结束字符 = “`”.</p>
+<p>文史文本是这样一种文本，它意味着被关联、索引、链接、概括或不同的处理，但文本本身会被典型保留。解释文本由单反引号字符封闭:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>This is `interpreted text`.
+</pre></div>
+</div>
+<p>解释文本的”role”决定了文本如何被解释。角色可能会被隐式的推断(像上面，使用了
+“默认角色”)或显式的表示，使用一个角色标记。
+角色标记由一个冒号、角色名、另一个冒号组成。角色名是一个由字母加可能存在的连字符、下划线、加号、冒号、点组成的单个单词，不能有空格或其他字符。
+角色标记是解释文本的前缀或后缀，取决于怎么读更合适，由作者决定:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:role:`interpreted text`
+
+`interpreted text`:role:
+</pre></div>
+</div>
+<p>解释文本允许扩展有效的行内描述标记结构。对于 <a class="reference internal" href="#id71">斜体</a> , <a class="reference internal" href="#id72">粗体</a> , <a class="reference internal" href="#id74">行内文本</a> 和 <a class="reference internal" href="#id75">超链接引用</a> ，我们可以添加”标题引用”、”索引入口”、”缩写”、”类”、”红色”、”闪烁”或任何你想要的东西。
+只有预制的角色能够被识别，未知角色会生成错误。标准角色的核心集合在引用解析器中实现了。详见 <a class="reference external" href="roles.html">reStructuredText解释文本角色</a> 。
+<a class="reference external" href="directives.html#dt-custom-interpreted-text-roles">角色</a> 指令可以用于定义自定义解释文本角色。另外，程序可能支持特定
+的角色。</p>
+</div>
+<div class="section" id="rst-inline-literals">
+<span id="id74"></span><h4><a class="toc-backref" href="#id138">1.2.7.7&nbsp;&nbsp;&nbsp;行内文本</a><a class="headerlink" href="#rst-inline-literals" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 文本.</p>
+<p>开始字符 = 结束字符 = “``”.</p>
+<p>文本被双反引号封闭会被作为行内文本:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>该文本是 ``行内文本`` 的一个例子。
+</pre></div>
+</div>
+<p>行内文本可以包含任何字符除了与结束字符响铃的反引号根据上述识别规则）。没有标记的解释包括转义字符的解释）会在行内文本内完成。</p>
+<p>在行内文本中，折行 <em>不会</em> 被保留。尽管reStructuredText解析器会在输出时保留空格，处理过的文本的最后表示取决于输出格式，因此不能放心的保留空白。如果折行和/或其他空白的表现是重要的，则应该使用 <a class="reference internal" href="#id32">文本块</a> 。</p>
+<p>行内文本为简短的代码片段很有用。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>正则表达式 ``[+-]?(\d+(\.\d*)?|\.\d+)`` 匹配浮点数(没有指数)。
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-hyperlink-references">
+<span id="id75"></span><h4><a class="toc-backref" href="#id139">1.2.7.8&nbsp;&nbsp;&nbsp;超链接引用</a><a class="headerlink" href="#rst-hyperlink-references" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 引用</p>
+<ul class="simple">
+<li>命名的超链接引用:<ul>
+<li>开始字符 = “”(空字符串)，结束字符 = “_”</li>
+<li>开始字符 = “`”，结束字符 = “`_”。(短语引用)</li>
+</ul>
+</li>
+<li>匿名超链接引用:<ul>
+<li>开始字符 = “” (空字符串)，结束字符 = “__”</li>
+<li>开始字符 = “`”，结束字符 = “`__”。(短语引用)</li>
+</ul>
+</li>
+</ul>
+<p>超链接引用由结尾的下划线表示，除了 <a class="reference internal" href="#id80">独立超链接</a> ，其会被单独识别。下划线可以认为是一个向右的箭头。结尾的下划线指向超链接引用，开始的下划线指向 <a class="reference internal" href="#id52">超链接目标</a>.</p>
+<p>超链接由两部分组成。在文本正文中，有一个源链接，一个引用名和一个结尾的下划线(或 <a class="reference internal" href="#id57">匿名超链接</a> 的两个下划线):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">See</span> <span class="n">the</span> <span class="n">Python_</span> <span class="n">home</span> <span class="n">page</span> <span class="k">for</span> <span class="n">info</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>有一个匹配的引用名称的目标链接必须存在于文档之外(详见 <a class="reference internal" href="#id52">超链接目标</a> )</p>
+<p><a class="reference internal" href="#id57">匿名超链接</a> 不使用引用名称匹配引用和目标，其行为类似命名的超链接。</p>
+<div class="section" id="uri">
+<span id="rst-embedded-uris-and-aliases"></span><h5><a class="toc-backref" href="#id140">1.2.7.8.1&nbsp;&nbsp;&nbsp;嵌套URI和别名</a><a class="headerlink" href="#uri" title="永久链接至标题">¶</a></h5>
+<p>超链接引用可以直接嵌套一个目标URI(从Docutils 0.11开始)或一个尖括号内的超链接引用:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See the `Python home page &lt;http://www.python.org&gt;`_ for info.
+
+This `link &lt;Python home page_&gt;`_ is an alias to the link above.
+</pre></div>
+</div>
+<p>这等价于:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See the `Python home page`_ for info.
+
+This link_ is an alias to the link above.
+
+.. _Python home page: http://www.python.org
+.. _link: `Python home page`_
+</pre></div>
+</div>
+<p>括起来的URI前面必须有空格，且为结束字符前最后的文本。</p>
+<p>使用一个单独的结尾下划线，引用会被命名，同样地URI会被再次引用
+使用两个结尾下划线，引用和目标都是你ing的，目标不能被再次引用。
+这是一个一次性的超链接。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`RFC 2396 &lt;http://www.rfc-editor.org/rfc/rfc2396.txt&gt;`__ and `RFC
+2732 &lt;http://www.rfc-editor.org/rfc/rfc2732.txt&gt;`__ together
+define the syntax of URIs.
+</pre></div>
+</div>
+<p>等价于:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`RFC 2396`__ and `RFC 2732`__ together define the syntax of URIs.
+
+__ http://www.rfc-editor.org/rfc/rfc2396.txt
+__ http://www.rfc-editor.org/rfc/rfc2732.txt
+</pre></div>
+</div>
+<p>即使以一个下划线结尾， <a class="reference internal" href="#id80">独立超链接</a> 也会被当做URI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`__init__ &lt;http:example.py.html#__init__&gt;`__
+</pre></div>
+</div>
+<p>如果目标URI没有被识别为 <a class="reference internal" href="#id80">独立超链接</a> 碰巧以下划线结尾，则需要对其
+进行转义以避免被解析为超链接引用。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Use the `source &lt;parrots.txt\_&gt;`__.
+</pre></div>
+</div>
+<p>创建一个到文件的匿名引用 <code class="docutils literal notranslate"><span class="pre">parrots.txt_</span></code>。</p>
+<p>如果引用文本碰巧以尖括号文本结束，而 <em>不是</em> 一个URI或一个超链接引用，至少有一个尖括号需要被反斜杠转义或跟一个转义的空格。例如，这是三个到描述一个标签的标题的引用:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See `HTML Element: \&lt;a&gt;`_, `HTML Element: &lt;b\&gt; `_, and
+`HTML Element: &lt;c&gt;\ `_.
+</pre></div>
+</div>
+<p>引用文本会被省略，这种情况下URI会被作为引用文本重复使用。这对关联地址或文件名也是需要的引用文本的URI很有用:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See `&lt;a_named_relative_link&gt;`_ or `&lt;an_anonymous_relative_link&gt;`__
+for details.
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="first admonition-title">警告</p>
+<p class="last">该结构以牺牲一般可读性提供了对超链接简单的创作与维护。特别长的行内URI不可避免的打断文本的自然流程。对将要以源文件阅读的文档， <strong>强烈建议</strong> 使用独立的块级 <a class="reference internal" href="#id52">超链接目标</a> 。嵌套的URI结构最适合只在处理后的格式下阅读的文档。</p>
+</div>
+</div>
+</div>
+<div class="section" id="rst-inline-internal-targets">
+<span id="id76"></span><h4><a class="toc-backref" href="#id141">1.2.7.9&nbsp;&nbsp;&nbsp;行内内部目标</a><a class="headerlink" href="#rst-inline-internal-targets" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: target.</p>
+<p>开始字符 = “_`”，结束字符 = “`”.</p>
+<p>行内内部目标等价于显式 <a class="reference internal" href="#id54">内部超链接目标</a> ，但可能呈现在运行的文本恶逆。该语法以一个下华夏和一个反引号开始，后面跟一个超链接名或短语，以一个反引号结束。行内内部目标不可以匿名。</p>
+<p>例如，下面的段落包含一个名为”Norwegian Blue”的超链接目标:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Oh yes, the _`Norwegian Blue`.  What&#39;s, um, what&#39;s wrong with it?
+</pre></div>
+</div>
+<p>参见 <a class="reference internal" href="#id64">隐式超链接目标</a> 以解决引用名重复的问题。</p>
+</div>
+<div class="section" id="rst-footnote-references">
+<span id="id77"></span><h4><a class="toc-backref" href="#id142">1.2.7.10&nbsp;&nbsp;&nbsp;脚注引用</a><a class="headerlink" href="#rst-footnote-references" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 脚注引用</p>
+<p>开始字符 = “[“，结束字符 = “]_”.</p>
+<p>每个脚注引用包含一个方括号标签后面跟一个下划线。脚注标签是以下之一:</p>
+<ul class="simple">
+<li>一个或多个数字</li>
+<li>一个单独的”#”( <a class="reference internal" href="#id45">自动编号脚注</a> 的符号),</li>
+<li>一个”#”后面跟着简单引用名称(一个 <a class="reference internal" href="#autonumber-label">自动编号标签</a>),</li>
+<li>一个单独的”*”( <a class="reference internal" href="#id46">自动符号脚注</a> 的符号).</li>
+</ul>
+<p>例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Please</span> <span class="n">RTFM</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="n">_</span><span class="o">.</span>
+
+<span class="o">..</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Read</span> <span class="n">The</span> <span class="n">Fine</span> <span class="n">Manual</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-citation-references">
+<span id="id78"></span><h4><a class="toc-backref" href="#id143">1.2.7.11&nbsp;&nbsp;&nbsp;引文引用</a><a class="headerlink" href="#rst-citation-references" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 引文引用</p>
+<p>开始字符 = “[“，结束字符 = “]_”.</p>
+<p>每个引文引用由一个方括号标签后面跟一个下划线组成。引用标签是简单的 <a class="reference internal" href="#id10">引用名称</a> (大小写不明感的单个单词，由字母加内部连字符、下划线、点组成，不能有空白)。</p>
+<p>例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">citation</span> <span class="n">reference</span><span class="p">:</span> <span class="p">[</span><span class="n">CIT2002</span><span class="p">]</span><span class="n">_</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>见 <a class="reference internal" href="#id51">引文</a> 。</p>
+</div>
+<div class="section" id="rst-substitution-references">
+<span id="id79"></span><h4><a class="toc-backref" href="#id144">1.2.7.12&nbsp;&nbsp;&nbsp;替代引用</a><a class="headerlink" href="#rst-substitution-references" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 替代引用、引用</p>
+<p>开始字符 = “|”，结束字符 = “|” (可选的接”_”或”__”).</p>
+<p>竖线用于阔气替代引用文本。一个替代引用也可以是一个超链接引用，通过添加一个”_”(命名)或”__” (匿名)前缀，替代文本用于引用文本的命名的情况。</p>
+<p>处理系统使用对应的处理后的内容替换替代引用中的 <a class="reference internal" href="#id59">替代定义</a> 。替代定义生成行内兼容的元素。</p>
+<p>举例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">simple</span> <span class="o">|</span><span class="n">substitution</span> <span class="n">reference</span><span class="o">|.</span>  <span class="n">It</span> <span class="n">will</span> <span class="n">be</span> <span class="n">替代d</span> <span class="n">by</span>
+<span class="n">the</span> <span class="n">processing</span> <span class="n">system</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">combination</span> <span class="o">|</span><span class="n">substitution</span> <span class="ow">and</span> <span class="n">hyperlink</span> <span class="n">reference</span><span class="o">|</span><span class="n">_</span><span class="o">.</span>  <span class="n">In</span>
+<span class="n">addition</span> <span class="n">to</span> <span class="n">being</span> <span class="n">替代d</span><span class="p">,</span> <span class="n">the</span> <span class="n">替代ment</span> <span class="n">text</span> <span class="ow">or</span> <span class="n">element</span> <span class="n">will</span>
+<span class="n">refer</span> <span class="n">to</span> <span class="n">the</span> <span class="s2">&quot;substitution and hyperlink reference&quot;</span> <span class="n">target</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-standalone-hyperlinks">
+<span id="id80"></span><h4><a class="toc-backref" href="#id145">1.2.7.13&nbsp;&nbsp;&nbsp;独立超链接</a><a class="headerlink" href="#rst-standalone-hyperlinks" title="永久链接至标题">¶</a></h4>
+<p>文档树元素: 引用</p>
+<p>开始字符 ，结束字符 = “”(空字符串)</p>
+<p>文本块内的URI(绝对URI <a class="footnote-reference" href="#id82" id="id81">[10]</a> 或独立的email地址)被当做一个通用扩展超链接，其URI被当做链接文本。举例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">See</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span> <span class="k">for</span> <span class="n">info</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>可以在HTML中组成:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">See</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://www.python.org&quot;</span><span class="o">&gt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">for</span>
+<span class="n">info</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>可以识别两种形式的URI:</p>
+<ol class="arabic">
+<li><p class="first">绝对URI。 这由一个约束、一个冒号(“:”)和一个约束特性部分（由约
+束解释）组成。</p>
+<p>约束是协议的名称，如”http”、”ftp”、”mailto”或”telnet”。约束由一个初始字母后面接字母、数字和/或”+”, “-“, “.”组成。
+只有有限的约束能被识别，只有 <a class="reference external" href="http://www.iana.org/assignments/uri-schemes">Official IANA Registry of URI
+Schemes</a> 和W3C的 <a class="reference external" href="http://www.w3.org/Addressing/schemes.html">Retired Index of WWW Addressing Schemes</a> 。</p>
+<p>资源标识符的约束特性部分可以是分层的或不透明的:</p>
+<ul>
+<li><p class="first">分层标识符以一个或两个斜线组成，可以使用斜线分隔路径的分层组件。
+例子是网页和FTP站点:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span>
+
+<span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">不透明标识符不以斜线开头，例如email地址和新闻组:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mailto</span><span class="p">:</span><span class="n">someone</span><span class="nd">@somewhere</span><span class="o">.</span><span class="n">com</span>
+
+<span class="n">news</span><span class="p">:</span><span class="n">comp</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">python</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>使用查询、片段和%-escape顺序，URI可以变得很复杂。一个reStructuredText解析器必须能够识别任何绝对定义在 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc2396.txt">RFC2396</a> 和 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc2732.txt">RFC2732</a> 中的URI。</p>
+</li>
+<li><p class="first">独立email地址会被当作包含一个”mailto:”约束的绝对URI。例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">someone</span><span class="nd">@somewhere</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>URI最后的标点符号不被认为是URI的一部分，除非URI由一个反尖括号(“&gt;”)分隔。反斜线可以用在URI中以转移标记字符，特定的星号(“*”)和下划线(“_”)等URI有效字符(详见 <a class="reference internal" href="#id9">转义机制</a> )。</p>
+<table class="docutils footnote" frame="void" id="id82" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id81">[10]</a></td><td>统一资源标识符。URI是URL(统一资源定位符)的一种通用形式
+URI语法详见 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc2396.txt">RFC2396</a> 和 <a class="reference external" href="http://www.rfc-editor.org/rfc/rfc2732.txt">RFC2732</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="rst-units">
+<span id="id83"></span><h3><a class="toc-backref" href="#id146">1.2.8&nbsp;&nbsp;&nbsp;单位</a><a class="headerlink" href="#rst-units" title="永久链接至标题">¶</a></h3>
+<p>(Docutils 0.3.10. 新增)</p>
+<p>所有的单位由一个标准(非科学)符号正浮点数和一个单位组成，可能由一个或多个空格分隔。</p>
+<p>只支持参考手册中显式的提到的单位。</p>
+<div class="section" id="rst-length-units">
+<span id="id84"></span><h4><a class="toc-backref" href="#id147">1.2.8.1&nbsp;&nbsp;&nbsp;长度单位</a><a class="headerlink" href="#rst-length-units" title="永久链接至标题">¶</a></h4>
+<p>reStructuredText解析器支持下列长度单位:</p>
+<ul class="simple">
+<li>em (ems, 元素字体的高度)</li>
+<li>ex (x-height, 字母”x”的高度)</li>
+<li>px (像素，关联到相对于画布的分辨率)</li>
+<li>in (inches; 1in=2.54cm)</li>
+<li>cm (厘米; 1cm=10mm)</li>
+<li>mm (毫米)</li>
+<li>pt (点; 1pt=1/72in)</li>
+<li>pc (活字; 1pc=12pt)</li>
+</ul>
+<p>该集合对应 <a class="reference external" href="http://www.w3.org/TR/CSS2/syndata.html#长度-单位">CSS长度单位</a>.</p>
+<p>(列表和解释取自 <a class="reference external" href="http://www.htmlhelp.com/reference/css/unit.html#length">http://www.htmlhelp.com/reference/css/unit.html#length</a>)</p>
+<p>以下是所有有效的长度值: “1.5em”, “20 mm”, “.5in”.</p>
+<p>不带单位的长度值会被自动添加(如，px with <cite>html4css1</cite>, pt with <cite>latex2e</cite>)。详见 <a class="reference external" href="../../user/">用户文档</a> 。</p>
+</div>
+<div class="section" id="rst-percentage-units">
+<span id="id86"></span><h4><a class="toc-backref" href="#id148">1.2.8.2&nbsp;&nbsp;&nbsp;百分数单位</a><a class="headerlink" href="#rst-percentage-units" title="永久链接至标题">¶</a></h4>
+<p>百分数值有一个百分数符(“%”)作为单位。百分数值与其他值关联，取决于其所处的上下文。</p>
+</div>
+</div>
+</div>
+<div class="section" id="rst-error-handing">
+<span id="id87"></span><h2><a class="toc-backref" href="#id149">1.3&nbsp;&nbsp;&nbsp;错误处理</a><a class="headerlink" href="#rst-error-handing" title="永久链接至标题">¶</a></h2>
+<p>文档树元素: 系统信息、problematic</p>
+<p>标记错误根据 <a class="reference external" href="../../peps/pep-0258.html">PEP 258</a> 规范处理。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linux/search_nginx.html" class="btn btn-neutral float-right" title="linux查找软件(nginx)安装位置及配置信息等" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="web_site_techniques.html" class="btn btn-neutral" title="网站的使用技巧一" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anaf.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

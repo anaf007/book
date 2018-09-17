@@ -7,7 +7,8 @@
     use_skills
     othor/crazy_programmer
     othor/motivational_statements
-    othor/web_site_techniques.rst
+    othor/web_site_techniques
+    othor/restructuredtext
 
     
 

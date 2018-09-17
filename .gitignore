@@ -1,1 +1,6 @@
 */.DS_Store
+
+
+#C程序编译
+*.out
+*.exe
