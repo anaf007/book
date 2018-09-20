@@ -204,7 +204,6 @@ shell 是一个功能完备的JavaScript解释器，可运行任意JavaScript程
 在概念上， MongoDB的文档与JavaScript中的对象相似，因而可认为它类似于json。
 
 MongoDB在保留json基本键值特性的基础上，添加了一些其他数据类型：
-
  - null 用于表示空值或不存在的字段。 {'x'：null}
  - 布尔值， true 、false {'x':true}
  - 数值 {'x':3.14}、{'x':NumberInt("3")}、{'x':NumberLong('3')}
@@ -243,6 +242,7 @@ MongoDB在保留json基本键值特性的基础上，添加了一些其他数据
 MongoDB文档必须有一个_id键，这个键可以是任意类型，默认是ObjectId对象，在一个集合里面，每个文档都有唯一的"_id",确保集合里面每个文档都能唯一标识。
 
 ::
+
     id生成方式：
     0 1 2 3     4 5 6     7 8    9 10 11 
     时间戳       机器       PID    计数器

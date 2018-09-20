@@ -393,9 +393,9 @@ shell非常有用，通过他可以执行管理操作。检查运行实例，亦
 <div class="section" id="id10">
 <h3>2.6.1 基本数据类型<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
 <p>在概念上， MongoDB的文档与JavaScript中的对象相似，因而可认为它类似于json。</p>
-<p>MongoDB在保留json基本键值特性的基础上，添加了一些其他数据类型：</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="docutils">
+<dt>MongoDB在保留json基本键值特性的基础上，添加了一些其他数据类型：</dt>
+<dd><ul class="first last simple">
 <li>null 用于表示空值或不存在的字段。 {‘x’：null}</li>
 <li>布尔值， true 、false {‘x’:true}</li>
 <li>数值 {‘x’:3.14}、{‘x’:NumberInt(“3”)}、{‘x’:NumberLong(‘3’)}</li>
@@ -408,7 +408,8 @@ shell非常有用，通过他可以执行管理操作。检查运行实例，亦
 <li>二进制数据 ！二进制不能直接在shell中使用</li>
 <li>代码 查询和文档中可以包含任意JavaScript代码</li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 <div class="section" id="id11">
 <h3>2.6.2 日期<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
@@ -430,12 +431,11 @@ shell非常有用，通过他可以执行管理操作。检查运行实例，亦
 <div class="section" id="idobjectid">
 <h3>2.6.5 _id和ObjectId()<a class="headerlink" href="#idobjectid" title="永久链接至标题">¶</a></h3>
 <p>MongoDB文档必须有一个_id键，这个键可以是任意类型，默认是ObjectId对象，在一个集合里面，每个文档都有唯一的”_id”,确保集合里面每个文档都能唯一标识。</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>id生成方式：
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>id生成方式：
 0 1 2 3     4 5 6     7 8    9 10 11
-时间戳       机器       PID    计数器</dd>
-</dl>
+时间戳       机器       PID    计数器
+</pre></div>
+</div>
 <p>如果插入文档没有id键，系统会自动创建一个。</p>
 </div>
 </div>
