@@ -97,7 +97,15 @@
 <li class="toctree-l3"><a class="reference internal" href="ch1.html">第一章 MongoDB简介</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch2.html">第二章 MongoDB基础知识</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch3.html">第三章 创建、更新和删除文档</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">第四章 查询</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">第四章 查询</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#find">4.1 find简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.2 查询条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.3 特性类型的查询</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where">4.4 $where 查询</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.5 游标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">4.6 数据库命令</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="ch5.html">第五章 索引</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch6.html">第六章 特殊的索引和集合</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch7.html">第七章 聚合</a></li>
@@ -198,6 +206,201 @@
             
   <div class="section" id="id1">
 <h1>第四章 查询<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本章将详细介绍查询。主要会涵盖一下几个方面:</p>
+<blockquote>
+<div><ul class="simple">
+<li>使用find或findOne函数和查询文档对数据库执行查询。</li>
+<li>使用$条件查询返回查询、数据集包含查询、不等式查询、以及其他查询；</li>
+<li>查询将会返回一个数据库游标，游标只会在你需要时才将需要的文档批量返回；</li>
+<li>还有很多针对游标执行的元操作，包括忽略一定数量的结果。或者限定返回结果的数量，以及结果排序。</li>
+</ul>
+</div></blockquote>
+<div class="section" id="find">
+<h2>4.1 find简介<a class="headerlink" href="#find" title="永久链接至标题">¶</a></h2>
+<p>MongoDB中使用find来进行查询。查询就是返回集合中文档的子集。子集的返回从0个文档到整个集合。</p>
+<p>空的查询文档会匹配集合的全部内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>以上会返回users的所有结果。</p>
+<p>查询年龄为27的用户:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="mi">27</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>查询用户名为joe，年龄27的用户:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="s1">&#39;joe&#39;</span><span class="p">,{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="mi">27</span><span class="p">}})</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h3>4.1.1 执行需要返回的键<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>有时并不需要将文档的所有键/值都返回，这种情况，可以通过find的第二个参数来指定想要的键:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({},{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;email&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>!这个参数后面的1暂未指定意思，等待实际操作。</p>
+<p>如果要剔除不需要的键:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({},{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>4.1.2 限制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>查询使用上有些限制。传递给数据库的查询文档的值必须是常量。也就是不能引用文档中其他键的值。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4.2 查询条件<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h3>4.2.1 查询条件<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>“$lt”、”$lte”、”$gt”、”$gte”分别对应&lt;、&lt;=、&gt;、&gt;=</p>
+<p>例如查询年龄大于18 小于30的结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:{</span><span class="s1">&#39;$gte&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="s2">&quot;$lte&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">}})</span>
+</pre></div>
+</div>
+<p>查询时间大于2017年的:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Date</span><span class="p">(</span><span class="s1">&#39;01/01/2017&#39;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;register_time&#39;</span><span class="p">:{</span><span class="s1">&#39;$lt&#39;</span><span class="p">:</span><span class="n">start_time</span><span class="p">}})</span>
+</pre></div>
+</div>
+<p>“$ne”符号为不相等,查询年龄不为18的用户:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:{</span><span class="s2">&quot;$ne&quot;</span><span class="p">:</span><span class="mi">18</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="or-in">
+<h3>4.2.2 or查询  in查询<a class="headerlink" href="#or-in" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//查询年龄为18，19的用户
+db.users.find({&#39;age&#39;:{&#39;$in&#39;:[18,19]}})
+//查询年龄不为18，19的用户
+db.users.find({&#39;age&#39;:{&#39;$nin&#39;:[18,19]}})
+//查询年龄为18或者用户名为joe的用户
+db.users.find({&#39;$or&#39;:[{&#39;age&#39;:18},{&#39;username&#39;:&#39;joe&#39;}]})
+</pre></div>
+</div>
+</div>
+<div class="section" id="not">
+<h3>4.2.3 $not<a class="headerlink" href="#not" title="永久链接至标题">¶</a></h3>
+<p>$not是元条件句，即可以在任何条件之上。 比如用$mod取模，会将查询的值除以第一个给定的值，若余数等于第二个至则匹配成功:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;id_num&#39;</span><span class="p">:{</span><span class="s2">&quot;$mod&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]}})</span>
+</pre></div>
+</div>
+<p>返回 1，6，11，16。。。的用户</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;id_num&#39;</span><span class="p">:{</span><span class="s2">&quot;$not&quot;</span><span class="p">:{</span><span class="s2">&quot;$mod&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]}}})</span>
+</pre></div>
+</div>
+<p>返回 2，3，4，5，7，8，9…的用户</p>
+</div>
+<div class="section" id="id6">
+<h3>4.2.4条件语句<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>都是前面的查询  注意一下元操作符是在外层文档中， 如$or  $and</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>4.3 特性类型的查询<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<div class="section" id="null">
+<h3>4.3.1 null<a class="headerlink" href="#null" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果仅想匹配键值为null的文档，既要检查该键的值是否null，还要通过 $exists条件判断键值已存在:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:{</span><span class="s1">&#39;$in&#39;</span><span class="p">:[</span><span class="n">null</span><span class="p">],</span><span class="s1">&#39;$exists&#39;</span><span class="p">:</span><span class="n">true</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>4.3.2 正则表达式<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="o">/</span><span class="n">joe</span><span class="o">/</span><span class="n">i</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>系统接受正则表达式标志i，但不是一定要有。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db.users.find({&#39;name&#39;:/joey?/i})
+</pre></div>
+</div>
+<p>MongoDB使用perl兼容的正则表达式库来匹配正则表达式。</p>
+</div>
+<div class="section" id="id9">
+<h3>4.3.3 查询数组<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">:[</span><span class="s1">&#39;zhangsan&#39;</span><span class="p">,</span><span class="s1">&#39;lisi&#39;</span><span class="p">,</span><span class="s1">&#39;wangwu&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>如果需要多个元素来匹配数组，那就要使用$all了。</p>
+<p>想要查询数组特定位置的元素，需要使用key.index语法指定下标:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">foot</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;title.2&#39;</span><span class="p">:</span><span class="s1">&#39;paht&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>$size可以用来查询特定长度的数组。</p>
+</div>
+<div class="section" id="id10">
+<h3>4.3.4 查询内嵌文档<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>有两种方法可以查询内嵌文档：查询整个文档，或者只针对其键/值进行查询。</p>
+<p>例如如下文档:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:{</span>
+        <span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last&#39;</span><span class="p">:</span><span class="s1">&#39;scc&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="mi">45</span>
+<span class="p">}</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:{</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;joe&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="where">
+<h2>4.4 $where 查询<a class="headerlink" href="#where" title="永久链接至标题">¶</a></h2>
+<p>键值对是一种表达能力非常好的查询方式，但是依然有些需求他无法表达。其他方法都无法查询是  $where就可以登场了。</p>
+<p>$where操作比较麻烦 详细以后在添加。</p>
+</div>
+<div class="section" id="id11">
+<h2>4.5 游标<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<p>数据库使用游标返回find的执行结果。</p>
+<p>略</p>
+<div class="section" id="limitskipsort">
+<h3>4.5.1 limit、skip和sort<a class="headerlink" href="#limitskipsort" title="永久链接至标题">¶</a></h3>
+<p>最常用的查询选项就是限制返回结果的数量、忽略一定数量的结果以及排序:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">find</span><span class="p">()</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">find</span><span class="p">()</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#name升序，age降序</span>
+<span class="n">db</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">find</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="n">age</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这三个方法组合使用对于分页非常有用。</p>
+<p>详细书本也不够详细。需要后面使用在添加。</p>
+</div>
+<div class="section" id="skip">
+<h3>4.5.2 避免使用skip略过大量结果<a class="headerlink" href="#skip" title="永久链接至标题">¶</a></h3>
+<p>用skip略过少量的文档还是不错的。但是要是数量非常多的话，skip就会变得很慢。</p>
+<p>1.不要用skip对结果分页。
+2.随机选取文档   不要这么做。</p>
+<blockquote>
+<div>从集合里面随机挑选一个文档算是常见问题。最笨的 也是最慢的 做法就是先计算文档总数，然后选择一个从0到文档数量直接的随机数。利用find做一次查询。</div></blockquote>
+</div>
+<div class="section" id="id12">
+<h3>4.5.3 高级查询选项<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>有两种类型的查询：简单查询和封装查询</p>
+</div>
+<div class="section" id="id13">
+<h3>4.5.4 获取一致结果<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>略</p>
+</div>
+<div class="section" id="id14">
+<h3>4.5.5 游标生命周期<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>略</p>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>4.6 数据库命令<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<p>有一种非常特殊的查询类型叫作数据库命令。前面已经介绍过文档的创建、更新删除以及查询、这些都是数据库命令的范畴。包括管理性的任务，统计集合内的文档数量以及执行聚合等。</p>
+<p>本章节有很多理论上的东西。实际操作在实际修改添加。这里没有一一添加编写进来。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 

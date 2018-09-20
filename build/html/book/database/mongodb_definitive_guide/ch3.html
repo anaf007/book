@@ -96,7 +96,13 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../mongodb_definitive_guide.html">MongoDB权威指南(第二版)</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="ch1.html">第一章 MongoDB简介</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch2.html">第二章 MongoDB基础知识</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">第三章 创建、更新和删除文档</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">第三章 创建、更新和删除文档</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1 插入并保存文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.2 删除文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.3 更新文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">3.4 写入安全机制</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="ch4.html">第四章 查询</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch5.html">第五章 索引</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ch6.html">第六章 特殊的索引和集合</a></li>
@@ -198,6 +204,127 @@
             
   <div class="section" id="id1">
 <h1>第三章 创建、更新和删除文档<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<dl class="docutils">
+<dt>本章介绍数据库移入/移出数据的基本操作，具体包含如下操作:</dt>
+<dd><ul class="first last simple">
+<li>向集合添加新文档</li>
+<li>从集合里删除文档</li>
+<li>更新现有文档</li>
+<li>为这些操作选择合适的安全级别和速度</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="id2">
+<h2>3.1 插入并保存文档<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s1">&#39;bar&#39;</span><span class="p">:</span><span class="s1">&#39;baz&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>这些操作会给文档自动增加一个”_id”键，然后保存到MongoDB中。</p>
+<div class="section" id="id3">
+<h3>3.1.1 批量插入<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>只接受一个文档数组作为参数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">batchinsert</span><span class="p">([{</span><span class="s1">&#39;_id&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},{</span><span class="s1">&#39;_id&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}])</span>
+</pre></div>
+</div>
+<p>目前最大的消息长度为48MB,大于的会拆分成多个插入请求。</p>
+</div>
+<div class="section" id="id4">
+<h3>3.1.2 插入校验<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>插入数据时，MongoDB只对数据进行最基本的检查:检查文档的基本结构，如果没有”_id”字段就会增加一个。由于MongoDB只进行最基本的检查，所以插入非法数据很容易。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>3.2 删除文档<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+<span class="o">&gt;</span><span class="n">db</span><span class="o">.</span><span class="n">mailing</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">remove</span><span class="p">({</span><span class="s1">&#39;option&#39;</span><span class="p">:</span><span class="n">true</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><strong>删除速度</strong></p>
+<p>删除文档通常很快，但是要清空整个集合，使用drop直接删除集合更快。</p>
+</div>
+<div class="section" id="id6">
+<h2>3.3 更新文档<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>文档存入数据库以后，就可以使用update方法来更新它了。update有两个参数，一个是查询文档，另一个是修改文档</p>
+<div class="section" id="id7">
+<h3>3.3.1 文档替换<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>最简单的更新就是用一个新文档完全替换匹配的文档，这适用进行大规模模式的迁移情况。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;_id&#39;</span><span class="p">:</span><span class="n">ObjectId</span><span class="p">(</span><span class="s1">&#39;xxxxx&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;job&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;friends&#39;</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span>
+    <span class="s1">&#39;enemies&#39;</span><span class="p">:</span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>我们希望将friends 和 enemies 字段移到 relationships子文档中:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">joe</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">findOne</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;job&#39;</span><span class="p">});</span>
+<span class="n">joe</span><span class="o">.</span><span class="n">relationships</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;friends&#39;</span><span class="p">:</span><span class="n">joe</span><span class="o">.</span><span class="n">friends</span><span class="p">,</span><span class="s1">&#39;enemies&#39;</span><span class="p">:</span><span class="n">joe</span><span class="o">.</span><span class="n">enemies</span><span class="p">};</span>
+<span class="o">&gt;</span><span class="n">joe</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">joe</span><span class="o">.</span><span class="n">name</span>
+<span class="n">delete</span> <span class="n">joe</span><span class="o">.</span><span class="n">friends</span><span class="p">;</span>
+<span class="n">delete</span> <span class="n">joe</span><span class="o">.</span><span class="n">enemies</span>
+<span class="n">delete</span> <span class="n">joe</span><span class="o">.</span><span class="n">name</span>
+<span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;joe&#39;</span><span class="p">},</span><span class="n">joe</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>一个常见的错误是查询条件匹配到了多个文档，然后更新时由于第二个参数的存在就产生重复的ID。数据库会抛出错误，任何文档都不会更新。</p>
+<p>使用 _id  作为查询条件比使用随机字段速度更快。</p>
+</div>
+<div class="section" id="id8">
+<h3>3.3.2 使用修改器<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>通常文档只会有一部分要更新，可以使用原子性的更新修改器，指定对文档中的某些字段进行更新，更新修改器是特殊的键，用来指定复杂的更新操作，比如修改，增加或者删除键。还可以操作数组或者内置文档。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#自增1</span>
+<span class="n">db</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;url&#39;</span><span class="p">:</span><span class="s1">&#39;localhost&#39;</span><span class="p">},{</span><span class="s2">&quot;$inc&quot;</span><span class="p">:{</span><span class="s1">&#39;views&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}})</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;joe&#39;</span><span class="p">},{</span><span class="s1">&#39;$set&#39;</span><span class="p">:{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;set title&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;$push&quot;会向已有的数组末尾插入一个元素。
+&quot;$each&quot;子操作符，可以通过一次&quot;$each&quot;操作添加多个值
+db.stock.ticker.update({&#39;_id&#39;:xxxx},{
+    {&#39;$push&#39;:{&#39;hourly&#39;:{&quot;$each&quot;:[1,2,3,4,5]}}}
+})
+</pre></div>
+</div>
+<p>如果希望数组最大长度是固定的，那么可以将”$slice”和”$push”组合在一起使用，这样就可以确保数组不会超出设定好的长度:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">movies</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s1">&#39;grnre&#39;</span><span class="p">:</span><span class="s1">&#39;hroor&#39;</span><span class="p">},</span>
+<span class="p">{</span>
+<span class="s2">&quot;$push&quot;</span><span class="p">:{</span><span class="s1">&#39;top10&#39;</span><span class="p">:{</span>
+<span class="s1">&#39;$each&#39;</span><span class="p">:[</span><span class="s1">&#39;nightmare&#39;</span><span class="p">,</span><span class="s1">&#39;saw&#39;</span><span class="p">],</span><span class="s2">&quot;$slice&quot;</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span>
+<span class="p">}}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>这个例子会限制数组只包含最后加入的10个元素，”$slice”必须是负整数。</p>
+<p>还有 “$sort”,”$ne”,”$addToSet”详细需要用了在查询。</p>
+<p>对应删除元素:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;$pop&quot;</span><span class="p">,</span><span class="s2">&quot;$pull&quot;</span>
+</pre></div>
+</div>
+<p>定位符操作: “$”</p>
+<p>移动文档是非常慢的</p>
+<p>3.3.3 upsert</p>
+<p>upsert是一种特殊的更新。要是没有找到符合更新条件的文档，他会以这个条件和更新文档为基础创建一个新的文档。如果找到文档则更新。supert非常方便，不必预置集合。</p>
+</div>
+<div class="section" id="id9">
+<h3>3.3.4 更新多个文档<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>默认情况下，更新只对符合条件的第一个文档执行操作，要是有多个文档符合条件，只有第一个文档被更新，需要更新所有文档可以将update的第四个参数设置为true。</p>
+</div>
+<div class="section" id="id10">
+<h3>3.3.5 返回被更新的文档<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>略</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>3.4 写入安全机制<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<p>略</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
 </div>
 
 

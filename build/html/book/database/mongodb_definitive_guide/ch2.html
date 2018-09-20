@@ -98,6 +98,11 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">第二章 MongoDB基础知识</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1">2.1 文档</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">2.2 集合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.3 数据库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.4 启动MongoDB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongodb-shell">2.5 MongoDB shell简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">2.6 数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">2.7 使用MongoDB shell</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ch3.html">第三章 创建、更新和删除文档</a></li>
@@ -280,8 +285,10 @@
 <strong>blog.authors</strong>
 。这是为了使组织结构更清晰。</p>
 <p>在MongoDB中，使用子集合来组织数据非常高效，值得推荐。</p>
+</div>
+</div>
 <div class="section" id="id5">
-<h4>2.3 数据库<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<h2>2.3 数据库<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>在MongoDB中，多个文档组成集合，多个集合组成数据库，一个MongoDB实例可以承载多个数据库，每个数据库用友0个或多个集合。每个数据库都有独立的权限，即使是在磁盘上，不同的数据库也放置再通的文件中。</p>
 <p>数据库通过名称标识，这点与集合类似。数据库名可以是满足一下条件的任意utf-8字符串:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 不能是空字符串
@@ -300,6 +307,208 @@
 </ul>
 </div></blockquote>
 <p>把数据库名添加到集合前面，得到结合的完全限定名，即命名空间。例如使用cms数据库中的blog.posts集合。这个集合的命名空间就是cms.blog.posts。命名空间的长度不得超过121字节。且在实际红应小于100字节。</p>
+</div>
+<div class="section" id="id6">
+<h2>2.4 启动MongoDB<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>通常，MongoDB作为网络服务器来运行，客户端可以连接该服务器进行操作。下载MongoDB并解压，运行mongod命令来启动数据库服务器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongod
+</pre></div>
+</div>
+<p>mongod在没有参数的情况下会使用默认数据目录/data/db.如果数据目录不存在或者不可读写，服务器会启动失败。</p>
+<p>启动时，服务器会打印版本和系统信息，然后等待连接.默认情况下，MongoDB会监听27017端口。</p>
+<p>mongod还会启动一个非常基本的http服务器，监听数字比主端口高1000的端口，也就是28017端口，可以访问127.0.0.1:28017端口获取数据库管理信息。</p>
+</div>
+<div class="section" id="mongodb-shell">
+<h2>2.5 MongoDB shell简介<a class="headerlink" href="#mongodb-shell" title="永久链接至标题">¶</a></h2>
+<p>MongoDB 自带JavaScript shell 可以在shell 中使用命令与MongoDB实例交互。
+shell非常有用，通过他可以执行管理操作。检查运行实例，亦或做其他操作。</p>
+<p>2.5.1 运行shell</p>
+<p>运行mongo启动shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo
+</pre></div>
+</div>
+<p>启动时，shell 将自动连接MongoDB服务器，须确保mongod已启动。</p>
+<p>shell 是一个功能完备的JavaScript解释器，可运行任意JavaScript程序。</p>
+<div class="section" id="id7">
+<h3>2.5.2 MongoDB客户端<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>如果想查看db当前指向那个库可以使用db命令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span>
+</pre></div>
+</div>
+<p>选择数据库:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">use</span> <span class="n">foobar</span>
+<span class="o">&gt;</span><span class="n">db</span>
+<span class="n">foobar</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>2.5.3基本操作<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>1.创建</p>
+<blockquote>
+<div><p>insert函数可将一个文档添加到集合中。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;blog title&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>查看:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>2.读取</p>
+<blockquote>
+<div><p>读取一个记录:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">findOne</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>3.更新</p>
+<blockquote>
+<div><p>使用update修改博客文章，update至少接受两个参数，第一个是限定条件，第二个是新的文档。</p>
+<p>首先修改变量post，增加comment键:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>然后执行update操作:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;update title&#39;</span><span class="p">},</span><span class="n">post</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>4.删除</p>
+<blockquote>
+<div><p>使用remove方法可将数据中永久删除，如果没有任何参数，它会将集合内所有文档删除。它可以接受一个作为限定条件的文旦作为参数</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">blog</span><span class="o">.</span><span class="n">remove</span><span class="p">({</span><span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;update title&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>2.6 数据类型<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3>2.6.1 基本数据类型<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>在概念上， MongoDB的文档与JavaScript中的对象相似，因而可认为它类似于json。</p>
+<p>MongoDB在保留json基本键值特性的基础上，添加了一些其他数据类型：</p>
+<blockquote>
+<div><ul class="simple">
+<li>null 用于表示空值或不存在的字段。 {‘x’：null}</li>
+<li>布尔值， true 、false {‘x’:true}</li>
+<li>数值 {‘x’:3.14}、{‘x’:NumberInt(“3”)}、{‘x’:NumberLong(‘3’)}</li>
+<li>字符串 {‘x’:’foobar’}</li>
+<li>日期 {‘x’:new Date()}</li>
+<li>正则表达式 {‘x’:/foobar/i}</li>
+<li>数组 {‘x’:[‘a’,’b’,3]}</li>
+<li>内嵌文档   {‘x’:{1,2,3}}</li>
+<li>对象id {‘x’:ObjectId()}</li>
+<li>二进制数据 ！二进制不能直接在shell中使用</li>
+<li>代码 查询和文档中可以包含任意JavaScript代码</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id11">
+<h3>2.6.2 日期<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>创建日期对象时，应使用new Date(),而非Date()。</p>
+</div>
+<div class="section" id="id12">
+<h3>2.6.3 数组<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>数组是一组值，它既能做有序对象，也能做无序对象:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;titings&#39;</span><span class="p">:[</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span><span class="mi">123</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>2.6.4 内嵌文档<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;job&#39;</span><span class="p">,</span><span class="s1">&#39;address&#39;</span><span class="p">:{</span><span class="s1">&#39;city&#39;</span><span class="p">:</span><span class="s1">&#39;nanning&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="idobjectid">
+<h3>2.6.5 _id和ObjectId()<a class="headerlink" href="#idobjectid" title="永久链接至标题">¶</a></h3>
+<p>MongoDB文档必须有一个_id键，这个键可以是任意类型，默认是ObjectId对象，在一个集合里面，每个文档都有唯一的”_id”,确保集合里面每个文档都能唯一标识。</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>id生成方式：
+0 1 2 3     4 5 6     7 8    9 10 11
+时间戳       机器       PID    计数器</dd>
+</dl>
+<p>如果插入文档没有id键，系统会自动创建一个。</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>2.7 使用MongoDB shell<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<p>shell 可以连接到任意MongoDB实例。在启动shell时指定机器名和端口，就可以连接到一套不同的机器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo some-host:30000/myDB
+</pre></div>
+</div>
+<p>通过–nodb参数启动shell，启动时将不会连接任何数据库:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  mongo --nodb
+</pre></div>
+</div>
+<p>启动之后，在需要时运行new Mongo(hostname)命令就可以连接到想要的mongo了:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Mongo</span><span class="p">(</span><span class="s1">&#39;some-host:30000&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="n">connection</span> <span class="n">to</span> <span class="n">some</span><span class="o">-</span><span class="n">host</span><span class="p">:</span><span class="mi">30000</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getDB</span><span class="p">(</span><span class="s1">&#39;myDB&#39;</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="n">dbDB</span>
+</pre></div>
+</div>
+<div class="section" id="shell">
+<h3>2.7.1 shell 小贴士<a class="headerlink" href="#shell" title="永久链接至标题">¶</a></h3>
+<p>可以使用help查看帮助:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>2.7.2 使用shell执行脚本<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo script.js
+</pre></div>
+</div>
+<p>如果希望使用指定的主机/端口上的mongo运行脚本，需要先指定地址，再跟上脚本文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo --quiet server-1:30000/foo script.js
+</pre></div>
+</div>
+</div>
+<div class="section" id="mongorc-js">
+<h3>2.7.3 创建.mongorc.js文件<a class="headerlink" href="#mongorc-js" title="永久链接至标题">¶</a></h3>
+<p>如果某些脚本会被频繁加载，可以将它们添加到mongorc.js文件中，这个文件会在启动shell时自动运行。</p>
+<p>例如，我们希望启动成功时让shell显示一句欢迎语，为此，我们在用户主目录下创建一个名为.mongorc.js的文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">mongorc</span><span class="o">.</span><span class="n">js</span>
+
+<span class="n">var</span> <span class="n">comliment</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;attractive&#39;</span><span class="p">,</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="s1">&#39;world&#39;</span><span class="p">]</span>
+<span class="n">var</span> <span class="n">index</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>为了实用，可以使用这个脚本创建一些自己需要的全局变量，或者是为一个太长的名称创建一个简短的别名，也可以重写内置函数。.mongorc.js最常见的用途之一是移除那些危险的shell辅助函数。可以在这里集中重写这些方法:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">no</span> <span class="o">=</span> <span class="n">function</span><span class="p">(){</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not on my watch&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="o">//</span><span class="n">禁止删除数据库</span>
+<span class="n">db</span><span class="o">.</span><span class="n">dropDatabase</span> <span class="o">=</span> <span class="n">DB</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">dropDatabase</span> <span class="o">=</span> <span class="n">no</span><span class="p">;</span>
+<span class="o">//</span><span class="n">禁止删除集合</span>
+<span class="n">DBCollection</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">drop</span> <span class="o">=</span> <span class="n">no</span><span class="p">;</span>
+<span class="o">//</span><span class="n">禁止删除索引</span>
+<span class="n">DBCollection</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">dropIndex</span> <span class="o">=</span> <span class="n">no</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果在启动shell时指定–norc参数，就可以禁止加载.mongorc.js。</p>
+</div>
+<div class="section" id="id16">
+<h3>2.7.4 定制shell 提示<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<p>略</p>
+</div>
+<div class="section" id="id17">
+<h3>2.7.5 编辑复合变量<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<p>略</p>
+</div>
+<div class="section" id="id18">
+<h3>2.7.6 集合命名注意事项<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<p>略</p>
 <p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
 <dl class="docutils">
 <dt>赞助扫码::</dt>
@@ -307,7 +516,6 @@
 <a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
 </dd>
 </dl>
-</div>
 </div>
 </div>
 </div>
