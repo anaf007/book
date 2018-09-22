@@ -9,9 +9,9 @@ int main(){
     char name[40];
 
     printf("you name\n");
-    scanf('%s',name);
-    print('%s nameis ',name);
-    scanf('%f',&weight);
+    scanf("%s",name);
+    print("%s nameis ",name);
+    scanf("%f",&weight);
     size = sizeof name;
 
     letters = strlen(name);
