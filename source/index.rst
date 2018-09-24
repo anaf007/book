@@ -33,7 +33,7 @@ ASM/C/C++书籍
 .. toctree::
     :maxdepth: 0
 
-    book/asm_c_cjj_book
+    book/asm_c_cpp_book
 
 
 

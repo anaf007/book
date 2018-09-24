@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>centos下升级pyhton3 &mdash; my_book_doc  文档</title>
+  <title>centos6下升级pyhton3 &mdash; my_book_doc  文档</title>
   
 
   
@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="centos6下安装mysql5.6(转)" href="centos6_install_mysql5_6.html" />
     <link rel="prev" title="linux查找软件(nginx)安装位置及配置信息等" href="search_nginx.html" /> 
 
   
@@ -84,7 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../book/security_book.html">安全相关书籍</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../book/asm_c_cjj_book.html">ASM/C/C++书籍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../book/asm_c_cpp_book.html">ASM/C/C++书籍</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../book/algorithm.html">算法相关书籍</a></li>
@@ -104,9 +105,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../othor/crazy_programmer.html">疯狂的程序员摘要</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../othor/motivational_statements.html">励志话语</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../othor/web_site_techniques.html">网站的使用技巧一</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othor/restructuredtext.html">1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../othor.html#linux">Linux相关</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="search_nginx.html">linux查找软件(nginx)安装位置及配置信息等</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">centos下升级pyhton3</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">centos6下升级pyhton3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">更新时间：2018-09-24</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="centos6_install_mysql5_6.html">centos6下安装mysql5.6(转)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="update_mysql6_pwd.html">修改mysql密码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="centos6_install_git.html">centos6下安装和使用git</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +166,7 @@
         
           <li><a href="../othor.html">笔记</a> &raquo;</li>
         
-      <li>centos下升级pyhton3</li>
+      <li>centos6下升级pyhton3</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,9 +183,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="centospyhton3">
-<h1>centos下升级pyhton3<a class="headerlink" href="#centospyhton3" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="centos6pyhton3">
+<h1>centos6下升级pyhton3<a class="headerlink" href="#centos6pyhton3" title="永久链接至标题">¶</a></h1>
 <p>time:2018-09-12</p>
+<div class="section" id="id1">
+<h2>更新时间：2018-09-24<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>yum install openssl-devel</p>
+<p>在新的服务器重新安装python3的时候   运行flask出现ModuleNotFoundError: No module named ‘_ssl’错误。经查  ，  需要重新安装编译python 才行。</p>
 <p><strong>缺少组件会报错需要先安装下组件</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">zlib</span><span class="o">*</span>
 <span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">gcc</span>
@@ -186,14 +198,20 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#切换目录</span>
 <span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span>
 <span class="c1">#下载python36</span>
-<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="mf">3.6</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mf">0.</span><span class="n">tgz</span>
-<span class="c1">#解压</span>
-<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mf">0.</span><span class="n">tgz</span>
-<span class="c1">#进入目录</span>
-<span class="n">cd</span> <span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mi">0</span>
+<span class="c1">#wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</span>
 
-<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">python3</span>
-<span class="c1">#./configure --prefix=/usr/local/python3 --enable-optimizations</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ftp</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="mf">3.6</span><span class="o">.</span><span class="mi">5</span><span class="o">/</span><span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mf">5.</span><span class="n">tgz</span>
+
+<span class="c1">#解压</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mf">5.</span><span class="n">tgz</span>
+<span class="c1">#进入目录</span>
+<span class="n">cd</span> <span class="n">Python</span><span class="o">-</span><span class="mf">3.6</span><span class="o">.</span><span class="mi">5</span>
+
+<span class="c1">#./configure --prefix=/usr/local/python3</span>
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">python3</span> <span class="o">--</span><span class="n">enable</span><span class="o">-</span><span class="n">optimizations</span>
+
+<span class="n">这里</span>  <span class="n">test400</span><span class="o">+</span><span class="n">的东西</span> <span class="n">用了10</span><span class="o">+</span><span class="n">分钟</span>
+
 <span class="n">make</span>
 <span class="n">make</span> <span class="n">install</span>
 <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span> <span class="o">-</span><span class="n">V</span>
@@ -201,9 +219,10 @@
 <span class="c1">#创建软连接</span>
 <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
 <span class="n">python3</span> <span class="o">-</span><span class="n">V</span>
-<span class="o">&gt;&gt;</span><span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">&gt;&gt;</span><span class="n">Python</span> <span class="mf">3.6</span><span class="o">.</span><span class="mi">5</span>
 <span class="n">ok</span>
 </pre></div>
+</div>
 </div>
 </div>
 
@@ -214,6 +233,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="centos6_install_mysql5_6.html" class="btn btn-neutral float-right" title="centos6下安装mysql5.6(转)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="search_nginx.html" class="btn btn-neutral" title="linux查找软件(nginx)安装位置及配置信息等" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

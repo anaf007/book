@@ -16,6 +16,7 @@ time:2018-09-16
     c_primer/ch2
     c_primer/ch3
     c_primer/ch4
+    c_primer/ch5
 
 
 

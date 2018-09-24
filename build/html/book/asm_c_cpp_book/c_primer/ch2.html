@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第二章 C语言概述 &mdash; my_book_doc  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第三章 数据和C" href="ch3.html" />
+    <link rel="prev" title="第一章:初识C语言" href="ch1.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> my_book_doc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../asm_c_cpp_book.html">ASM/C/C++书籍</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../c_primer_plus.html">C Primer Plus第六版</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch1.html">第一章:初识C语言</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">第二章 C语言概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.1 简单的C程序示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.2 示例解释</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.3 简单的程序结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.4 提高程序可读性的技巧</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.6 多个函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.7 调试程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">2.8 关键字和保留标识符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">2.9 关键概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch3.html">第三章 数据和C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4.html">第四章 字符串和格式化输入/输出</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5.html">第五章 运算符、表达式和语句</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_primer_plus.html">C++ Primer Plus第六版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assembly_language.html">汇编语言-王爽第二版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../windows_under_assembly.html">windows下32位汇编语言程序设计-罗云彬</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assembly_language_for_x86_processors.html">汇编语言基于x86处理器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modern_x86_assembly_language_programming.html">现代x86汇编语言程序设计</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">算法相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../note/othor.html">笔记</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">my_book_doc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../asm_c_cpp_book.html">ASM/C/C++书籍</a> &raquo;</li>
+        
+          <li><a href="../c_primer_plus.html">C Primer Plus第六版</a> &raquo;</li>
+        
+      <li>第二章 C语言概述</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c">
+<h1>第二章 C语言概述<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>本章介绍以下内容：
+■ 运算符：=
+■ 函数：main()、printf()
+■ 编写一个简单的C程序
+■ 创建整形变量，赋值并显示
+■ 换行字符
+■ 写注释，创建包含多个函数的程序
+■ 关键字
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>2.1 简单的C程序示例<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// filename:first.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; C  语言</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; C  语言  %d .</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>2.2 示例解释<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>2.2.1 第一遍：快速概要:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;  &lt;-包含另一个文件</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>     <span class="o">&lt;-</span><span class="n">函数名</span>
+</pre></div>
+</div>
+<p>2.2.2 第二遍：程序细节:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include指令和头文件
+#include这行是一条C预处理指令，包含供黏一起输入和输出函数 printf()信息
+ANSI/ISO C 规定了C编译器必须提供哪些头文件，有些城西要包含stdio.h，而有些不用。
+
+2.main()函数
+int main()
+int是main()函数的返回类型，这表明main()返回的值是整数。
+旧的代码有可能是这样写main() C90可以接受这样的形式，但是C99/C11不允许这样写。
+void main() 一些编译器允许 但是所有的标准都为任何这样的写法。
+
+3。注释
+/*  这是注释  */
+C99增加了      //注释
+
+4.花括号、函数和块
+一般而言，所有的C函数都使用花括号标记函数体的开始和结束，这是规定不能省略。只有花括号能起这种作用，圆括号和方括号都不行。
+
+5声明
+略
+
+6赋值
+num = 1；
+
+7printf()函数
+显示
+
+8return
+返回
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>2.3 简单的程序结构<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>上面的代码就是。</p>
+</div>
+<div class="section" id="id4">
+<h2>2.4 提高程序可读性的技巧<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>注意空格 注释说明，有意义的命名</p>
+<p>2.5 进一步使用C</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//fathm_ft.c </span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">feet</span><span class="p">,</span> <span class="n">fathoms</span><span class="p">;</span>
+
+    <span class="n">fathoms</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">feet</span> <span class="o">=</span> <span class="mi">6</span><span class="o">*</span><span class="n">fathoms</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;there %d feet in %d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">feet</span><span class="p">,</span><span class="n">fathoms</span> <span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;yes %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">6</span><span class="o">*</span><span class="n">fathoms</span> <span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>2.5.1、程序说明:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>程序在开始出有一条注释，给出了文件名和程序的目的。
+</pre></div>
+</div>
+<p>2.5.2、多条声明:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">feet</span><span class="p">,</span><span class="n">fathome</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>2.5.3、乘法</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feet</span> <span class="o">=</span>  <span class="mi">6</span><span class="o">*</span><span class="n">fathoms</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>2.5.4、打印多个值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;there </span><span class="si">%d</span><span class="s2"> feet in </span><span class="si">%d</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">feet</span><span class="p">,</span><span class="n">fathoms</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2.6 多个函数<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>把自己的函数加入程序中:</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//two_func.c 一个文件中包含两个函数</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">butler</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>  <span class="c1">//snsi/iso c函数原型</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;main_start</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">butler</span><span class="p">()</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;main_end</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">butler</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;butler</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>butler()函数在程序中出现了3次，第一次是函数原型，告知编译器在程序中要使用该函数。
+第2次以函数调用的形式出现在main()，最后一次出现在函数定义中，函数定义即是函数本身的源代码。</p>
+<p>C90标准新增了函数原型，旧的编译器可能无法识别。函数原型是一种声明形式，告知编译器正在使用某函数，因此函数原型也被成为函数声明。函数原型还指明了函数的属性。</p>
+</div>
+<div class="section" id="id6">
+<h2>2.7 调试程序<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>2.7.1 语法错误</p>
+<blockquote>
+<div>如果不遵循C语言的规则就会发生语法错误</div></blockquote>
+<p>2.7.2 语义错误</p>
+<blockquote>
+<div>编译器无法检测语义错误</div></blockquote>
+<p>2.7.3 程序状态</p>
+<blockquote>
+<div>通过逐步跟踪程序的执行步骤，并记录每个变量，便可件事程序的状态。</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h2>2.8 关键字和保留标识符<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>关键字是C语言的词汇，他们对C而言比较特殊，不能用他们来做标识符、变量</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="21%" />
+<col width="29%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>auto</td>
+<td>extern</td>
+<td>short</td>
+<td>while</td>
+</tr>
+<tr class="row-even"><td>break</td>
+<td>float</td>
+<td>signed</td>
+<td>_Alignas</td>
+</tr>
+<tr class="row-odd"><td>case</td>
+<td>for</td>
+<td>sizeof</td>
+<td>_Alignof</td>
+</tr>
+<tr class="row-even"><td>char</td>
+<td>goto</td>
+<td>static</td>
+<td>_Atomic</td>
+</tr>
+<tr class="row-odd"><td>const</td>
+<td>if</td>
+<td>struct</td>
+<td>_Bool</td>
+</tr>
+<tr class="row-even"><td>continue</td>
+<td>inline</td>
+<td>switch</td>
+<td>_Complex</td>
+</tr>
+<tr class="row-odd"><td>default</td>
+<td>int</td>
+<td>typedef</td>
+<td>_Generic</td>
+</tr>
+<tr class="row-even"><td>do</td>
+<td>long</td>
+<td>union</td>
+<td>_Imaginary</td>
+</tr>
+<tr class="row-odd"><td>double</td>
+<td>register</td>
+<td>unsigned</td>
+<td>_Noreturn</td>
+</tr>
+<tr class="row-even"><td>else</td>
+<td>restrict</td>
+<td>void</td>
+<td>_Static_assert</td>
+</tr>
+<tr class="row-odd"><td>enum</td>
+<td>return</td>
+<td>volatile</td>
+<td>_Thread_local</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h2>2.9 关键概念<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>编程是一件富有挑战性的事情</p>
+<p>编译器不会在概念性问题上帮助你</p>
+</div>
+<div class="section" id="id9">
+<h2>本章小结<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>C语言是一个或多个C函数组成。每个C程序必须包含一个main()函数，这是C程序要调用的第一个函数。</p>
+<p>简单的函数有函数头和后面的一堆花括号组成</p>
+<p>大部分语句由分号结尾。</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch3.html" class="btn btn-neutral float-right" title="第三章 数据和C" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch1.html" class="btn btn-neutral" title="第一章:初识C语言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anaf.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

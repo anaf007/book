@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第三章 数据和C &mdash; my_book_doc  文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="第四章 字符串和格式化输入/输出" href="ch4.html" />
+    <link rel="prev" title="第二章 C语言概述" href="ch2.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> my_book_doc
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_book.html">python相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../security_book.html">安全相关书籍</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../asm_c_cpp_book.html">ASM/C/C++书籍</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../c_primer_plus.html">C Primer Plus第六版</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch1.html">第一章:初识C语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2.html">第二章 C语言概述</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">第三章 数据和C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1示例程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.2 变量与常量数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.4 C语言基本数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.5 使用数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.7 转义序列示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.8关键概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.9 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ch4.html">第四章 字符串和格式化输入/输出</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5.html">第五章 运算符、表达式和语句</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_primer_plus.html">C++ Primer Plus第六版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assembly_language.html">汇编语言-王爽第二版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../windows_under_assembly.html">windows下32位汇编语言程序设计-罗云彬</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assembly_language_for_x86_processors.html">汇编语言基于x86处理器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modern_x86_assembly_language_programming.html">现代x86汇编语言程序设计</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../algorithm.html">算法相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../database.html">数据库相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ai.html">人工智能相关书籍</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../mathematics.html">数学书</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../note/othor.html">笔记</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">my_book_doc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../asm_c_cpp_book.html">ASM/C/C++书籍</a> &raquo;</li>
+        
+          <li><a href="../c_primer_plus.html">C Primer Plus第六版</a> &raquo;</li>
+        
+      <li>第三章 数据和C</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c">
+<h1>第三章 数据和C<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h1>
+<p>本章介绍以下内容:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>关键字：int、short、long、unsigned、char、float、double、_Bool、_Comple、_Imaginary
+运算符：sizeof()
+函数：scanf()
+整数类型和浮点数类型的区别
+如何书写整形和浮点型常数，如何声明这些类型的变量
+如何使用printf()和scanf()函数读写不同类型的值
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>3.1示例程序<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//filename: platinum.c</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+    <span class="kt">float</span> <span class="n">weight</span><span class="p">;</span> 
+    <span class="kt">float</span> <span class="n">value</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;weight</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="c1">//用户给输入</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%f&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">weight</span><span class="p">);</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mf">1700.00</span> <span class="o">*</span> <span class="n">weight</span> <span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;weight: %.2f&quot;</span><span class="p">,</span><span class="n">value</span><span class="p">);</span>
+
+    <span class="n">getchar</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>注意这里双引号和单引号的却别，博主在敲代码就搞成了单引号报错了。</p>
+<p>还有注意一下里面的符号&amp;</p>
+<p>3.1.1 程序中的新元素:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>■ 注意，代码中使用了新的变量声明， 本利使用了浮点型类型float 的变量
+■ 为了打印新类型的变量， 在printf()中使用%f来处处理浮点值， %.2f中的.2用于控制小数点后两位
+■ scanf()函数用于读取键盘的输入
+    %f要读取用户输入的浮点数
+    &amp;weight告诉scanf()把输入的值赋给weight变量，
+    &amp;符号表明找到weight变量的地点。
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>3.2 变量与常量数据<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">weight就是一个变量</span>
+<span class="n">weight</span><span class="o">*</span><span class="mi">1700</span>   <span class="n">其中1700就是常量</span>
+</pre></div>
+</div>
+<p>3.3 数据：数据类型关键字</p>
+<p>不仅变量和常量不同，不同的数据类型之间也有差异。一些数据类型表示数字，一些数据类型表示字母。</p>
+<p>C通过识别一些基本的数据类型来区分和使用这些不同的数据类型</p>
+<p>最初K&amp;R给出的关键字 C90标准添加的关键字 C99标准添加的关键字</p>
+<table border="1" class="docutils" id="id8">
+<caption><span class="caption-text">表3.1 C语言的数据类型关键字</span><a class="headerlink" href="#id8" title="永久链接至表格">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">最初K&amp;R给出的关键字</th>
+<th class="head">C90标准添加的关键字</th>
+<th class="head">C99标准添加的关键字</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>int</td>
+<td>signed</td>
+<td>_Bool</td>
+</tr>
+<tr class="row-odd"><td>long</td>
+<td>void</td>
+<td>_Complex</td>
+</tr>
+<tr class="row-even"><td>short</td>
+<td>&#160;</td>
+<td>_Imaginary</td>
+</tr>
+<tr class="row-odd"><td>unsigned</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>char</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>float</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>double</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>在C语言中，用int关键字来表示基本的整型类型。后3个关键字(long、short、unsigned)和C90新增的signed用于提供基本整数类型的变式。_Bool表示布尔值true和false，_Complex和_Imaginary表示复数和虚数。</p>
+<p>3.3.1 整数和浮点数</p>
+<p>对我们而言，整数和浮点数的区别是他们的书写方式不同。对计算机而言，他们的区别是存储的方式不同。</p>
+<p>3.3.2 整数</p>
+<p>整数是没有小数部分的数。</p>
+<p>3.3.3 浮点数</p>
+<p>2.75、3.16E7、7.00、2e-8都是浮点数，显然浮点数有多种形式，
+3.16E7 = 3.16*10的7次方</p>
+<p>1.整数没有小数部分，浮点数有小数部分
+2.浮点数可以表示的范围比整数大
+3.对于一些算术运算，浮点数损失的精度更多。
+4.任何区间内都存在无穷多个实数，所以浮点数通常指是实际值的近似值。
+5.过去，浮点运算比整数运算慢，现在许多CPU都包含浮点处理器，缩小了速度上的差距</p>
+</div>
+<div class="section" id="id3">
+<h2>3.4 C语言基本数据类型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>本节将介绍C语言的基本数据类型，包括声明变量、如何表示字面值常量以及典型的用法。一些老式的C语言编译器无法支持这里提到的所有类型，请注意。</p>
+<p>3.4.1 int类型</p>
+<p>int类型是有符号整形，即int类型的值必须是整数，可以是正整数、负整数、零，其取值范围依计算机而异。</p>
+<ol class="arabic">
+<li><p class="first">声明int变量:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">erns</span><span class="p">;</span>
+<span class="nb">int</span> <span class="n">hogs</span><span class="p">,</span> <span class="n">cows</span><span class="p">,</span> <span class="n">goats</span><span class="p">;</span>
+
+<span class="n">cows</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">初始化变量</p>
+</li>
+</ol>
+<p>初始化变量就是为变量赋一个初始值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">hogs</span> <span class="o">=</span><span class="mi">21</span><span class="p">;</span>
+<span class="nb">int</span> <span class="n">cows</span> <span class="o">=</span><span class="mi">32</span><span class="p">;</span> <span class="n">goats</span> <span class="o">=</span><span class="mi">14</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>int类型常量</li>
+</ol>
+<p>C语言把大多数整形常量视为int类型，但是非常大的整数除外</p>
+<ol class="arabic" start="4">
+<li><p class="first">打印int值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">八进制和十六进制</p>
+</li>
+</ol>
+<p>0x或0X开头为十六进制，0开头为八进制</p>
+<ol class="arabic simple" start="6">
+<li>显示八进制和十六进制</li>
+</ol>
+<p>十进制使用%d， 八进制使用%o， 十六进制使用 %x:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s2">&quot;dec = </span><span class="si">%d</span><span class="s2">; octal=</span><span class="si">%o</span><span class="s2">; hex= </span><span class="si">%x</span><span class="s2">;&quot;</span><span class="p">)</span>
+<span class="n">printf</span><span class="p">(</span><span class="s2">&quot;dec = </span><span class="si">%d</span><span class="s2">; octal=</span><span class="si">%#o</span><span class="s2">; hex= </span><span class="si">%#x</span><span class="s2">;&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="n">dec</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span><span class="n">octal</span><span class="o">=</span><span class="mi">144</span><span class="p">;</span><span class="nb">hex</span><span class="o">=</span><span class="mi">64</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span><span class="n">dec</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span><span class="n">octal</span><span class="o">=</span><span class="mi">0144</span><span class="p">;</span><span class="nb">hex</span><span class="o">=</span><span class="mh">0x64</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>注意，如果要在八进制和十六进制值前显示0和0x前缀，要分别在转换说明前加入#</p>
+<p>3.4.2 其他整数类型</p>
+<p>C语言提供了3个附属关键字修饰基本整数类型：short、long、unsigned:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*short占用空间比int少
+*long占用空间比int多
+*long long 占用比long 多，适用更大的数值场景
+*unsigned 只用于非负值场景
+*在任何有符号类型前面添加关键字signed，可强调使用有符号类型的意图
+</pre></div>
+</div>
+<p><strong>1.声明其他整数类型</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">long</span> <span class="nb">int</span> <span class="n">estine</span><span class="p">;</span>
+<span class="n">long</span> <span class="n">johns</span><span class="p">;</span>
+<span class="n">short</span> <span class="nb">int</span> <span class="n">erns</span><span class="p">;</span>
+<span class="n">short</span> <span class="n">ribs</span><span class="p">;</span>
+<span class="n">unsigned</span> <span class="nb">int</span> <span class="n">s_count</span><span class="p">;</span>
+<span class="n">unsigned</span> <span class="n">play</span><span class="p">;</span>
+<span class="n">unsigned</span> <span class="n">long</span> <span class="n">head</span><span class="p">;</span>
+<span class="n">unsigned</span> <span class="n">short</span> <span class="n">yesvotes</span><span class="p">;</span>
+<span class="n">long</span> <span class="n">long</span> <span class="n">ago</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>2.使用多种整数类型的原因</strong></p>
+<blockquote>
+<div>。。还是继续使用int吧 方便</div></blockquote>
+<p><strong>3.long常量和long long常量</strong></p>
+<blockquote>
+<div>在支持long long类型的系统中，也可以使用ll或LL后缀来表示，如3LL ，另外u或U表示 unsigned long long 如5ull、10LLU、6LLU</div></blockquote>
+<p><strong>4.打印long、short long long和unsigned类型</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%u：unsigned
+%hd：short
+%hd:long
+%lld:long long
+</pre></div>
+</div>
+<p>3.4.3 使用字符char类型</p>
+<blockquote>
+<div><p>C语言把1字节定义为char类型占用的位(bit)数</p>
+<p>1.声明:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span> <span class="n">latan</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>2.初始化:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>latan =&#39;A&#39;;  //正确
+latan =A;  //错误
+latan =“A”;  //错误
+</pre></div>
+</div>
+<p>注意只能是单引号</p>
+<p>3.非打印字符</p>
+<blockquote>
+<div><p>单引号只适用于字符、数字和标点符号，浏览ASCII表会发现，有些字符打印不出来，C语言提供了3种表示这些字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.使用ASCII码：
+    char deep = 7;
+
+2.使用特殊的符号序列表示一些特殊字符。
+3.？书上没看到
+</pre></div>
+</div>
+</div></blockquote>
+<p>4.打印字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">c</span> <span class="n">指明待打印的字符</span>
+</pre></div>
+</div>
+<p>5.有符号还是无符号</p>
+<blockquote>
+<div><p>有些编译器把char实现为有符号类型，意味着范围是-128~127，有的实现为无符号类型范围是0~255，可查阅对应的编译手册，确定如何实现char类型。</p>
+<p>根据C90标准 C语言允许在关键字char前面使用signed或unsigned，这样无论编译器默认的char是什么类型，signed char表示有符号类型，unsigned char表示无符号类型。</p>
+</div></blockquote>
+</div></blockquote>
+<p>3.4.4 _Bool类型</p>
+<blockquote>
+<div>用于表示布尔值，true和false 占用1位存储空间</div></blockquote>
+<p>3.4.5 可移植类型： stdint.h和inttypes.h</p>
+<blockquote>
+<div><p>C语言提供了许多有用的整数类型，但是 某些类型名在不同系统中的功能不一样，C99新增了两个头文件stdint.h和inttype.h,以确保C语言的类型在各系统中功能相同。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">int32_t</span> <span class="n">me32</span><span class="p">;</span> <span class="o">//</span><span class="n">me32Shi一个32位有符号整型变量</span>
+</pre></div>
+</div>
+<p>这里需要注意一下不同的头文件对应不同的类型变量类型。</p>
+</div></blockquote>
+<p>3.4.6 float、double和long double</p>
+<blockquote>
+<div>浮点型  双精度浮点型  long double 精度最高。</div></blockquote>
+<p>3.4.7 复数和虚数类型</p>
+<blockquote>
+<div>许多科学和工程计算都要用到复数和虚数。</div></blockquote>
+<p>3.4.8其他类型</p>
+<blockquote>
+<div>C语言还有一些从基本类型衍生的其他类型，包括数组、指针、结构、和联合。前面接触的&amp;符号就是指针的创建</div></blockquote>
+<p>3.4.9 类型大小</p>
+<blockquote>
+<div><p>sizeof是C语言的内置运算符，以字节为单位给出指定类型的大小。</p>
+<p>使用%zd做转换 不支持C99和C11可使用%u、%lu代替</p>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>3.5 使用数据类型<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>在使用变量之前必须先声明，并选择有意义的变量名。初始化变量应使用与变量类型匹配的常数类型。</p>
+<p>3.6 参数和陷阱</p>
+<blockquote>
+<div>注意双引号和单引号区别</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h2>3.7 转义序列示例<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>转义概念在计算机使用电传打字机作为输出设备试就有了，但是他们不一定能与现代图形接口兼容。</p>
+</div>
+<div class="section" id="id6">
+<h2>3.8关键概念<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>计算机在内存中用数值编码来表示字符。</p>
+</div>
+<div class="section" id="id7">
+<h2>3.9 本章小结<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>C有多重数据类型，基本数据类型分为两大类，整数类型和浮点数类型。</p>
+<p>浮点类型有3种 long 、double 、long double</p>
+<p>整数可以表示为十进制、八进制、十六进制</p>
+<p><strong>广告区——博主提供付费服务，欢迎各位大佬来撩 ，提供IT咨询回答服务。快没饭吃了，大佬土豪 施舍点吧。联系方式：微信QQ电话均为18977771077.</strong></p>
+<dl class="docutils">
+<dt>赞助扫码::</dt>
+<dd><a class="first reference internal image-reference" href="../../../_images/apay.jpg"><img alt="../../../_images/apay.jpg" src="../../../_images/apay.jpg" style="width: 198px; height: 216px;" /></a>
+<a class="last reference internal image-reference" href="../../../_images/pay_wechat.png"><img alt="../../../_images/pay_wechat.png" src="../../../_images/pay_wechat.png" style="width: 226px; height: 212px;" /></a>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ch4.html" class="btn btn-neutral float-right" title="第四章 字符串和格式化输入/输出" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ch2.html" class="btn btn-neutral" title="第二章 C语言概述" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anaf.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
