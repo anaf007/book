@@ -1,6 +1,6 @@
 */.DS_Store
 
-build/*
+build
 
 #C程序编译
 *.out
