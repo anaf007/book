@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>centos6下安装和使用git &mdash; my_book_doc  文档</title>
+  <title>mac使用小技巧 &mdash; my_book_doc  文档</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="prev" title="修改mysql密码" href="update_mysql6_pwd.html" /> 
+    <link rel="prev" title="docker学习" href="../linux/docker_learning.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -106,12 +106,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../othor/web_site_techniques.html">网站的使用技巧一</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../othor/restructuredtext.html">1&nbsp;&nbsp;&nbsp;reStructuredText标记规范(转)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../othor.html#python">Python相关</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../othor.html#linux">Linux相关</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="search_nginx.html">linux查找软件(nginx)安装位置及配置信息等</a></li>
-<li class="toctree-l3"><a class="reference internal" href="update_python.html">centos6下升级pyhton3</a></li>
-<li class="toctree-l3"><a class="reference internal" href="centos6_install_mysql5_6.html">centos6下安装mysql5.6(转)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="update_mysql6_pwd.html">修改mysql密码</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">centos6下安装和使用git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othor.html#linux">Linux相关</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../othor.html#mac">Mac 相关</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mac使用小技巧</a></li>
 </ul>
 </li>
 </ul>
@@ -163,7 +160,7 @@
         
           <li><a href="../othor.html">笔记</a> &raquo;</li>
         
-      <li>centos6下安装和使用git</li>
+      <li>mac使用小技巧</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -180,42 +177,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="centos6git">
-<h1>centos6下安装和使用git<a class="headerlink" href="#centos6git" title="永久链接至标题">¶</a></h1>
-<p>filename:centos6_install_git.rst</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">git</span>
-
-<span class="c1">#生成ssh秘钥</span>
-<span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="s2">&quot;anaf@163.com&quot;</span>
-
-<span class="n">回车3次</span>
-
-<span class="n">打开github</span>
-<span class="n">settings</span><span class="o">-&gt;</span><span class="n">SSH</span> <span class="n">And</span> <span class="n">GPG</span> <span class="n">Keys</span><span class="o">-&gt;</span><span class="n">New</span> <span class="n">SSH</span> <span class="n">key</span>
-
-<span class="n">vi</span> <span class="o">/</span><span class="n">root</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span>
-
-<span class="n">复制到github</span>
-
-<span class="n">然后就可以使用</span> <span class="n">git</span> <span class="n">clone</span>   <span class="n">xxxx了</span>
+  <div class="section" id="mac">
+<h1>mac使用小技巧<a class="headerlink" href="#mac" title="永久链接至标题">¶</a></h1>
+<p>在mac上使用brew 安装软件的时候， 会更新很慢。解决办法如下：</p>
+<p>解决方法，关闭自动更新:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">HOMEBREW_NO_AUTO_UPDATE</span><span class="o">=</span><span class="n">true</span>
 </pre></div>
 </div>
-<p>2018-09-25操作发现github  在git clone 无法clone</p>
-<p>搜索git clone太慢得到的结果说这样:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;socks5://127.0.0.1:1080&#39;</span>
-</pre></div>
-</div>
-<p>这样就可以了</p>
-<p>还说，在hosts文件中添加,不过我没加:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">151.101</span><span class="o">.</span><span class="mf">76.249</span> <span class="n">github</span><span class="o">.</span><span class="k">global</span><span class="o">.</span><span class="n">ssl</span><span class="o">.</span><span class="n">fastly</span><span class="o">.</span><span class="n">net</span>
-<span class="mf">192.30</span><span class="o">.</span><span class="mf">253.112</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span>
-</pre></div>
-</div>
-<p>原文：<a class="reference external" href="https://blog.csdn.net/twang0x80/article/details/79777135">https://blog.csdn.net/twang0x80/article/details/79777135</a></p>
-<p><a class="reference external" href="https://blog.csdn.net/github_34965845/article/details/80610060">https://blog.csdn.net/github_34965845/article/details/80610060</a></p>
-<p>解决pip install  xx慢 的问题</p>
-<p>pip慢</p>
-<p>地址 ：<a class="reference external" href="https://blog.csdn.net/lambert310/article/details/52412059">https://blog.csdn.net/lambert310/article/details/52412059</a></p>
 </div>
 
 
@@ -227,7 +195,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="update_mysql6_pwd.html" class="btn btn-neutral" title="修改mysql密码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../linux/docker_learning.html" class="btn btn-neutral" title="docker学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
