@@ -130,6 +130,21 @@ Python相关书籍
      - 
 
 
+.. list-table:: Python GUI开发11
+   :header-rows: 1
+
+   * - 名称
+     - 添加时间
+     - 完成时间
+     - 完成进度
+     - 备注
+   * - wxPython in Action
+     - 
+     - 
+     - 
+     - 
+
+
 
 
 
@@ -152,6 +167,13 @@ Python相关书籍
      - 
      - 
      - 
+
+
+
+
+
+
+
 
 
 
