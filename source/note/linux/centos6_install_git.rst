@@ -50,7 +50,18 @@ pip慢
 地址 ：https://blog.csdn.net/lambert310/article/details/52412059
 
 
+加入.gitignore无效的解决方法
 
+::
+
+    git rm -r --cached xxx
+    git rm --cached demo-project.iml
+
+再重新加入.gitignore文件
+
+::
+    
+    git rm -r --cached .    
 
 
 
