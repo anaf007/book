@@ -7,6 +7,7 @@ python
 .. toctree::
     :maxdepth: 0
 
+    python_book/python_bible
     python_book/python_core 
     python_book/python_in_practice
     python_book/python_suggestion

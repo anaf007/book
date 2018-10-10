@@ -13,6 +13,8 @@
     security_book/cjj_hacker_programming
     security_book/reverse_core
     security_book/encryption_and_decryption
+    security_book/complete_control_encryption_decryption_actual_combat
+    security_book/cant_kill_secret
 
 
 
