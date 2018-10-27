@@ -20,7 +20,7 @@ Python书籍
 ======================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/security_book
 
@@ -31,7 +31,7 @@ ASM/C/C++书籍
 ======================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/asm_c_cpp_book
 
@@ -42,7 +42,7 @@ ASM/C/C++书籍
 ======================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/algorithm
     
@@ -53,7 +53,7 @@ ASM/C/C++书籍
 ======================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/database
 
@@ -63,7 +63,7 @@ ASM/C/C++书籍
 ===============================================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/ai
 
@@ -72,7 +72,7 @@ ASM/C/C++书籍
 ====================================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
 
     book/mathematics
     
@@ -90,7 +90,7 @@ ASM/C/C++书籍
 项目
 ====================================================================
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     project/project
 

@@ -47,4 +47,12 @@ Mac 相关
     mac/mac_use_note 
 
 
+
+Windows 相关
+------------------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 0
+    
+    windows/install_mysql 
      

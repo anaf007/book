@@ -5,7 +5,7 @@ python相关书籍
 python
 -----------------
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 1
 
     python_book/python_bible
     python_book/python_core 
@@ -29,7 +29,7 @@ python
 web开发
 -----------------
 .. toctree::
-    :maxdepth: 0  
+    :maxdepth: 1  
 
     python_book/python_web_development
     python_book/flask_web_development
@@ -39,7 +39,7 @@ web开发
 客户端开发(wxpython/qt)
 ------------------------
 .. toctree::
-    :maxdepth: 0  
+    :maxdepth: 1  
 
     python_book/wxPython_in_Action
 

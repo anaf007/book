@@ -177,37 +177,38 @@ Flask-SQLAlchemy分页对象的属性：
  -iter_pages(left_edge=2,left_current=2,right_current=5,right_edge=2) :一个迭代器,返回一个在分页导航中显示的页数列表。这个列表的最左边显示left_edge页,当前页的左边显示 left_current页,当前页的右边显示right_current页 最右边显示right_edge页。例如,在一个100页的列表中,当前页为第50页,使用,默认配置,这个方法会返回以下页数:1、2、None、48、49、50、51、52、53、54、55、None、99、100。None 表示页数之间的间隔
  - prev() 上一页的分页对象
  - next() 下一页的分页对象
-￼
+
+
 拥有这么强大的对象和 Bootstrap 中的分页 CSS 类,我们很轻易地就能在模板底部构建一 个分页导航。
 
 app/templates/_macros.html:分页模板宏
 
+此处用html代码 但是代码加入错误了当时。略过
 
  .. literalinclude:: code/code11-3.html
     :language: html
 
-这个宏创建了一个 Bootstrap 分页元素,即一个有特殊样式的无序列表,其中定义了下述页
-面链接。
-
+这个宏创建了一个 Bootstrap 分页元素,即一个有特殊样式的无序列表,其中定义了下述页面链接:
  - “上一页”链接。如果当前页是第一页,则为这个链接加上 disabled 类。
- - 分页对象的iter_pages()迭代器返回的所有页面链接。这些页面被渲染成具有明确页 数的链接,页数在 url_for() 的参数中指定。当前显示的页面使用 activeCSS 类高亮显 示。页数列表中的间隔使用省略号表示。
+ - 分页对象的iter_pages()迭代器返回的所有页面链接。这些页面被渲染成具有明确页数的链接,页数在 url_for() 的参数中指定。当前显示的页面使用 activeCSS 类高亮显 示。页数列表中的间隔使用省略号表示。
  - “下一页”链接。如果当前页是最后一页,则会禁用这个链接。
 
-Jinja2 宏的参数列表中不用加入 **kwargs 即可接收关键字参数。分页宏把接收到的所有关 键字参数都传给了生成分页链接的 url_for() 方法。这种方式也可在路由中使用,例如包 含一个动态部分的资料页。
+
+Jinja2 宏的参数列表中不用加入\**kwargs 即可接收关键字参数。分页宏把接收到的所有关 键字参数都传给了生成分页链接的 url_for() 方法。这种方式也可在路由中使用,例如包 含一个动态部分的资料页。
 
 pagination_widget 宏可放在 index.html 和 user.html 中的 _posts.html 模板后面。
 
 app/templates/index.html:在博客文章列表下面添加分页导航::
 
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %} 
-{% import "_macros.html" as macros %} 
-...
-{% include '_posts.html' %}
-<div class="pagination">
-{{ macros.pagination_widget(pagination, '.index') }}
-</div>
-{% endif %}
+    {% extends "base.html" %}
+    {% import "bootstrap/wtf.html" as wtf %} 
+    {% import "_macros.html" as macros %} 
+
+    {% include '_posts.html' %}
+    <div class="pagination">
+    {{ macros.pagination_widget(pagination, '.index') }}
+    </div>
+    {% endif %}
 
 使用Markdown和Flask-PageDown支持富 文本文章
 ------------------------------------------------------------------
