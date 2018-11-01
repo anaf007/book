@@ -5,7 +5,7 @@ python相关书籍
 python
 -----------------
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 3
 
     python_book/python_bible
     python_book/python_core 
@@ -24,6 +24,7 @@ python
     python_book/python_scripting_for_arcgis
     python_book/abaqus_python
     python_book/the_hacker_guide_to_python
+    python_book/runoob_python3
 
 
 web开发
