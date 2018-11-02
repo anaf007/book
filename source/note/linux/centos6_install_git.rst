@@ -64,6 +64,11 @@ pip慢
     git rm -r --cached .    
     git add .
 
+    #提交版本
+    git commit -m "first commit"
+    #推送服务器
+    git push -u origin master
+
 
 
 
