@@ -5,7 +5,7 @@ python相关书籍
 python
 -----------------
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
 
     python_book/python_bible
     python_book/python_core 

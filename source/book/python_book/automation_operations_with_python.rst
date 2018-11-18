@@ -2,7 +2,7 @@ python自动化运维技术与最佳实践
 =====================================
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
     automation_operations_with_python/ch1
     automation_operations_with_python/ch2

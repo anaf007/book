@@ -1,6 +1,12 @@
 第一章：基本的图像操作和处理
 =======================================================================
 
+需要理解：
+ - 1.3.4：直方图均衡化
+ - 1.3.5：图像平均
+
+
+
 本章讲解操作和处理图像的基础知识，将通过大量示例介绍处理图像所需的 Python工具包，并介绍用于读取图像、图像转换和缩放、计算导数、画图和保存结果等的基本工具。这些工具的使用将贯穿本书的剩余章节。
 
 1.1、PIL: Python图像处理类库
@@ -94,6 +100,13 @@ paste() 方法将该区域放回去，具体实现如下::
 
 1.2、Matplotlib
 ---------------------------------------------------------------------
+
+2018-10-02mac运行报错，经过Google搜索，得到解决需要在前面输入这两行代码设置一下::
+
+    import matplotlib
+    matplotlib.use('TkAgg')
+    from PIL import Image
+    from pylab import *
 
 我们处理数学运算、绘制图表，或者在图像上绘制点、直线和曲线时， Matplotlib是个很好的类库，具有比 PIL 更强大的绘图功能。 Matplotlib 可以绘制出高质量的图表，就像本书中的许多插图一样。 Matplotlib 中的 PyLab 接口包含很多方便用户创建图像的函数。 Matplotlib 是开源工具，可以从 http://matplotlib.sourceforge.net/免费下载。该链接中包含非常详尽的使用说明和教程。下面的例子展示了本书中需要使用的大部分函数。
 
@@ -196,13 +209,16 @@ hist() 函数的第二个参数指定小区间的数目。需要注意的是，�
 
 有时用户需要和某些应用交互，例如在一幅图像中标记一些点，或者标注一些训练数据。 PyLab 库中的 ginput() 函数就可以实现交互式标注。下面是一个简短的例子::
 
+    import matplotlib
+    matplotlib.use('TkAgg')
+
     from PIL import Image
     from pylab import *
-    im = array(Image.open('empire.jpg'))
+    im = array(Image.open('../../images/img1.jpg'))
     imshow(im)
-    print 'Please click 3 points'
+    print('Please click 3 points')
     x = ginput(3)
-    print 'you clicked:',x
+    print('you clicked:',x)
     show()
 
 上面的脚本首先绘制一幅图像，然后等待用户在绘图窗口的图像区域点击三次。程序将这些点击的坐标 [x, y] 自动保存在 x 列表里。
@@ -373,8 +389,9 @@ SVD 的计算非常慢，所以此时通常不使用 SVD 分解。下面就是 P
             tmp = dot(X.T,EV).T # 这就是紧致技巧
             V = tmp[::-1] # 由于最后的特征向量是我们所需要的，所以需要将其逆转
             S = sqrt(e)[::-1] # 由于特征值是按照递增顺序排列的，所以需要将其逆转
+            #这里S得到0下面的除法就错误了
             for i in range(V.shape[1]):
-            V[:,i] /= S
+                V[:,i] /= S
         else:
             # PCA- 使用 SVD 方法
             U,S,V = linalg.svd(X)
@@ -383,6 +400,7 @@ SVD 的计算非常慢，所以此时通常不使用 SVD 分解。下面就是 P
         # 返回投影矩阵、方差和均值
         return V,S,mean_x
 
+**这里报错了。上面S为0除法错误，最后错误：ValueError: cannot reshape array of size 3072000 into shape (800,1280)**
 
 该函数首先通过减去每一维的均值将数据中心化，然后计算协方差矩阵对应最大特征值的特征向量，此时可以使用简明的技巧或者 SVD 分解。这里我们使用了range() 函数，该函数的输入参数为一个整数 n，函数返回整数 0...(n-1) 的一个列表。你也可以使用 arange() 函数来返回一个数组，或者使用 xrange() 函数返回一个产生器（可能会提升速度）。我们在本书中贯穿使用 range() 函数。
 
@@ -398,8 +416,7 @@ SVD 的计算非常慢，所以此时通常不使用 SVD 分解。下面就是 P
     m,n = im.shape[0:2] # 获取图像的大小
     imnbr = len(imlist) # 获取图像的数目
     # 创建矩阵，保存所有压平后的图像数据
-    immatrix = array([array(Image.open(im)).flatten()
-    for im in imlist],'f')
+    immatrix = array([array(Image.open(im)).flatten() for im in imlist],'f')
     # 执行 PCA 操作
     V,S,immean = pca.pca(immatrix)
     # 显示一些图像（均值图像和前 7 个模式）
