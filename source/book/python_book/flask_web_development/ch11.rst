@@ -213,7 +213,8 @@ app/templates/index.html:在博客文章列表下面添加分页导航::
 使用Markdown和Flask-PageDown支持富 文本文章
 ------------------------------------------------------------------
 
-**这个略过 ，使用flask-ueditor比这个pagedown好用，到时候在另外做一篇文章降讲解**
+**这个略过 ，使用flask-ueditor比这个pagedown好用，
+到时候在另外做一篇文章再讲解**
 
 
 
