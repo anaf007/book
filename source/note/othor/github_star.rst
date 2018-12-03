@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `py爬虫各网站登陆  <https://github.com/CriseLYJ/awesome-python-login-model>`_ 
+     - 2019-03-08
+     - 
+     - python各大网站登陆方式与一些简单的爬虫，
+     -      
    * - `delay-queue延迟队列  <https://github.com/ouqiang/delay-queue>`_ 
      - 2019-03-07
      - 
