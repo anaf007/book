@@ -4,7 +4,7 @@
 .. toctree::
     :maxdepth: 0
     
-    othor/sublime_text
+    othor/sublime_use
     othor/inno_setup
     python/APScheduler
     
