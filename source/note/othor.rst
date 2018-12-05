@@ -20,6 +20,7 @@ Python相关
 
     python/flask_extends/flask_mongoengine
     python/rocket_chat
+    python/flask_extends/create_flask_project
 
 
     
@@ -55,4 +56,15 @@ Windows 相关
     :maxdepth: 0
     
     windows/install_mysql 
+
+
+php学习笔记
+------------------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 0
+    
+    php/thinkphp_lea    
+    php/php_runoob    
+    php/huangyongcheng_thinkphp3_1
      

@@ -2,7 +2,7 @@
 ==================
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 1
     
     security_book/black_hat_python
     security_book/the_hacker_playbook

@@ -185,8 +185,6 @@ app/templates/_macros.html:分页模板宏
 
 此处用html代码 但是代码加入错误了当时。略过
 
- .. literalinclude:: code/code11-3.html
-    :language: html
 
 这个宏创建了一个 Bootstrap 分页元素,即一个有特殊样式的无序列表,其中定义了下述页面链接:
  - “上一页”链接。如果当前页是第一页,则为这个链接加上 disabled 类。
