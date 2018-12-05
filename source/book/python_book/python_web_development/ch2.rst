@@ -19,12 +19,13 @@
 
 重点注意虚拟环境 virtualenv的使用。
 
-**virtualenvwrapper**是对virtualenv的功能扩展，他的用途:
+**virtualenvwrapper** 是对virtualenv的功能扩展，他的用途:
  1. 用来管理全部的虚拟环境
  2. 能方便的创建、删除和拷贝虚拟环境
  3. 用单个命令就可以切换不同的虚拟环境。
  4. 可以使用tab补全虚拟环境
  5. 支持用户颗粒度的钩子支持
+
 
 详细不知道使用后期再学习。
 
