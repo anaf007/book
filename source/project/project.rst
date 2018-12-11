@@ -14,3 +14,4 @@ Python项目
     :maxdepth: 0
 
     rocket_chat_api
+    school

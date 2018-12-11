@@ -21,6 +21,7 @@ Python相关
     python/flask_extends/flask_mongoengine
     python/rocket_chat
     python/flask_extends/create_flask_project
+    python/flask_extends/flask_security
 
 
     
