@@ -34,6 +34,7 @@ web开发
 
     python_book/python_web_development
     python_book/flask_web_development
+    python_book/python_web_development_with_flask
 
 
 
