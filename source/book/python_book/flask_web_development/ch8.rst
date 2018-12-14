@@ -254,7 +254,7 @@ app/templates/base.html:导航条中的 Sign In 和 Sign Out 链接::
 登入用户
 -------------
 
-app/auth/views.py:登录路由::
+app/auth/views.py:登录路由:
 
  .. literalinclude:: code/code8-2.py
     :language: python
