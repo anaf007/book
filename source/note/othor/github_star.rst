@@ -3,7 +3,7 @@ github上star的说明
 
 
 
-.. list-table:: python基本 
+.. list-table:: 总结
    :header-rows: 1
 
    * - 名称
@@ -12,6 +12,12 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - Power Keys
+     - 2018-12-16
+     - https://github.com/szzhiyang/PerfectWindows/wiki/Power-Keys
+     - 热键设置
+     - windows全局快捷键设置。号称键盘流效率软件中的瑞士军刀
+     -  
    * - DeepLearning-500-questions
      - 2018-12-15
      - https://github.com/scutan90/DeepLearning-500-questions
