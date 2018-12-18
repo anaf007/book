@@ -69,3 +69,11 @@ php学习笔记
     php/php_runoob    
     php/huangyongcheng_thinkphp3_1
      
+
+文章
+---------------------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+    
+    article/stubborn_programmer 
