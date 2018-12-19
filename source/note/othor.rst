@@ -1,14 +1,15 @@
 笔记
 ==================
 
+
+
+
 .. toctree::
     :maxdepth: 0
     
     use_skills
-    othor/crazy_programmer
+
     othor/motivational_statements
-    othor/web_site_techniques
-    othor/restructuredtext
     othor/github_star
     
 
@@ -77,4 +78,7 @@ php学习笔记
 .. toctree::
     :maxdepth: 1
     
-    article/stubborn_programmer 
+    article/stubborn_programmer
+    article/crazy_programmer 
+
+

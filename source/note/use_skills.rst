@@ -7,4 +7,6 @@
     othor/sublime_use
     othor/inno_setup
     python/APScheduler
+    othor/restructuredtext
+    othor/web_site_techniques
     
