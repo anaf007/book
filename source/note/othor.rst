@@ -9,6 +9,7 @@
     othor/motivational_statements
     othor/web_site_techniques
     othor/restructuredtext
+    othor/github_star
     
 
 

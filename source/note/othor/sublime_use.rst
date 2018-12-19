@@ -2,6 +2,18 @@ sublime Text3 的使用相关
 =========================================================
 
 
+手动安装emmet插件
+---------------------------------------------------------------------
+
+下载pyv8：https://github.com/emmetio/pyv8-binaries
+
+下载EMmet：https://github.com/sergeche/emmet-sublime 
+
+复制到Packages目录下Preferences-->Browse Packages
+
+C:\Users\Administrator\AppData\Roaming\Sublime Text 3\Packages
+
+重启sublime  完成
 
 设置
 ---------------------------------------------------------------------
