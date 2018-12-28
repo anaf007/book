@@ -1,8 +1,8 @@
-centos6下安装和使用git和git使用出现的一些问题等
-====================================================================
+git的使用
+=======================================================================
 
-
-filename:centos6_install_git.rst
+git在centos下的安装
+---------------------------------------------------------------------
 
 ::
 
@@ -21,8 +21,6 @@ filename:centos6_install_git.rst
     复制到github
 
     然后就可以使用 git clone   xxxx了
-
-
 
 2018-09-25操作发现github  在git clone 无法clone  
 
@@ -51,6 +49,7 @@ pip慢
 
 
 加入.gitignore无效的解决方法
+---------------------------------------------------------------------
 
 ::
 
@@ -70,7 +69,34 @@ pip慢
     git push -u origin master
 
 
+window下一键push的脚本
+---------------------------------------------------------------------
+
+::
+
+	git add .
+	git commit -m "..."
+	git push origin master
 
 
+新建pus.bat文件::
 
+	
+	git add -A .
+
+	set /p declation=msg:
+	git commit -m "%declation%"
+
+	echo;
+
+	git push origin master
+
+	echo;
+	finish！
+	echo;
+
+	pause
+
+
+丢到c盘Windows文件夹下  OK 每次只用 push一下就OK了
 

@@ -9,4 +9,5 @@
     python/APScheduler
     othor/restructuredtext
     othor/web_site_techniques
+    othor/git_use
     
