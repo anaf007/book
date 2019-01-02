@@ -38,7 +38,6 @@ Linux相关
     linux/update_python 
     linux/centos6_install_mysql5_6
     linux/update_mysql6_pwd
-    linux/centos6_install_git
     linux/docker_learning
 
 

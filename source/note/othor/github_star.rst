@@ -13,6 +13,12 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - baidu-netdisk-downloaderx
+     - 2019-01-02
+     - https://github.com/b3log/baidu-netdisk-downloaderx
+     - 
+     - 百度网盘不限速下载器 BND，支持 Windows、Mac 和 Linux。
+     - 
    * - Power Keys
      - 2018-12-16
      - https://github.com/szzhiyang/PerfectWindows/wiki/Power-Keys
