@@ -13,12 +13,30 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - matplotlib中文文档
+     - 2019-01-08
+     - https://github.com/teadocs/matplotlib-cn
+     - 
+     - matplotlib中文文档 
+     - 
+   * - numpy-cn
+     - 2019-01-08
+     - https://github.com/teadocs/numpy-cn
+     - 
+     - numpy的中文翻译
+     -
+   * - 12306
+     - 2019-01-08
+     - https://github.com/testerSunshine/12306
+     - 
+     - python的12306抢票软件
+     - 
    * - element
      - 2019-01-04
      - https://github.com/ElemeFE/element
      - 听说最多人用
      - Web UI 框架 
-     - 
+     -                 
    * - baidu-netdisk-downloaderx
      - 2019-01-02
      - https://github.com/b3log/baidu-netdisk-downloaderx
