@@ -4,7 +4,7 @@ github上star的说明
 
 
 .. list-table:: 总结
-   :widths: 3 1 2 2 1
+   :widths: auto
    :header-rows: 1
 
    * - 名称
