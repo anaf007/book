@@ -1,43 +1,12 @@
 第四章：多线程编程
 =======================================================================
 
+线程thread
 
-4.1简介/动机
+队列 queue
 
-4.2线程和进程
-4.2.1进程
-4.2.2线程
-
-4.3线程和Python
-4.3.1全局解释额锁
-4.3.2退出线程
-4.3.3在 Python中使用线程
-4.3.4不使用线程的情况
-4.3.5 Python threading模块
-4.4 thread模块
-
-4.5 threading模块
-4.5.1 Thread类
-4.5.2 threading模块的其他函数
-
-4.6单线程和多线程执行对比
-
-4.7多线程实践
-4.7.1图书排名示例
-4.7.2同步原语
-4.7.3锁示例
-4.7.4信号量示例
-
-4.8生产者消费者问题和Queuequeue模块
-
-4.9线程的替代方案
-4.9.1 subprocess模块
-4.9.2 multiprocessing模块
-4.9.3 concurrent futures模块
-
-4.10相关模块
-
-4.11练习
-
-
+线程代替方案：
+ - subprocess 派生进程的主要替代方案
+ - multiprocessing： 允许为多喝或多cpu派生进程
+ - python3.2引进的concurrent.futures模块    ThreadPoolExecutor 不需要管是线程还是进程。
 
