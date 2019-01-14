@@ -1,15 +1,6 @@
 github上star的说明
 =======================================================================
 
-.. list-table:: 111
- :header-rows: 1
- :widths: 1
-
- * - Treat
- * - Albatross!
-
-
-
 
 .. list-table:: 总结
    :header-rows: 1
@@ -19,32 +10,26 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
-   * - 名称
+   * - `专为程序员编写的英语学习指南 <https://github.com/yujiangshui/A-Programmers-Guide-to-English>`_ 
+     - 2019-01-14
      - 
-        深度学习500问，以问答形式对常用的概率知识、
-        线性代数、机器学习、深度学习、
-        计算机视觉等热点问题进行阐述，
+     - 周期是年，不是21天学会英语的那种
      - 
-        深度学习500问，以问答形式对常用的概率知识、
-        线性代数、机器学习、深度学习、
-        计算机视觉等热点问题进行阐述，
-     - 备注
-     - 说明
-
-
-.. list-table:: 总结
-   :header-rows: 1
-
-   * - 名称
-     - 添加时间
-     - 问题
-     - 备注
-     - 说明 
+   * - `机器学习100天中文 <https://github.com/MLEveryday/100-Days-Of-ML-Code>`_ 
+     - 2019-01-14
+     - 
+     - 机器学习100天中文翻译
+     -
+   * - `机器学习100天 <https://github.com/Avik-Jain/100-Days-Of-ML-Code>`_ 
+     - 2019-01-14
+     - 
+     - 机器学习100天，有18k的关注呢
+     - 
    * - `matplotlib中文文档 <https://github.com/teadocs/matplotlib-cn>`_ 
      - 2019-01-08
      - 
      - matplotlib中文文档 
-     - 
+     -                 
    * - `numpy的中文翻译 <https://github.com/teadocs/numpy-cn>`_
      - 2019-01-08
      - 
@@ -110,10 +95,10 @@ github上star的说明
      - 
      - Flask-Login 的扩展多蓝图分开登录
      -  
-   * - `《python自动化运维：技术与最佳实践》书中示例及案例源码 <https://github.com/yorkoliu/pyauto>`_
+   * - `《python自动化运维：技术与最佳实践》 <https://github.com/yorkoliu/pyauto>`_
      - 2018-12-15
      - 
-     - 
+     - 书中示例及案例源码
      -  
    * - `requests <https://github.com/requests/requests>`_
      - 2018-12-15
@@ -422,11 +407,11 @@ github上star的说明
      - sphinx 主题插件
      - 
      -  
-   * - `python3-concurrency-pics-02|python爬虫爬取图片项目 <https://github.com/wangy8961/python3-concurrency-pics-02>`_
+   * - `python爬虫爬取图片项目 <https://github.com/wangy8961/python3-concurrency-pics-02>`_
      - 2018-12-15
      - 13.7万2小时爬取完毕，可以学习学习
      - python爬虫爬取图片项目，使用 asyncio 和 aiohttp 实现的异步版本
-     -  
+     -  02|python爬虫爬取图片项目
    * - `sphinx <https://github.com/sphinx-doc/sphinx>`_
      - 2018-12-15
      - 
@@ -487,10 +472,10 @@ github上star的说明
      - 
      - 结合flask还有很多疑问，是一个轻量级很好用的后端任务执行
      -  
-   * - `huey <python的一个轻量级任务队列>`_
+   * - `huey-python的一个轻量级任务队列 <https://github.com/coleifer/huey>`_
      - 2018-12-15
-     - https://github.com/coleifer/huey
      - 往后可以试试
+     - python的一个轻量级任务队列 
      - 
    * - `fanxiangce <https://github.com/greyli/fanxiangce>`_
      - 2018-12-15
