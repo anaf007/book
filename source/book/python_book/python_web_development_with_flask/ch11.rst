@@ -1,3 +1,18 @@
 第十一章、在线聊天室
 =======================================================================
 
+项目地址：https://github.com/greyli/catchat
+
+Gravatar头像   Gravatar.com
+
+flask-socketIO 建立实时双向通道
+
+
+OAuth2 第三方登录
+
+markdown语法支持
+
+代码高亮：pyments
+
+桌面通知 采用js的  
+

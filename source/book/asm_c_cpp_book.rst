@@ -11,4 +11,5 @@ ASM/C/C++书籍
     asm_c_cpp_book/windows_under_assembly
     asm_c_cpp_book/assembly_language_for_x86_processors
     asm_c_cpp_book/modern_x86_assembly_language_programming
+    asm_c_cpp_book/github_mark_and_octocat
 

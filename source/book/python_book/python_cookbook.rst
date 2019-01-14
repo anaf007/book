@@ -1,6 +1,10 @@
 python_cookbook第三版
 =======================================================================
 
+此书已经有大神翻译了 这里引用就不翻译录入了  
+
+地址：https://python3-cookbook.readthedocs.io/zh_CN/latest/preface.html
+
 .. toctree::
     :maxdepth: 3
 

@@ -1,5 +1,6 @@
 第二章：网络编程
-=====================
+=======================================================================
+
 
 在本节中,我们将简要的介绍如何使用套接字进行网络编程。首先,我们将给出一些网络编程 方面的背景资料和 Python 中使用套接字的方法,然后介绍如何使用 Python 的一些模块来创建网络 化的应用程序。
 
@@ -103,12 +104,24 @@ socket_family 可以是 AF_UNIX 或 AF_INET。socket_type 可以是 SOCK_STREAM 
 
 
 
+创建TCP UDP服务器  客户端
+
+模块 ：SocketServer
+
+Twisted
+
+网络/套接字编程相关模块：
+ - socket
+ - asyncore/asynchat
+ - select
+ - SocketServer
 
 
 
 
 
 
+题目：研究异步系统   研究至少5个基于python的不同异步系统，可以从Twisted、Greenlets、Tronado、Diesel、Concurrence、Eventlet、Gevent等中选择，描述他们是什么，对他们进行分类，并找到他们之间的相似点和差异性，然后创建一些示例。
 
 
 
