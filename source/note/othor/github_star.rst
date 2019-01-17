@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `在线PAC文件SS翻墙用 <https://github.com/lbp0200/mono_pac>`_ 
+     - 2019-01-17
+     - 
+     - Shadowsocks在线PAC文件SS翻墙用
+     -      
    * - `专为程序员编写的英语学习指南 <https://github.com/yujiangshui/A-Programmers-Guide-to-English>`_ 
      - 2019-01-14
      - 
