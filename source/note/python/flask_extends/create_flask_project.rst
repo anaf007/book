@@ -31,6 +31,20 @@
      
 
 
+环境： centos64 
+
+报错 ： OSError: mysql_config not found
+
+::
+
+    yum install mysql-devel gcc gcc-devel python-devel
+
+    python3 -m pip install mysqlclient
+
+    #ok
+
+
+
 
 
 
