@@ -123,7 +123,7 @@ github上star的说明
    * - `waitress <https://github.com/Pylons/waitress>`_
      - 2018-12-15
      - 
-     - 用于Python 2和3的WSGI服务器 
+     - Windows 下替代 gunicorn 用于Python 2和3的WSGI服务器 
      -  
    * - `uwsgi <https://github.com/unbit/uwsgi>`_
      - 2018-12-15
@@ -143,7 +143,7 @@ github上star的说明
    * - `Pylons <https://github.com/Pylons/pylons>`_
      - 2018-12-15
      - 
-     - Windows下gunicorn的代替品？ 
+     - Windows下gunicorn的代替品？   上面那个 waitress 才是
      - 之前能替代的  但是2019-01-24尝试发现只是一个web框架 保存错了？ 
    * - `中国科学技术大学计算机学院课程资源 <https://github.com/mbinary/USTC-CS-Courses-Resource>`_
      - 2018-12-15
