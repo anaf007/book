@@ -144,7 +144,7 @@ github上star的说明
      - 2018-12-15
      - 
      - Windows下gunicorn的代替品？ 
-     - 之前能替代的  但是2019-01-24尝试发现只是一个web框架 保存错了？
+     - 之前能替代的  但是2019-01-24尝试发现只是一个web框架 保存错了？ 
    * - `中国科学技术大学计算机学院课程资源 <https://github.com/mbinary/USTC-CS-Courses-Resource>`_
      - 2018-12-15
      - 
