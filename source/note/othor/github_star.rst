@@ -10,12 +10,12 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
-   * - `异步进程与flask的结合 <https://github.com/dchevell/flask-executor`_ 
+   * - `异步进程与flask的结合 <https://github.com/dchevell/flask-executor>`_ 
      - 2019-01-30
      - 
      - concurrent.futures 与flask的结合
      -       
-   * - `Flutter嵌入API的桌面实现 <https://github.com/google/flutter-desktop-embedding`_ 
+   * - `Flutter嵌入API的桌面实现 <https://github.com/google/flutter-desktop-embedding>`_ 
      - 2019-01-30
      - 
      - Flutter嵌入API的桌面实现
