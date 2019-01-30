@@ -10,7 +10,21 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
-
+   * - `异步进程与flask的结合 <https://github.com/dchevell/flask-executor`_ 
+     - 2019-01-30
+     - 
+     - concurrent.futures 与flask的结合
+     -       
+   * - `Flutter嵌入API的桌面实现 <https://github.com/google/flutter-desktop-embedding`_ 
+     - 2019-01-30
+     - 
+     - Flutter嵌入API的桌面实现
+     -     
+   * - `构建移动应用程序 <https://github.com/flutter/flutter>`_ 
+     - 2019-01-30
+     - 
+     - Flutter可以轻松快速地构建漂亮的移动应用程序。
+     - 
    * - `多线程日志 <https://github.com/Preston-Landers/concurrent-log-handler>`_ 
      - 2019-01-26
      - 
