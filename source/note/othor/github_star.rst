@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `git历史的查看 <https://github.com/pomber/git-history>`_ 
+     - 2019-02-11
+     - 
+     - github查看某个文件的提交历史变更
+     -      
    * - `异步进程与flask的结合 <https://github.com/dchevell/flask-executor>`_ 
      - 2019-01-30
      - 
