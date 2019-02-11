@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `深度学习教程整理 <https://github.com/zeusees/HyperDL-Tutorial>`_ 
+     - 2019-02-11
+     - 
+     - 深度学习相关的系列文章，总结了我们在深度学习实践中的一些经验。
+     -        
    * - `git历史的查看 <https://github.com/pomber/git-history>`_ 
      - 2019-02-11
      - 
