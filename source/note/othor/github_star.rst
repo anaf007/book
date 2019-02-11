@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `免费的计算机编程类中文书籍 <https://github.com/justjavac/free-programming-books-zh_CN>`_ 
+     - 2019-02-11
+     - 
+     - 
+     -        
    * - `Ray高性能分布式执行框架 <https://github.com/ray-project/ray>`_ 
      - 2019-02-11
      - 
