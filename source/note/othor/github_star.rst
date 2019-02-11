@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `Ray高性能分布式执行框架 <https://github.com/ray-project/ray>`_ 
+     - 2019-02-11
+     - 
+     - Ray是一个灵活的高性能分布式执行框架
+     -      
    * - `深度学习教程整理 <https://github.com/zeusees/HyperDL-Tutorial>`_ 
      - 2019-02-11
      - 
