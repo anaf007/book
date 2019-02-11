@@ -14,7 +14,7 @@ github上star的说明
      - 2019-02-11
      - 
      - 
-     -        
+     - 
    * - `Ray高性能分布式执行框架 <https://github.com/ray-project/ray>`_ 
      - 2019-02-11
      - 
