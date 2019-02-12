@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `中英译中技术社区  <https://github.com/xitu/gold-miner>`_ 
+     - 2019-02-12
+     - 
+     - 掘金翻译计划，可能是世界最大最好的英译中技术社区，最懂读者和译者的翻译平台
+     -     
    * - `使用JavaScript/HTML和CSS构建跨平台桌面应用程序  <https://github.com/electron/electron>`_ 
      - 2019-02-11
      - 
