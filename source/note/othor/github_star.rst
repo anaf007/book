@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `北京林业大学信息学院课程  <https://github.com/bljx/BFU-leaf>`_ 
+     - 2019-02-16
+     - 
+     - 
+     -     
    * - `浙江大学课程攻略共享计划  <https://github.com/QSCTech/zju-icicles>`_ 
      - 2019-02-16
      - 
