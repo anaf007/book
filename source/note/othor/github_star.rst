@@ -10,6 +10,16 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
+   * - `浙江大学课程攻略共享计划  <https://github.com/QSCTech/zju-icicles>`_ 
+     - 2019-02-16
+     - 
+     - 浙江大学课程攻略共享计划
+     -      
+   * - `清华大学计算机系课程  <https://github.com/Trinkle23897/thu-cst-cracker>`_ 
+     - 2019-02-16
+     - 
+     - 清华大学计算机系课程攻略
+     -      
    * - `北京林业大学信息学院课程  <https://github.com/bljx/BFU-leaf>`_ 
      - 2019-02-12
      - 
