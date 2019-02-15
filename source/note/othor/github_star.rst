@@ -23,7 +23,7 @@ github上star的说明
    * - `北京林业大学信息学院课程  <https://github.com/bljx/BFU-leaf>`_ 
      - 2019-02-12
      - 
-     - 掘金翻译计划，可能是世界最大最好的英译中技术社区，最懂读者和译者的翻译平台
+     - 
      -       
    * - `中英译中技术社区  <https://github.com/xitu/gold-miner>`_ 
      - 2019-02-12
