@@ -10,7 +10,7 @@ github上star的说明
      - 问题
      - 备注
      - 说明 
-   * - ` C/C++面试基础知识总结  <https://github.com/huihut/interview>`_ 
+   * - `C/C++面试基础知识总结  <https://github.com/huihut/interview>`_ 
      - 2019-02-17
      - 
      - 
