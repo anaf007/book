@@ -9,7 +9,17 @@ github上star的说明
      - 添加时间
      - 问题
      - 备注
-     - 说明 
+     - 说明
+   * - `钉钉机器人  <https://github.com/zhuifengshen/DingtalkChatbot>`_ 
+     - 2019-02-22
+     - 
+     - py版本钉钉机器人消息通知
+     -       
+   * - `git托管服务服务器搭建  <https://github.com/go-gitea/gitea>`_ 
+     - 2019-02-21
+     - 
+     - gitea服务器
+     -      
    * - `C/C++面试基础知识总结  <https://github.com/huihut/interview>`_ 
      - 2019-02-17
      - 
