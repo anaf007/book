@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `FaceRecognition人脸识别  <https://github.com/ageitgey/face_recognition>`_ 
+     - 2019-03-01
+     - The world's simplest facial recognition api for Python and the command line
+     - FaceRecognition人脸识别
+     -     
    * - `钉钉机器人  <https://github.com/zhuifengshen/DingtalkChatbot>`_ 
      - 2019-02-22
      - 
