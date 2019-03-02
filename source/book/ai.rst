@@ -14,3 +14,4 @@
     ai/python_neural_network
     ai/deep_reinforcement_learning
     ai/simple_deep_learning
+    ai/deep_learning_optimization_and_recognition
