@@ -724,7 +724,7 @@ github上star的说明
      - 有空了解下
    * - `ijkplayer <https://github.com/Bilibili/ijkplayer>`_
      - 2018-12-15
-     - 没用过
+     - 基于FFmpeg n3.4的Android / iOS视频播放器
      - B站开源，基于FFmpeg n3.4的Android / iOS视频播放器，支持MediaCodec，VideoToolbox。
      - 
    * - `python-weixin <https://github.com/gusibi/python-weixin>`_

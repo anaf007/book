@@ -4,7 +4,7 @@
 **人工智能/机器学习/深度学习/数据挖掘**
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
     
     ai/think_bayes
     ai/deep_learning
