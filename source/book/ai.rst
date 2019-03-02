@@ -13,4 +13,4 @@
     ai/tensorflow_length
     ai/python_neural_network
     ai/deep_reinforcement_learning
-    ai/ShuJuWanJueYuZhiShiFaXian
+    ai/simple_deep_learning
