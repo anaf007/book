@@ -5,7 +5,7 @@
 **初中数学/高中数学/高数/高数以上**
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 2
     
     mathematics/chuzhong1.rst
     mathematics/chuzhong2.rst
