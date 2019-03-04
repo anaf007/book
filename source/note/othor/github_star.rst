@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `flask-jwt  <https://github.com/mattupstate/flask-jwt>`_ 
+     - 2019-03-04
+     - 
+     - JWT (JSON Web Tokens) for Flask applications
+     -     
    * - `FaceRecognition人脸识别  <https://github.com/ageitgey/face_recognition>`_ 
      - 2019-03-01
      - The world's simplest facial recognition api for Python and the command line
