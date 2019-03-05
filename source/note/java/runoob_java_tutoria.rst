@@ -213,7 +213,13 @@ EmployeeTest.java ::
     }
 
 
+这里卡着了  没办法 import  路径不对
 
+还是只能找到idea工具 使用程序来运行了  
+
+复制过来运行命令一行 太长了    必须指定绝对路径     不是个好办法
+
+IDEA注册码：https://blog.csdn.net/q258523454/article/details/79775092
 
 
 
