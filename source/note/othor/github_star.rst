@@ -10,6 +10,16 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `Falsk的HTTP身份认证  <https://github.com/miguelgrinberg/Flask-HTTPAuth>`_ 
+     - 2019-03-05
+     - 
+     - Falsk的HTTP身份认证
+     -      
+   * - `dingtalk sdk  <https://github.com/007gzs/dingtalk-sdk>`_ 
+     - 2019-03-05
+     - 
+     - python版本钉钉SDK
+     -     
    * - `flask-jwt  <https://github.com/mattupstate/flask-jwt>`_ 
      - 2019-03-04
      - 
@@ -17,9 +27,9 @@ github上star的说明
      -     
    * - `FaceRecognition人脸识别  <https://github.com/ageitgey/face_recognition>`_ 
      - 2019-03-01
-     - The world's simplest facial recognition api for Python and the command line
+     - 
      - FaceRecognition人脸识别
-     -     
+     - The world's simplest facial recognition api for Python and the command line    
    * - `钉钉机器人  <https://github.com/zhuifengshen/DingtalkChatbot>`_ 
      - 2019-02-22
      - 
