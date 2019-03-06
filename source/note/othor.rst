@@ -57,7 +57,7 @@ Java相关
 ------------------------------------------------------------------
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     java/runoob_java_tutoria
     
@@ -66,7 +66,7 @@ Linux相关
 ------------------------------------------------------------------
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 1
     
     linux/search_nginx 
     linux/update_python 
