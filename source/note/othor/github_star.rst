@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `delay-queue延迟队列  <https://github.com/ouqiang/delay-queue>`_ 
+     - 2019-03-07
+     - 
+     - 延迟队列 基于Redis实现的延迟队列
+     -     
    * - `Falsk的HTTP身份认证  <https://github.com/miguelgrinberg/Flask-HTTPAuth>`_ 
      - 2019-03-05
      - 
