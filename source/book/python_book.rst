@@ -22,7 +22,6 @@ python
     python_book/introduction_to_computing_and_programming_in_python
     python_book/python_for_data_analysis
     python_book/python_scripting_for_arcgis
-    python_book/abaqus_python
     python_book/the_hacker_guide_to_python
     python_book/runoob_python3
 
