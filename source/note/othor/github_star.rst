@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `google hosts文件  <https://github.com/racaljk/hosts>`_ 
+     - 2019-03-09
+     - 
+     - google hosts文件
+     -      
    * - `爬虫知乎登录  <https://github.com/zkqiang/Zhihu-Login>`_ 
      - 2019-03-09
      - 
