@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `爬虫知乎登录  <https://github.com/zkqiang/Zhihu-Login>`_ 
+     - 2019-03-09
+     - 
+     - 爬虫知乎登录
+     -      
    * - `Falsk的HTTP身份认证  <https://github.com/miguelgrinberg/Flask-HTTPAuth>`_ 
      - 2019-03-05
      - 

@@ -221,6 +221,11 @@ EmployeeTest.java ::
 
 IDEA注册码：https://blog.csdn.net/q258523454/article/details/79775092
 
+这两个类 不用import的话 同级  的命令运行：
+/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/bin/java 
+"-javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=52431:/Applications/IntelliJ IDEA.app/Contents/bin" -Dfile.encoding=UTF-8 
+-classpath 
+/Volumes/mydata/www/java/idea/out/production/idea EmployeeTest
 
 
 
