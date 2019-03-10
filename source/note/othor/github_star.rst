@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `计算机开放电子书归档  <https://github.com/it-ebooks/it-ebooks-archive>`_ 
+     - 2019-03-10
+     - 
+     - 计算机开放电子书归档
+     -      
    * - `google hosts文件  <https://github.com/googlehosts/hosts>`_ 
      - 2019-03-09
      - 
