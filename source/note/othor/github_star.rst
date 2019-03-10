@@ -10,7 +10,7 @@ github上star的说明
      - 问题
      - 备注
      - 说明
-   * - `google hosts文件  <https://github.com/racaljk/hosts>`_ 
+   * - `google hosts文件  <https://github.com/googlehosts/hosts>`_ 
      - 2019-03-09
      - 
      - google hosts文件
