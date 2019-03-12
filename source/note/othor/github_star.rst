@@ -10,6 +10,31 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `计算机开放电子书归档  <https://github.com/it-ebooks/it-ebooks-archive>`_ 
+     - 2019-03-10
+     - 
+     - 计算机开放电子书归档
+     -      
+   * - `google hosts文件  <https://github.com/googlehosts/hosts>`_ 
+     - 2019-03-09
+     - 
+     - google hosts文件
+     -      
+   * - `爬虫知乎登录  <https://github.com/zkqiang/Zhihu-Login>`_ 
+     - 2019-03-09
+     - 
+     - 爬虫知乎登录
+     -      
+   * - `py爬虫各网站登陆  <https://github.com/CriseLYJ/awesome-python-login-model>`_ 
+     - 2019-03-08
+     - 
+     - python各大网站登陆方式与一些简单的爬虫，
+     -      
+   * - `delay-queue延迟队列  <https://github.com/ouqiang/delay-queue>`_ 
+     - 2019-03-07
+     - 
+     - 延迟队列 基于Redis实现的延迟队列
+     -  
    * - `Falsk的HTTP身份认证  <https://github.com/miguelgrinberg/Flask-HTTPAuth>`_ 
      - 2019-03-05
      - 
