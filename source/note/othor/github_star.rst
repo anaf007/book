@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `sublime一键git  <https://github.com/SublimeGit/SublimeGit>`_ 
+     - 2019-03-12
+     - 
+     - sublime一键git
+     -        
    * - `计算机开放电子书归档  <https://github.com/it-ebooks/it-ebooks-archive>`_ 
      - 2019-03-10
      - 
