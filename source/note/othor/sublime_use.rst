@@ -4,6 +4,8 @@ sublime Text3 的使用相关
 install  package参考：https://packagecontrol.io/installation
 
 
+安装失效的参考 :  https://www.jianshu.com/p/a3af44257b15
+
 手动安装emmet插件
 ---------------------------------------------------------------------
 
