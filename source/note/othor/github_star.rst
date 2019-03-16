@@ -147,8 +147,8 @@ github上star的说明
      - 
    * - `多线程日志 <https://github.com/Preston-Landers/concurrent-log-handler>`_ 
      - 2019-01-26
-     - 
-     - python下多线程日志问题。
+     - 只支持Windows？
+     - python下多线程日志问题
      -        
    * - `在线PAC文件SS翻墙用 <https://github.com/lbp0200/mono_pac>`_ 
      - 2019-01-17
