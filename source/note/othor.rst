@@ -74,6 +74,7 @@ Linux相关
     linux/centos6_install_mysql5_6
     linux/update_mysql6_pwd
     linux/docker_learning
+    linux/linx_install_lamp
 
 
 Mac 相关
