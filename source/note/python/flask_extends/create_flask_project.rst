@@ -70,6 +70,22 @@ Windows+nginx  替换了 iis 环境::
 
 
 
+20190331在CentOS6下重新搭建环境
+------------------------------------------------------------------
+
+安装nginx：https://www.cnblogs.com/xiaoliu66007/p/6201935.html
+
+安装mysql5.7：https://www.cnblogs.com/jimboi/p/6405560.html
+
+关闭防火墙：https://blog.csdn.net/shuaigexiaobo/article/details/78190168
+
+安装git: yum install git
+
+升级python3.65
+
+
+
+
 
 
 
