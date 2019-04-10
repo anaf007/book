@@ -10,7 +10,7 @@ github上star的说明
      - 问题
      - 备注
      - 说明
-   * - `开源代码库和课程  <https://github.com/freeCodeCamp/freeCodeCamp`_ 
+   * - `开源代码库和课程  <https://github.com/freeCodeCamp/freeCodeCamp>`_ 
      - 2019-03-21
      - 全英语外国的
      - 开源代码库和课程可以去学习各种语言  
