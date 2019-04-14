@@ -26,8 +26,11 @@ filename:update_mysql6_pwd.rst
 
     use mysql
 
-    更新密码
+    #更新密码
     UPDATE user SET Password = password ('your_pwd') WHERE User = 'root'; 
+
+    ###注意mysql5.7之后更改为了
+    UPDATE user SET authentication_string = password ('your_pwd') WHERE User = 'root'; 
 
     flush privileges ; 
 
