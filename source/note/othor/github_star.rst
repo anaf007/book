@@ -10,6 +10,12 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+     
+   * - `多校课程资料民间整理  <https://github.com/lib-pku/libpku>`_ 
+     - 2019-04-15
+     - 
+     - 之前整理的几个高效的课程都合并在这里并且还有其他高校的 
+     - 
    * - `开源代码库和课程  <https://github.com/freeCodeCamp/freeCodeCamp>`_ 
      - 2019-03-21
      - 全英语外国的
