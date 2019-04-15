@@ -10,7 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
-     
+   * - `git使用技巧整理  <https://github.com/521xueweihan/git-tips>`_ 
+     - 2019-04-15
+     - 
+     - 
+     -     
    * - `多校课程资料民间整理  <https://github.com/lib-pku/libpku>`_ 
      - 2019-04-15
      - 
