@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `youtube视频下载  <https://github.com/kkdai/youtube>`_ 
+     - 2019-04-18
+     - 
+     - 
+     - 
    * - `git使用技巧整理  <https://github.com/521xueweihan/git-tips>`_ 
      - 2019-04-15
      - 

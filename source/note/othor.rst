@@ -91,6 +91,11 @@ Mac 相关
 Windows 相关
 ------------------------------------------------------------------
 
+Windows下使用ls命令查看::
+
+    echo @dir %* > %systemroot%\system32\ls.bat
+
+
 .. toctree::
     :maxdepth: 0
     
