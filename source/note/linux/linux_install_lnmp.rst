@@ -127,6 +127,20 @@ centos下LNMP的安装
         }
     }
 
+    #静态文件
+    server {
+        listen 80;
+        server_name work.anaf.cn;
+        index index.html; 
+        location / {
+            root   /home/www/my_work/build/html; 
+            index  index.html index.htm;
+        }
+
+    }
+
+
+
 
 
 
