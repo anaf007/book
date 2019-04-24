@@ -1,6 +1,8 @@
 reStructuredText标记规范(转)
 =======================================
 
+生成数学公式：https://blog.csdn.net/weishantc/article/details/46729103
+
 .. Note::
 
   本文档为技术规范细节，而非教程或入门。如果你第一次接触  reStructuredText，请先阅读 `ReStructuredText介绍` 和 `ReStructuredText快速开始` 用户手册。
