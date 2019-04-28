@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `python实现的所有算法  <https://github.com/TheAlgorithms/Python>`_ 
+     - 2019-04-28
+     - 
+     - 28024star
+     -     
    * - `youtube视频下载  <https://github.com/kkdai/youtube>`_ 
      - 2019-04-18
      - 
