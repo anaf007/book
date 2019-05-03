@@ -10,6 +10,11 @@ github上star的说明
      - 问题
      - 备注
      - 说明
+   * - `python数据分析  <https://github.com/wesm/pydata-book>`_ 
+     - 2019-05-03
+     - 
+     - python数据分析 书中代码和数据
+     - 
    * - `python实现的所有算法  <https://github.com/TheAlgorithms/Python>`_ 
      - 2019-04-28
      - 
