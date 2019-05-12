@@ -36,6 +36,14 @@ ASM/C/C++书籍
     book/asm_c_cpp_book
 
 
+Java书籍
+======================
+
+.. toctree::
+    :maxdepth: 2
+
+    book/java_book.rst
+
 
 
 算法相关
