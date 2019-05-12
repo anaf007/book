@@ -262,7 +262,97 @@
     df = boys[boys.year ==2010]
 
 
-未完   书本42页      
+分性别统计前1000个名字在综合出生人数中的比例::
+
+    prop_cumsum = df.sort_index(by='prop',ascending=False).prop.cumsum()
+
+    prop_cumsum[:10]  
+
+    prop_cumsum.searchsorted(0.5)
+    #索引从0开始，因此需要给这个结果+1 
+
+    df = boys[boys.year == 1900]
+    in1900 = df.sort_index(by='prop',ascending=False).prop.cumsum()
+    in1900.searchsorted(0.5)+1
+
+现在就可以对所有year/sex组合执行这个计算了，按着两个字段进行groupby处理，然后用一个函数计算各分组的这个值::
+
+    def get_quantile_count(group,q=0.5):
+        group = group.sort_index(by='prop',ascending=False)
+        return geoup.prop.cumsum().searchsorted(q) + 1
+
+    diversity = top1000.groupby(['year','sex']).apply(get_quantile_count)
+    diversity = diversity.unstack('sex')
+
+    diveersity.head()
+
+    #密度图
+    diversity.plot(title='title')
+
+
+取最后一个字母::
+
+    get_last_letter = lambda x:x[-1]
+    last_letters = names.name.map(get_last_letter)
+
+    last_letters.name = 'last_letter'
+
+    table = names.prvot_table('births',rows= last_letters,cols=['sex','year'],aggfunc=sum)
+
+    #然后 选出 具有一定代表性的三年， 并输出前面几行
+
+    subtable = table.reindex(columns=[1910,1960,2010],level='year')
+    subtable.head()
+
+    #计算个性别末字母占总出生人数的比例
+    subtable.sum()
+
+    letter_prop = subtable / subtable.sum().astype(float)
+
+    #生成条形图
+
+    import matplotlib.pyplot as plt 
+    fig,axes = plt.subplots(2,1,figsize=(10,8))
+    letter_prop["M"] = plot(kind='bar',rot=0,ax=axes[0],title="Male")
+    letter_prop["F"] = plot(kind='bar',rot=0,ax=axes[1],title="Female",legale=False)
+
+    #各个字母的比例  这里用到了 T矩阵转置
+
+    letter_prop = table/table.sum().astype(float)
+    dny_ts = letter_prop.in[['d','n','y'],'M'].T
+    dny_ts.head()
+    dny_ts.plot()
+
+
+
+编程女孩名字的男孩(以及相反的情况)
+
+
+::
+
+    all_names = top1000.name.unique()
+    mask = np.array(['lesl' in x.lower() for x in all_names])
+
+    lesley_like = all(_names[mask]
+    lesley_like
+
+    #然后利用这个结果过滤其他的名字，并按照名字分组计算出生数以查看相对评率
+
+    filtered = top1000[top1000.name.isin(lesley_like)]
+    filtered.groupby("name").births.sum()
+
+    #按照性别和年龄进行聚合 并按照年度进行规范化处理
+    table filtered.pivot_table('births',rows='year',cols='sex',aggfunc='sum')
+    table = table.div(table.sum(1),axis=0)
+    table.tail()
+
+    #曲线图
+    table.plot(style={'M':'K-',"F"：‘k--})
+
+
+第二章结束  没有对代码进行实际走过   只是按照书中边看边录入
+
+实际如果变按照数据来敲  应该会有 问题的  。
 
 
 
