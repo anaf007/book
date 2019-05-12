@@ -1,0 +1,37 @@
+第二章、一切都是对象
+=======================================================================
+
+::
+
+    String s ;
+
+    #创建一个引用同时进行初始化
+
+    String s = 'abc';
+
+    #对象创建
+    String s = new String("abc");
+
+高精度数字:
+ - BigInTeger
+ - BigDecimal
+
+垃圾回收机制：
+
+java的垃圾回收机制用来件事用new创建的所有对象  并辨别那些不会再被引用的对象。
+
+static关键字:
+
+当一个十五是static时，就意味这个域或者方法不会被包含它的那个类的任意对象实例关联在一起。
+
+第一个Java程序::
+
+    import java.util.*;
+    public class HelloDate(){
+        public static void main(String[] args){
+            System.out.println(new Date());
+        }
+    }
+    //将打印出时间
+
+
