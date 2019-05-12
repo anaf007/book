@@ -1,5 +1,288 @@
 第二章：引言
 ============================
 
-略
+读取某个文件中的第一行::
+
+    path = 'xxx'
+    open(path).readline()
+
+    import json
+    path = 'xxx'
+    records = [json.loads(line) for line in open(path)]
+    records[0]
+
+
+获取时区::
+    
+    time_zones = [rec['tz'] for rec in records if 'tz' in rec]
+
+
+判断是否在数组中,常规写法::
+
+    def get_counts(sequence):
+        counts = {}
+        for x in sequence:
+            if x in counts:
+                count[x] +=1
+            else:
+                count[x] = 1
+        return counts
+
+使用python标准库写法::
+
+    from collections import defaultdict
+    def get_count2(sequence):
+        count = defaultdict(sequence)
+        for x in sequence:
+            counts[x] += 1
+        return counts
+
+获得统计的时区::
+
+    counts = get_counts(time_zones)
+    counts["America/New_York"]
+
+获得前10位的时区及其计数值::
+
+    def top_counts(count_dict,n=10):
+        value_key_pairs = [(count,tz) for tz,count in count_dict.items()]    
+        value_key_pairs.sort()
+        return value_key_pairs[-n:]
+
+    top_counts(counts)
+
+使用标准库::
+
+    from collections import Counter 
+    counts = Counter(time_zones)
+    counts.most_common(10)
+
+
+
+使用pandas对时区进行计数::
+
+    from pandas import DataFrame,Series
+    import pandas as pd
+    import numpy as np
+
+    #对数据进行序列化
+    frame = DataFrame(records)    
+    #获取前10
+    frame['tz'][:10]
+
+    tz_counts = frame["tz"].value_counts()
+
+    tz_counts[:10]
+
+
+为未知或者缺失填上替代值::
+
+    clean_tz = frame['tz'].fillna("Missing")
+    clean_tz[clean_tz == '' ] = "Unknown"
+    tz_counts = clean_tz.value_counts()
+    tz_counts[:10]
+
+    #绘制水平条形图
+
+    tz_counts[:10].plot(kind='barh',rot=0)
+
+统计另一列::
+
+    results = Series([x.split()[0] for x in frame.a.dropna()])    
+    results[:5]
+    #获取前8位名
+    results.value_counts()[:8]
+
+获取包含 “Windows” 字符::
+
+    #去除缺失的数据
+    cframe = frame[frame.a.notnull()]    
+    operating_system = np.where(cframe['a'].str.contains("windows"),"windows","not windows")
+    #获取前5
+    opreating_system[:5]
+
+    #对数据进行分组
+    by_tz_os = cframe.groupby(["tz",operating_system])
+
+    #对分组进行计数，并利用unstack对计数结果进行重塑
+
+    agg_counts = by_tz_os.size().unstack().fillna(0)
+
+    agg_counts[:10]
+
+选取最常出现的时区::
+
+    indexer = agg_counts_sum(1).argsort()
+    indexer[:10]
+    #使用take截取最后10行
+
+    count_subset = agg_counts.take(indexer)[-10:]
+
+生成条形图，使用stacked=True 生成一张堆积条形图::
+
+    count_subset.plot(kind='barh',stacked=True)
+    #规范化 总计为1 重新绘图
+    normed_subset = count_subset.div(count_subset.sum(1),axis=0)
+    normed_subset.plot(kind='barh',stacked=True)
+
+
+
+**电影影评 评分数据:**    
+
+::
+    
+    import pandas as pd
+    unames = ["user_id","gender","age","occupation","zip"]
+    users = pd.read_table("ml-1m/users.dat",sep="::",header=None,names=unames)
+
+    rnames = ["user_id","movie_id","rating","timestamp"]
+    ratings = pd.read_table("ml-1m/ratings.dat",sep="::",header=None,names=unames)
+
+    mnames = ["movie_id","title","genres"]
+    movies = pd.read_table("ml-1m/movies.dat",sep="::",header=None,names=unames)
+
+合并数据::
+
+    data = pd.merge(pd.merge(ratings,users),movies)
+
+平均得分::
+
+    mean_ratings = data.pivot_table("rating",rows="title",cols="gender",aggfunc="mean")
+
+    mean_ratings[:5]
+
+    # 对title进行分组然后利用size() 得到一个含有分组大小的series 对象
+    ratings_by_title = data.groupby("title").size()
+    ratings_by_title[:10]
+
+    #过滤评分不够250条的电影
+    active_titles = ratings_by_title.index[ratings_by_title >= 250]
+
+    #选取所需行
+    mean_ratings = mean_ratings.ix[active_titles]
+
+    #对F列降序排序
+    top_female_ratings = mean_ratings.sort_index(by="F",ascending=False)
+    top_female_ratings[:10]
+
+
+给mean_ratings加上一个用于存放平均得分之差的列 并对进行排序::
+
+    mean_ratings["diff"] = mean_ratings["M"] = mean_ratings["F"]
+
+    #按 diff 排序即可得到分歧最大且女性观众更喜欢的电影
+
+    sorted_by_diff = mean_ratings.sort_index(by="diff")
+
+    #正序 女性更喜欢的电影
+    sorted_by_diff [:15]
+    #反序男性更喜欢的电影
+    sorted_by_diff[::-1][:15]
+
+找出分歧最大的电影 不考虑性别     ::
+
+    #更加电影名称分组的的扥数据的标准差
+    rating_std_by_title = data.groupby("title")["rating"].std()
+
+    #根据active_titles 进行过滤
+    rating_std_by_title = rating_std_by_title.ix[active_titles]
+
+    #根据active_titles 进行降序排序
+    rating_std_by_title.order(ascending=False)[:10]
+
+
+根据姓名 统计： 
+ - 指定名字的年度比例
+ - 某个名字的排名
+ - 最就行的名字
+ - 趋势
+ - 人口结构变化等。
+
+数据获取： 搜 National data  或者在github上获取
+
+::
+
+    #加载到pandas 数据
+    import pandas as pd
+    names1880 = pd.read_csv("yob1880.txt",names=['name','sex','births'])
+
+    #用births列的sex分组小计表示年度的births总计
+    name1880.groupby('sex').births.sum()
+
+将多个csv合并到data::
+
+    years = range(1880,2011)
+    pieces = []
+    columns = ["name","sex","births"]
+
+    for yesr in yesrs:
+        path = "name/yob%d.txt" % year
+        frame = pd.read_csv(path,names=columns)
+
+        frame["year"] = year
+        pieces.append(frame)
+
+    #将所有数据合并
+    names = pd.concat(pieces,ignore_index=True)
+
+添加分组 year 和 sex ::
+
+    def add_prop(group):
+        births = group.births.astype(float)    
+        group["prop"] = births / births.sum()
+        return group
+
+    names = names.groupby(["year","sex"]).apply(add_prop)
+
+用np..allclose 来检查 这个分组总计值是否足够近似于1 ::
+
+    np.allclose(names.groupby(["year","ses"]).prop.sum(),1)
+
+取前10000个名字::
+
+    def get_top1000(group):
+        return geoup.sort_index(by='births',ascending=False)[:1000]
+
+    grouped = names.groupby(["year","sex"])
+    top1000 = grouped.apply(get_top1000)
+
+    #或者是用常规的方法去前1000
+    pieces = []
+    for year,group in names.groupby(["year","sex"]):
+        pieces.append(group.sort_index(by='births',scending=False)[:1000])
+    top1000 = pd.concat(pieces,ignore_index=True)
+
+将数据拆分两部分::
+
+    boys = top1000[top1000.sex == "M"]
+    girls = top1000[top1000.sex == "F"]
+
+获得2010年的男孩名称::
+
+    df = boys[boys.year ==2010]
+
+
+未完   书本42页      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
