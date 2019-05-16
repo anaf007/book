@@ -10,15 +10,10 @@ github上star的说明
      - 问题
      - 备注
      - 说明
-   * - `python数据分析  <https://github.com/wesm/pydata-book>`_ 
-     - 2019-05-03
-     - 
-     - python数据分析 书中代码和数据
-     - 
    * - `python实现的所有算法  <https://github.com/TheAlgorithms/Python>`_ 
      - 2019-04-28
      - 
-     - 28024star
+     - 28024star 
      -     
    * - `youtube视频下载  <https://github.com/kkdai/youtube>`_ 
      - 2019-04-18
@@ -621,7 +616,7 @@ github上star的说明
      - 2018-12-15
      - 私有云盘搭建插件
      - Seafile是一个开源云存储系统，具有隐私保护和团队协作功能。
-     -  
+     - 看了下不怎么的
    * - `wepy <https://github.com/Tencent/wepy>`_
      - 2018-12-15
      - 
