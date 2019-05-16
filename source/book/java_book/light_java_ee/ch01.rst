@@ -1,0 +1,25 @@
+第一章、 Java EE 应用和开发环境
+=======================================================================
+
+
+下载JDK8 
+
+下载tomcat
+
+安装
+
+词汇DAO ： Data Access Object
+
+
+javaee 服务器：
+ - tomcat
+ - jetty
+ - resin
+ - jboss
+ - weblogic和webshere
+
+
+
+
+
+
