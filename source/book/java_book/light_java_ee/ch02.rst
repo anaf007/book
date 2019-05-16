@@ -1,4 +1,89 @@
 第二章、JSP、Servlet相关技术详解
 =======================================================================
 
+构建web应用
+---------------------------------------------------------------------
+
+1. 项目目录下创建 WEB-INF 目录  注意大小写
+
+2. 进入WEB-INF目录 新建web.xml输入
+
+::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <web-app version="2.5" 
+        xmlns="http://java.sun.com/xml/ns/javaee" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+      <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+      </welcome-file-list>
+    </web-app>
+
+
+3. 新建 classes 和 lib 文件夹
+
+4. 返回项目目录创建 index.jsp 文件 就可以了
+
+::
+
+    <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+    <%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    %>
+
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+    <html>
+      <head>
+        <base href="<%=basePath%>">
+        
+        <title>My JSP 'index.jsp' starting page</title>
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">    
+        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+        <meta http-equiv="description" content="This is my page">
+        <!--
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        -->
+      </head>
+      
+      <body>
+        This is my JSP page. <br>
+      </body>
+    </html>
+
+
+JSP基本原理
+---------------------------------------------------------------------
+
+JSP 的本质就是Servlet 一个特殊的Java类。
+
+每个JSP页面就是一个Servlet实例
+
+JSP注释
+---------------------------------------------------------------------
+
+<%-- 这是注释 --%>
+
+JSP声明
+---------------------------------------------------------------------
+
+public int count;
+public String info(){
+    return "hello";
+}
+
+输出表达式
+---------------------------------------------------------------------
+
+<%= count++ %>
+<%=info() %>
+
+
+其实就是php嵌套html代码一样
+
+
 
