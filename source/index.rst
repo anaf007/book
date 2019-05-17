@@ -42,8 +42,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/java_book.rst
-    book/php_and_mysql_web.rst
+    book/java_book
 
 
 

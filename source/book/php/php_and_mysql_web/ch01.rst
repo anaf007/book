@@ -1,4 +1,162 @@
 第一章、快速入门
 ==============================================
 
+本章介绍如下内容：
+ - 在html 中嵌入php
+ - 添加动态内容
+ - 理解标识符
+ - 创建变量
+ - 检查变量类型
+ - 给变量赋值
+ - 声明和使用常量
+ - 理解变量的作用域
+ - 理解操作符和优先级
+ - 表达式
+ - 使用可变函数
+
+嵌入html代码::
+
+    <h1>
+    <?php
+        echo "h1";
+    ?>
+    </h1>
+
+
+php标记::
+
+    #xml风格
+    <?php echo "xml"; ?>
+
+    #简短风格
+    <? echo "short"; ?>
+
+    #script风格
+    <script language='php'> echo 'script'; </script>
+
+    #ASP风格
+    <% echo 'asp'; %>
+
+php注释::
+
+    /*  这是注释 */
+
+    //这是注释
+
+    #这是注释
+
+动态内容::
+
+    <?
+        echo date('H:i');
+    ?>
+
+变量::
+
+    "1";
+    '1';
+
+    #还有一种写法 heredoc语法 <<<
+    echo <<<theEnd
+
+        line 1
+        line 2
+        line 3
+
+    thEnd
+
+    #上面这个方式没有尝试过
+
+数据类型::
+
+    integer
+    float
+    string
+    boolean
+    array
+    object
+    #特殊类型
+    null
+    resource
+
+声明常量::
+
+    define("OPTION",10);
+
+作用域:
+ - 内置的全局变量
+ - 常量 也可以全局使用
+ - 脚本中声明的全局变量在脚本中可见
+ - 函数内创建的变量无法再外部访问
+
+超级全局变量:
+ - $GLOBALS 所有全局变量数组
+ - $_SERVER 服务器环境变量数组
+ - $_GET GET请求的数组
+ - $_POST POST请求的数组
+ - $_COOKIE cookie的数组
+ - $_FILES 与文件上传相关的数组
+ - $_ENV 环境变量相关
+ - $_REQUEST 所有用户输入
+ - $_SESSION 会话变量
+
+
+算数运算符  加减乘除 余 略  
+
+字符操作符 .
+
+连接运算符::
+
+    += -+ *= /= .=
+
+比较运算符: ==
+
+注意  其他比较运算符 恒等 ===  !==非恒等 数据 且数据类型相等才返回
+
+逻辑运算符  与或非   ！ &&  and  or  xor 
+
+位运算  少用 略 
+
+三目运算符  ?:
+
+错误抑制符  @  在前面加上这个就会抵制错误的发生
+
+类型检查： instanceof
+
+优先级  略 
+
+
+if  else  elseif
+
+switch case
+
+while($num<5){$num++;}
+
+for
+ 
+foreach
+
+do while
+
+exit终止后面的就不执行了
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
