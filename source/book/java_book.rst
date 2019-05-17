@@ -1,11 +1,9 @@
-java相关书籍
+Java相关书籍
 ==================
 
 
-java
------------------
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 0
 
     java_book/thinking_in_java
     java_book/light_java_ee.rst
