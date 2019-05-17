@@ -36,13 +36,14 @@ ASM/C/C++书籍
     book/asm_c_cpp_book
 
 
-Java书籍
+Java、PHP书籍
 ======================
 
 .. toctree::
     :maxdepth: 2
 
     book/java_book.rst
+    book/php_and_mysql_web.rst
 
 
 
