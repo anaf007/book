@@ -70,11 +70,12 @@ JSP注释
 
 JSP声明
 ---------------------------------------------------------------------
+::
 
-public int count;
-public String info(){
-    return "hello";
-}
+    public int count;
+    public String info(){
+        return "hello";
+    }
 
 输出表达式
 ---------------------------------------------------------------------
