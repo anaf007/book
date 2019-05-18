@@ -1,4 +1,32 @@
 第十九章、与文件系统和服务器的交互
 ==============================================
 
+本章主要内容：
+ - 使用php上传文件
+ - 使用目录函数
+ - 与服务器上的文件进行交互
+ - 在服务器上运行程序
+ - 使用服务器环境变量
+
+
+文件上传的php.ini 配置 注意
+
+file_uploads 是否运行http上传文件
+upload_tmp_dir 指定上传文件被处理前保存的路径 
+upload_max_filesize 控制允许上传文件的最大大小
+post_max_size  设置最大的上传大小  必须大于 upload_max_filesize 这个  
+
+
+使用函数执行程序： 
+ - exec()
+ - passthru()
+ - system()
+ - popen()
+ - proc_open()
+ - proc_close()
+
+环境变量交互：getenv() putenv()
+
+
+
 
