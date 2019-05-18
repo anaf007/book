@@ -1,2 +1,37 @@
 第五章、代码重用与函数编写
 ==============================================
+
+本章介绍如下内容：
+ - 使用reuquire和include函数
+ - 函数介绍
+ - 定义函数
+ - 使用参数
+ - 理解作用域
+ - 返回值
+ - 参数的引用调用 
+ - 实现递归
+ - 使用命名空间
+
+
+require 和include 几乎相同  唯一区别 函数失败后 require 会给出一个错误 include只是一个警告
+
+require_once 和 include_once 只引入一次
+
+还有一种是配置在php.ini中的  
+
+auto_prepend_file   auto_append_file 两个函数 可以保证在每个页面前后被载入  和include是一样的
+
+可以在 .htaccess 中加入 但是在前面需要加入 php_value
+
+return 函数返回
+
+isset 判断是否被赋值
+
+书中没有讲命名空间的使用
+
+
+
+
+
+
+
