@@ -1,4 +1,84 @@
 第六章、面向对象的PHP
 ==============================================
 
+本章介绍如下内容：
+ - 面向对象的概念
+ - 类、属性的操作
+ - 类属性
+ - 类常量
+ - 类方法的调用
+ - 继承
+ - 访问修饰符
+ - 静态方法
+ - 类型提示
+ - 延迟静态绑定
+ - 对象克隆
+ - 抽象类
+ - 类设计
+ - 设计的实现
+ - 高级的面向对象功能
+
+::
+
+    class name{
+        public $a;
+        private $b;
+        protected $c;
+
+        #构造函数
+        public __construct($param){
+            $this->a = 'a';
+        }
+
+        public _get($name){}
+        public _set($name){}
+    }
+
+find禁止重载和继承
+
+接口::
+
+    interface jiekou{
+        function display();
+    }
+
+PHP面向对象的高级功能::
+
+    class Math{
+        public $pai = 3.14;
+    }
+
+    echo Math::pai;
+
+    class Math{
+        static function seq($input){
+            return $input*8;
+        }
+    }
+
+    echo Math::seq(8);
+    #静态方法中不能使用this关键字
+
+instanceof 检查对象的类型
+
+
+延迟绑定
+
+clone 对象克隆
+
+__call  重载方法
+
+__authload() 没有被声明时 自动调用
+
+
+
+
+
+
+
+
+
+
+
+
 
