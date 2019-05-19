@@ -1,2 +1,51 @@
 第三章、Struts2的基本用法
 =======================================================================
+
+3.1、MVC思想
+------------------------------------------------------------------
+
+略
+
+3.2、Struct2的下载和安装
+------------------------------------------------------------------
+
+增加struct2的支持：
+ - 下载struct
+ - 将struct2 的lib文件夹下的 commons-fileupload.jar xx.io.jar  freemarker.kar javassost.jar ognl struct-core.jar xworkcork.jar 复制到WEB-INF/lib下
+ - 编辑web.xml ::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <web-app version="2.5" 
+        xmlns="http://java.sun.com/xml/ns/javaee" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+        <!--定义struct 和兴filter-->
+        <filter>
+            <filter-name>
+                struct2
+            </filter-name>
+            <filter-class>
+                org.apche.struct2.displatchar.ng.filter.StrutsPrepareAndExcuteFilter
+            </filter-class>
+        </filter>
+        <filter-mapping>
+            <filter-name>
+                struct2
+            </filter-name>
+            <url-pattern>
+            /*
+            </url-pattern>
+        </filter-mapping>
+
+        <welcome-file-list>
+            <welcome-file>index.jsp</welcome-file>
+        </welcome-file-list>
+    </web-app>
+
+
+
+
+
+
