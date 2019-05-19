@@ -1,2 +1,28 @@
 第六章、访问控制权限
 =======================================================================
+
+public  protected private
+
+定制工具库
+
+打印的函数太长了 定制以下缩短::
+    
+    package net.mindview.util;
+    import java.io.*;
+
+    class class Print{
+        public static void print(Object obj){
+        System.out.println(obj);
+        }
+    }
+
+    import static not.mindview.util.Print.*;
+
+    public class PrintTest{
+        public static void main(String[] args){
+            print(100);
+        }
+    }
+
+
+
