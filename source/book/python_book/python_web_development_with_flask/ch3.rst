@@ -169,5 +169,9 @@ flask内置模板全局函数:
 
 自定义错误页面：app.errorhandler(404)  自定义错误的传入对应的40x 50x
 
+自定义错误页面::
 
+    @app.errorhandler(404)
+    def not_page(e):
+        return  render_template"error.html",404;
 

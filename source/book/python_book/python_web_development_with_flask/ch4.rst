@@ -21,8 +21,6 @@
  - SelectMultipleField：多选框
  - SelectField： 下拉列表
  - RadioField：单选框
-
-# simple.py：
  - TextAreaField:文本域，可接受多行输入
  - PasswordField：密码字段，输入的不会直接在浏览器明文显示
  - FileField：上传文件，但不会处理验证文件，需要手动处理

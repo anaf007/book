@@ -9,4 +9,8 @@ flask-monent 时间本地化
 
 跨域：flask-cors
 
+还介绍了oauth
+
+methodview  简化 api方法
+
 

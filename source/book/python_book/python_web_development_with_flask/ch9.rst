@@ -17,4 +17,10 @@ flask-avatars头像处理
 
 flask-whooshee全文搜索
 
+User.query.with_parent(xx).first()
+
+
+with_parent  注意   获取父级的所有内容  
+
+subquery()子查询
 
