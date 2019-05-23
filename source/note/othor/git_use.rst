@@ -56,12 +56,16 @@ pip慢
 
 地址 ：https://blog.csdn.net/lambert310/article/details/52412059
 
+::
+
+    pip install flask -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 
 加入.gitignore无效的解决方法
 ---------------------------------------------------------------------
 
 ::
-
+    
     git rm -r --cached xxx
     git rm --cached demo-project.iml
 
