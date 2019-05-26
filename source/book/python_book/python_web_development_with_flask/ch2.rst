@@ -10,6 +10,26 @@ HTTP：超文本传输协议
 2.2 HTTP请求
 ---------------------------------------------------------------------
 
+request对象常用的属性和方法：
+ - args：存储解析后的查询字符串
+ - buleprint：当前蓝图名称
+ - cookies：包含所有随请求提交的cookies的字典
+ - data:包含字符串形式的请求数据
+ - endpoint:与当前请求相匹配的端点值
+ - files：包含所有上传文件
+ - form：包含表单数据
+ - values：结合了args和form属性的值
+ - get_data：获取请求中的数据
+ - get_json：作为json解析并返回数据
+ - headers：包含首部字段
+ - js_json：判断是否json数据
+ - json：包含解析后的json数据
+ - method：请求的http方法
+ - referrer：请求发起的源url
+ - scheme：请求的模式  http还是https
+ - user_agent：用户代理  包含用户的客户端类型 操作系统等
+
+
 flask内置的url变量转换器：
  - string :不包含斜线的字符串默认
  - int ：整形
