@@ -838,31 +838,10 @@ POSIX长/短选项的语法基于Python的 getopt.py_ 模块所提供的语法�
 记。连续行辈包装为一个长的行，他们以一个空格代替竖线开始，左边
 必须对其，但不需要与上面的文字的左边对其。行块以空行结束。
 
-这个例子展示了连续行::
 
-    | Lend us a couple of bob till Thursday.
-    | I'm absolutely skint.
-    | But I'm expecting a postal order and I can pay you back
-      as soon as it comes.
-    | Love, Ewan.
 
-这个例子展示了嵌套的行块，通过初始缩进表示新行::
 
-    Take it away, Eric the Orchestra Leader!
 
-        | A one, two, a one two three four
-        |
-        | Half a bee, philosophically,
-        |     must, *ipso facto*, half not be.
-        | But half the bee has got to be,
-        |     *vis a vis* its entity.  D'you see?
-        |
-        | But can a bee be said to be
-        |     or not to be an entire bee,
-        |         when half the bee is not a bee,
-        |             due to some ancient injury?
-        |
-        | Singing...
 
 语法图::
 
