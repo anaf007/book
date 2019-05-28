@@ -102,6 +102,10 @@ Java、PHP书籍
 
     project/project
 
+kafka
+
+k8s
+
 
 
 .. include:: ad.rst
