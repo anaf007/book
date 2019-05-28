@@ -3,6 +3,7 @@
 
 名称|添加时间|问题|备注|说明|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[Flask项目生成器](https://github.com/TTWShell/hobbit-core)|2019-05-28|快速创建flask、模块等|||5
 [Falsk的HTTP身份认证](https://github.com/miguelgrinberg/Flask-HTTPAuth)|2019-03-05||||
 [flask-jwt](https://github.com/mattupstate/flask-jwt)|2019-03-04|JWT (JSON Web Tokens) for Flask applications|||
 [异步进程与flask的结合](https://github.com/dchevell/flask-executor)|2019-01-30|concurrent.futures 与flask的结合|||
