@@ -165,6 +165,6 @@ nginx配置::
     }
 
 
-刷新配置 ``nginx -s reload``
+刷新配置 ``nginx -t`` ``nginx -s reload``
 
 
