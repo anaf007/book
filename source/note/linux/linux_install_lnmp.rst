@@ -141,6 +141,30 @@ centos下LNMP的安装
 
 
 
+额外  部署SSL  启用HTTPS：  
 
+去申请免费证书 得到  pem  key两个证书文件  
+
+nginx配置::
+
+    server{
+        listen 443 ssl;
+        server_name anhy.net;
+        root /home/www/anhy_net;
+
+        ssl_session_cache shared:SSL:1m;
+        ssl_certificate "/home/www/anhy_net/2170589_anhy.net.pem";
+        ssl_certificate_key "/home/www/anhy_net/2170589_anhy.net.key";
+        ssl_session_timeout  10m;
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+        location / {
+            proxy_pass http://192.168.6.11;
+        } 
+    }
+
+
+刷新配置 ``nginx -s reload``
 
 
