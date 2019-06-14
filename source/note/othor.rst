@@ -38,7 +38,7 @@ Java相关
 Linux相关
 ------------------------------------------------------------------
 
-frp： ``./frpc -c ./frpc.ini &``
+frp： ``nohup ./frps -c ./frps.ini &``
 
 .. toctree::
     :maxdepth: 1
