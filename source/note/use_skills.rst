@@ -12,4 +12,7 @@ kernel:do_IRQ: 2.95 No irq handler for vector
     othor/restructuredtext
     othor/web_site_techniques
     othor/git_use
+    othor/v2ray
+
+
     

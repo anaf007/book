@@ -13,3 +13,11 @@
 
 VPS商家：
  - https://billing.virmach.com/cart.php?a=checkout An090987.  anaf@163.com fRCO63A1njwvC72Ri5 107.172.82.146
+
+
+16076 ssh prot
+
+Your Server IP        :  107.172.82.146 
+Your Server Port      :  16076 
+Your Password         :  fRCO63A1njwvC72Ri5 
+Your Encryption Method:  rc4-md5 
