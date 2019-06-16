@@ -1,4 +1,4 @@
-centos6下安装mysql56/57(转)
+centos6下安装mysql56/57(转)及出现的错误解决
 ====================================================================
 
 filename:centos6_install_mysql5_6.rst
@@ -83,6 +83,23 @@ filename:centos6_install_mysql5_6.rst
 
 
 
+
+
+[2019-06-16]出现2006 MySQL server has gone away
+---------------------------------------------------------------------
+
+（修改）max_allowed_packet=500M
+
+（修改）wait_timeout=288000
+
+（加入）interactive_timeout = 288000
+
+参考：
+ - https://blog.csdn.net/vapaad1/article/details/78778962
+
+
+[2019-06-16]出现2013 Lost connection to MySQL server during query
+---------------------------------------------------------------------
 
 
 

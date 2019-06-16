@@ -102,9 +102,12 @@ Java、PHP书籍
 
     project/project
 
+
 kafka
 
 k8s
+
+掌握Fabric的使用 实现服务器文件上传时传输到另外一个服务器  这样实现文件分离
 
 
 

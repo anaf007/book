@@ -1,6 +1,8 @@
 使用技巧
 ==================
 
+kernel:do_IRQ: 2.95 No irq handler for vector
+
 .. toctree::
     :maxdepth: 0
     

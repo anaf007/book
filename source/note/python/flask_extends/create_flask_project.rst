@@ -4,6 +4,11 @@
 项目环境：mac10.13   python365  
 
 ::
+    
+
+    #git慢问题 
+    pip install xxx -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 
     pip install cookiecutter
     cookiecutter https://github.com/sloria/cookiecutter-flask.git
@@ -82,6 +87,12 @@ Windows+nginx  替换了 iis 环境::
 安装git: yum install git
 
 升级python3.65
+
+gunicorn + Flask架构中使用多进程全局锁
+---------------------------------------------------------------------
+https://blog.csdn.net/five3/article/details/78533412
+
+https://blog.csdn.net/lucky404/article/details/79815997
 
 
 
