@@ -113,3 +113,9 @@ window下一键push的脚本
 
 丢到c盘Windows文件夹下  OK 每次只用 push一下就OK了
 
+
+Git强制拉取远程覆盖本地仓库::
+
+    git fetch --all
+    git reset --hard origin/master
+    git pull
