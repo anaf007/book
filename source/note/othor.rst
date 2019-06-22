@@ -25,6 +25,7 @@ Python相关
     python/rocket_chat
     python/flask_extends/create_flask_project
     python/flask_extends/flask_security
+    python/flask_page_tables
 
 Java相关
 ------------------------------------------------------------------
