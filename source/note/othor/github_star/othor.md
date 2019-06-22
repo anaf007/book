@@ -2,6 +2,7 @@
 
 名称|添加时间|备注|说明|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[陌陌风控系统](https://github.com/momosecurity/aswan)|2019-06-21|陌陌风控系统静态规则引擎<br>零基础简易便捷的配置多种复杂规则<br>实时高效管控用户异常行为。|||1251
 [FLEXX](https://github.com/flexxui/flexx)|2018-12-15|纯Python工具包<br>用于创建图形用户界面（GUI）由web渲染|||
 [构建移动应用程序](https://github.com/flutter/flutter)|2019-01-30|Flutter<br>可以轻松快速地构建漂亮的移动应用程序|||
 [Flutter嵌入API的桌面实现](https://github.com/google/flutter-desktop-embedding)|2019-01-30||||
