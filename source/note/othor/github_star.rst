@@ -19,6 +19,7 @@ github上star的说明
     github_star/html
     github_star/linux
     github_star/othor
+    github_star/miniproject
 
 
 
