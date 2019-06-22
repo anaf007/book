@@ -67,3 +67,5 @@ Flask分表
     # 查询
     gdm = GoodsDesc.model(goods_id)
     gd = gdm.query.filter_by(goods_id=goods_id).first()
+
+
