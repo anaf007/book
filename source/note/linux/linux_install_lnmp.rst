@@ -170,4 +170,54 @@ nginx配置::
 
 刷新配置 ``nginx -t`` ``nginx -s reload``
 
+证书自签： https://www.howtoing.com/how-to-create-a-self-signed-ssl-certificate-for-nginx-on-centos-7
+
+步骤：
+
+1. 安装Nginx及调整防火墙
+
+::
+
+    yum install epel-release
+    yum install nginx
+    systemctl start nginx
+
+    systemctl status nginx
+
+    sudo firewall-cmd --add-service=http
+    sudo firewall-cmd --add-service=https
+    sudo firewall-cmd --runtime-to-permanent
+
+    sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+    sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+
+
+2. 创建ssl证书
+
+创建对应的目录
+
+::
+
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+    需要先 yum  install  OpenSSL
+
+    OpenSSL的 ：这是用于创建和管理OpenSSL的证书，密钥和其他文件的基本命令行工具。
+    REQ：此子命令指定我们要使用X.509证书签名请求（CSR）的管理。 “X.509”是SSL和TLS遵循的用于其密钥和证书管理的公钥基础结构标准。我们要创建一个新的X.509证书，所以我们使用这个子命令。
+    -x509：这进一步告诉我们要进行的，而不是生成一个证书签名请求的自签名证书的工具修改以前的子命令，因为通常会发生。
+    -nodes：这告诉OpenSSL的跳到使用密码保护我们的证书的选项。我们需要Nginx能够在服务器启动时读取文件，无需用户干预。口令将防止这种情况发生，因为我们必须在每次重新启动后输入。
+    -days 365：此选项设置的证书将被视为有效的时间长度。我们在这里设置了一年。
+    -newkey RSA：2048：指定我们要生成新的证书，并在同一时间一个新的密钥。 我们没有创建在上一步中签署证书所需的密钥，因此我们需要与证书一起创建。 在rsa:2048部分告诉它做的RSA密钥是2048位。
+    -keyout：这行告诉OpenSSL的在什么地方，我们正在创建的生成私钥文件。
+    -out ：这告诉OpenSSL的在什么地方，我们正在创建的证书。
+    
+
+
+    openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+3. 配置SSL证书   就是使用 宝塔的脚本   复制 car  pem的内容就可以了
+
+4. 重载 nginx   
+
+
 
