@@ -15,6 +15,9 @@ centos下LNMP的安装
     sh ./atomic
     yum check-update
 
+    #  163源  centos7
+    参考：https://blog.csdn.net/qq_18831583/article/details/79146759
+
 
 4.安装开发包和库文件::
 
