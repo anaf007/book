@@ -114,4 +114,12 @@ telegram交流群：https://t.me/atrandys
 个人现在主要用justmysocks，开头推荐的那个瓦工机场，主要是省心，所以关于这个方案的移动客户端使用情况，我给不了什么参考意见。
 
 
+复活被墙IP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+免费域名：https://my.freenom.com/cart.php?a=confdomains&language=english
+
+
+
+主机综合地址：www.zhujiceping.com
+主机综合评测等：www.freehao123.com
