@@ -21,7 +21,6 @@
 [rocketchat_API](https://github.comjadolg/rocketchat_API)|2018-12-15|rocketchat接口的python版本|||
 [scrapy](https://github.com/scrapy/scrapy)|2018-12-15|python 爬虫框架|||
 [sphinx_rtd_theme](https://github.com/rtfd/sphinx_rtd_theme)|2018-12-15|sphinx 主题插件|||
-[python爬虫爬取图片项目](https://github.com/wangy8961/python3-concurrency-pics-02)|2018-12-15|python爬虫爬取图片项目<br>使用 asyncio 和 aiohttp 实现的异步版本|13.7万2小时爬取完毕，可以学习学习||
 [sphinx](https://github.com/sphinx-doc/sphinx)|2018-12-15|编写文档插件|||
 [pypubsub](https://github.com/schollii/pypubsub)|2018-12-15|PyPubSub提供了一个发布 - 订阅API，<br>可以促进基于事件/基于消息的应用程序的开发。|||
 [Apscheduler](https://github.com/agronholm/apscheduler)|2018-12-15|Python的任务调度库|||

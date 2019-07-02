@@ -16,9 +16,9 @@
 一键脚本： wget -N --no-check-certificate https://raw.githubusercontent.com/YLWS-4617/V2ray.Fun/master/install.sh && bash install.sh
 
 VPS商家：
- - https://billing.virmach.com/cart.php?a=checkout An090987.  anaf@163.com fRCO63A1njwvC72Ri5 107.172.82.146
-
- -  x0Wos91ZJM4Ncb85Qg 107.172.207.26 
+ - https://billing.virmach.com/cart.php?a=checkout An090987.  anaf@163.com 
+ - k0TJw46Ct9mzUOO83w 107.172.82.146
+ - x0Wos91ZJM4Ncb85Qg 107.172.207.26 
 
 ::
 
@@ -53,6 +53,17 @@ VPS商家：
      底层传输：tls
 
 
+    ===========配置参数============ 
+     地址：virmach1.anaf.cn 
+     端口：443 
+     uuid：65c59714-68da-4314-8c44-128d3a86b466 
+     额外id：64 
+     加密方式：aes-128-gcm 
+     传输协议：ws 
+     别名：myws 
+     路径：cccf 
+     底层传输：tls 
+      
 
  v2ray+ws+tls一键脚本（CentOS7版）:
 
@@ -117,7 +128,9 @@ telegram交流群：https://t.me/atrandys
 复活被墙IP
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-免费域名：https://my.freenom.com/cart.php?a=confdomains&language=english
+免费域名：https://my.freenom.com/cart.php?a=confdomains&language=english  花了6块钱在阿里云买了个xyz的域名  
+
+使用了国外的DNS解析就行了  cloudflare.com   
 
 
 

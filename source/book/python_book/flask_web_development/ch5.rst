@@ -209,6 +209,10 @@ or或者简写成::
     >>> db.session.add(admin_role)
     >>> db.session.commit()
 
+    #修改多行 或者删除多行 需要加上 synchronize_session=False 
+    ASIN.query.filter(ASIN.name.in_(disable_asin_list)).update(dict(enable=0),synchronize_session=False)
+    db.session.commit()
+
 删除行::
 
     >>> db.session.delete(mod_role)
