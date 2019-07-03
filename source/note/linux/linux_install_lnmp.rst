@@ -17,6 +17,13 @@ centos下LNMP的安装
 
     #  163源  centos7
     参考：https://blog.csdn.net/qq_18831583/article/details/79146759
+    #  cd /etc/yum.repos.d
+    #  mv ./CentOS-Base.repo ./CentOS-Base-repo.bak
+    #  wget http://mirrors.163.com/.help/CentOS7-Base-163.repo
+    #  yum clean all
+    #  mv CentOS7-Base-163.repo CentOS-Base.repo
+    #  yum makecache
+    #  
 
 
 4.安装开发包和库文件::

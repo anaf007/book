@@ -39,6 +39,7 @@ Java相关
 Linux相关
 ------------------------------------------------------------------
 
+
 frp： ``nohup ./frps -c ./frps.ini &``
 
 .. toctree::
@@ -52,6 +53,7 @@ frp： ``nohup ./frps -c ./frps.ini &``
     linux/docker_learning2
     linux/linux_install_lamp
     linux/linux_install_lnmp
+    linux/lsyncd
 
 
 Mac 相关
