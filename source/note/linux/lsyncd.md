@@ -1,5 +1,7 @@
-lsyncd Linux下文件同步备份工具
+lsyncd Linux下文件同步备份工具及Mysql主从备份
 =======================================================================
+
+原文： https://shockerli.net/post/linux-tool-lsyncd/
 
 安装：
 ---------------------------------------------------------------------
@@ -71,4 +73,6 @@ Uploads/**
 
 
 lsyncd -log Exec /etc/lsyncd.conf
+
+
 

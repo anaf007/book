@@ -136,3 +136,5 @@ telegram交流群：https://t.me/atrandys
 
 主机综合地址：www.zhujiceping.com
 主机综合评测等：www.freehao123.com
+
+新加坡域名商：sg.godaddy.com
