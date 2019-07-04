@@ -2,6 +2,7 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[WebSSH](https://github.com/huashengdun/webssh)|2019-07-04|Web端SSH工具||579
 [ATX](https://github.com/NetEaseGame/ATX)|2019-06-14|手机自动化框架|这个是旧项目里面有新项目的连接||1241
 [sikuli](https://github.com/sikuli/sikuli)|2019-06-14|自动化框架|基于屏幕截图||1572
 [Airtest](https://github.com/AirtestProject/Airtest)|2019-06-14|自动化框架|用于游戏和app<br>网易开源||2544
