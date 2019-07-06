@@ -2,6 +2,9 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[weditor](https://github.com/openatx/weditor)|2019-07-06|手机屏幕元素定位，配合下面的工具自动化||182
+[facebook-wda](https://github.com/openatx/facebook-wda)|2019-07-06|IOS自动化测试||800
+[uiautomator2](https://github.com/openatx/uiautomator2)|2019-07-06|安卓自动化测试||1272
 [WebSSH](https://github.com/huashengdun/webssh)|2019-07-04|Web端SSH工具||579
 [ATX](https://github.com/NetEaseGame/ATX)|2019-06-14|手机自动化框架|这个是旧项目里面有新项目的连接||1241
 [sikuli](https://github.com/sikuli/sikuli)|2019-06-14|自动化框架|基于屏幕截图||1572
