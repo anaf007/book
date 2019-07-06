@@ -114,8 +114,40 @@ window下一键push的脚本
 丢到c盘Windows文件夹下  OK 每次只用 push一下就OK了
 
 
-Git强制拉取远程覆盖本地仓库::
+Git强制拉取远程覆盖本地仓库
+---------------------------------------------------------------------
+
+::
 
     git fetch --all
     git reset --hard origin/master
     git pull
+
+
+拉取提示冲突错误
+---------------------------------------------------------------------
+
+::
+
+    error: Your local changes to 'c/environ.c' would be overwritten by merge.  Aborting.
+    Please, commit your changes or stash them before you can merge.
+
+
+    1、先将本地修改存储起来
+    git stash
+    其中stash@{0}就是刚才保存的标记。
+
+    2、pull内容
+    git pull
+
+    3、还原暂存的内容
+    git stash pop stash@{0}
+
+    4、解决文件中冲突的的部分
+    其中Updated upstream 和=====之间的内容就是pull下来的内容，====和stashed changes之间的内容就是本地修改的内容。碰到这种情况，git也不知道哪行内容是需要的，所以要自行确定需要的内容。
+
+
+
+
+
+

@@ -65,7 +65,7 @@ VPS商家：
      底层传输：tls 
       
 
- v2ray+ws+tls一键脚本（CentOS7版）:
+v2ray+ws+tls一键脚本（CentOS7版）:
 
 
 注意：务必保证域名解析已经成功了，再使用下面的脚本安装。
