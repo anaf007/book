@@ -123,6 +123,10 @@ Git强制拉取远程覆盖本地仓库
     git reset --hard origin/master
     git pull
 
+    #放弃本地修改
+    git reset --hard 
+    git pull
+
 
 拉取提示冲突错误
 ---------------------------------------------------------------------
