@@ -17,7 +17,6 @@
     source venv/bin/activate
 
 
-
 安装rocketchat_API::
 
     pip install rocketchat_API
