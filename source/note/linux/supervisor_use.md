@@ -31,3 +31,13 @@ ps -ef | grep supervisord
 
 kill id
 
+配置：
+```
+[program:anaf_cms]
+directory=/home/www/anaf_cms/cms
+command=/home/www/anaf_cms/venv/bin/gunicorn -w 9 autoapp:app -b 0.0.0.0:84
+autostart=true
+autorestart=true
+stdout_logfile=/home/www/anaf_cms/supervisor.log
+```
+
