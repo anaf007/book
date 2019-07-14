@@ -81,6 +81,7 @@ Windows下使用ls命令查看::
     :maxdepth: 0
     
     windows/install_mysql 
+    windows/cmd
 
 
 php学习笔记

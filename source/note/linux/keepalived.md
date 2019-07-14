@@ -35,7 +35,7 @@ fi
 ```
 
 主zhu_keepalived.conf：
-```conf
+```
 ! Configuration File for keepalived
 
 global_defs {
@@ -88,7 +88,7 @@ vrrp_instance VI_1 {
 ```
 
 从keepalived.conf：
-```conf
+```
 ! Configuration File for keepalived
 
 global_defs {
