@@ -10,6 +10,8 @@ time:2018-09-12
 安装pip::
     
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    wget https://bootstrap.pypa.io/get-pip.py --no-check-certificate
+
     python get-pip.py
 
 

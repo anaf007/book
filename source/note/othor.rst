@@ -55,6 +55,7 @@ frp： ``nohup ./frps -c ./frps.ini &``
     linux/linux_install_lnmp
     linux/lsyncd
     linux/keepalived
+    linux/supervisor_use
 
 
 Mac 相关
