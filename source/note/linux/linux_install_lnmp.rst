@@ -304,4 +304,13 @@ nginx均衡负载::
     }
 
 
+去除index.php
+---------------------------------------------------------------------
+::
+
+    location / {
+        if (!-e $request_filename){
+            rewrite ^(.*)$ /index.php?s=$1 last; break;
+        }
+    }
 
