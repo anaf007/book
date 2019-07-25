@@ -5,7 +5,7 @@ Python书籍
     :maxdepth: 2
     :glob:
 
-    book/python_book
+    python_book
 
 
 
@@ -15,7 +15,7 @@ Python书籍
 .. toctree::
     :maxdepth: 2
 
-    book/security_book
+    security_book
 
     
 
@@ -26,7 +26,7 @@ ASM/C/C++书籍
 .. toctree::
     :maxdepth: 2
 
-    book/asm_c_cpp_book
+    asm_c_cpp_book
 
 
 Java、PHP书籍
@@ -35,7 +35,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/java_book
+    java_book
 
 
 
@@ -45,7 +45,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/algorithm
+    algorithm
     
 
 
@@ -56,7 +56,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/database
+    database
 
 
 
@@ -66,7 +66,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/ai
+    ai
 
 小程序开发
 ===============================================
@@ -74,7 +74,7 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/small_program
+    small_program
 
 
 数学书
@@ -83,5 +83,5 @@ Java、PHP书籍
 .. toctree::
     :maxdepth: 2
 
-    book/mathematics
+    mathematics
     

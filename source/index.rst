@@ -12,7 +12,7 @@
     :maxdepth: 2
     :glob:
 
-    book
+    book/book
  
 笔记
 ======================
@@ -30,6 +30,7 @@
     :maxdepth: 2
 
     project/project
+    project/property
 
 
 kafka
