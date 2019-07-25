@@ -37,3 +37,4 @@ Python项目
 
     rocket_chat_api
     school
+    property

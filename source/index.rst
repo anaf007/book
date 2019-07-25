@@ -30,7 +30,6 @@
     :maxdepth: 2
 
     project/project
-    project/property
 
 
 kafka
