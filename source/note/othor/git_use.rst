@@ -114,6 +114,35 @@ window下一键push的脚本
 丢到c盘Windows文件夹下  OK 每次只用 push一下就OK了
 
 
+mac下一键脚本::
+
+    set -e
+  
+    # $1 版本号，如 0.0.1
+
+    if [ $1 ]
+    then
+       echo "➼ 信息:   ${PWD##*/}.podspec $1"
+       git add .
+       echo "➼ 第一步: add tag"
+       git commit -m $1
+
+       echo "➼ 第二步: push tag"
+       git push origin origin
+
+       echo "➼ 第三步: repo push"
+
+       echo "➼ 提交成功：${PWD##*/}.podspec $1"
+    else
+       echo "【命令错误】"
+       echo " 格式：sdk 版本号"
+       echo " 示例：sdk 0.0.1"
+    fi
+
+然后呢在.bash_profile文件加入alias sdk="~/Documents/Shell/RepoPush.sh",
+
+参考链接：https://www.jianshu.com/p/1b300d83b662
+
 Git强制拉取远程覆盖本地仓库
 ---------------------------------------------------------------------
 
