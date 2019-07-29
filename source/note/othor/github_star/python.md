@@ -2,6 +2,7 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[pykafka](https://github.com/Parsely/pykafka)|2019-07-29|python连接kafka消息队列|||940
 [WMI](https://pypi.org/project/WMI/)|2019-07-26|python操作Windows的工具比如获取进程什么的 hacker需要的多|||
 [python实现的所有算法](https://github.com/TheAlgorithms/Python)|2019-04-28||||28024
 [爬虫知乎登录](https://github.com/zkqiang/Zhihu-Login)|2019-03-09||||
