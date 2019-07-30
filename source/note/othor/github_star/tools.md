@@ -2,6 +2,7 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[gogs](https://github.com/gogs/gogs)|2019-07-30|git服务服务器搭建  和下面的gitea不知道有什么区别||31103
 [weditor](https://github.com/openatx/weditor)|2019-07-06|手机屏幕元素定位，配合下面的工具自动化||182
 [facebook-wda](https://github.com/openatx/facebook-wda)|2019-07-06|IOS自动化测试||800
 [uiautomator2](https://github.com/openatx/uiautomator2)|2019-07-06|安卓自动化测试||1272
@@ -12,7 +13,7 @@
 [V2Ray_ws-tls_Website_onekey](https://github.com/dylanbai8/V2Ray_ws-tls_Website_onekey)|2019-06-02|翻墙工具|||343
 [youtube视频下载](https://github.com/kkdai/youtube)|2019-04-18||||
 [sublime一键git](https://github.com/SublimeGit/SublimeGit)|2019-03-12|sublime一键git|||
-[git服务服务器搭建](https://github.com/go-gitea/gitea)|2019-02-21|gitea服务器|||
+[gitea服务服务器搭建](https://github.com/go-gitea/gitea)|2019-02-21|gitea服务器|||15086
 [git历史的查看](https://github.com/pomber/git-history)|2019-02-11|github查看某个文件的提交历史变更|||
 [在线PAC文件SS翻墙用](https://github.com/lbp0200/mono_pac)|2019-01-17|Shadowsocks在线PAC文件SS翻墙用|||
 [baidu-netdisk-downloaderx](https://github.com/b3log/baidu-netdisk-downloaderx)|2019-01-12|百度网盘不限速下载器 BND，支持 Windows、Mac 和 Linux|||
