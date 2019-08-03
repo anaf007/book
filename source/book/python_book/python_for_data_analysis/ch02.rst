@@ -1,5 +1,5 @@
 第二章：引言
-============================
+==============================================
 
 读取某个文件中的第一行::
 
@@ -8,6 +8,7 @@
 
     import json
     path = 'xxx'
+    #列表推导式
     records = [json.loads(line) for line in open(path)]
     records[0]
 

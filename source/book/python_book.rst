@@ -14,7 +14,6 @@ python
     python_book/python_cookbook
     python_book/scientific_computing_with_python
     python_book/python_network
-    python_book/python_high_performance
     python_book/python_professional_programming
     python_book/automation_operations_with_python
     python_book/numpy_beginner_guide
