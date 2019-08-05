@@ -2,6 +2,7 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[marktext](https://github.com/marktext/marktext)|2019-08-05|markdown编辑器，看介绍可以同时编辑显示||10928
 [gogs](https://github.com/gogs/gogs)|2019-07-30|git服务服务器搭建  和下面的gitea不知道有什么区别||31103
 [weditor](https://github.com/openatx/weditor)|2019-07-06|手机屏幕元素定位，配合下面的工具自动化||182
 [facebook-wda](https://github.com/openatx/facebook-wda)|2019-07-06|IOS自动化测试||800
