@@ -54,7 +54,7 @@ flask高级：
  - 编写文档[]
  - 权限设计 
  - 路由懒加载
- - flask-asp 定时任务
+ - flask-APScheduler 定时任务
  - flask-celery队列任务
 
  - 均衡负载
