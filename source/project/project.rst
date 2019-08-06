@@ -41,19 +41,25 @@ flask中级：
  - REST接口
  - REST接口2 restless
  - REST接口3 return json格式
- - 模板继承
+ - 模板高级 继承
  - 表单高级
- - 数据库高级[分表分库]
  - 组织结构2  使用cookieturr
- - 均衡负载
- - supervisor部署控制
 
 
 https://realpython.com/
 
-flask扩展：
+flask高级：
  - 实现Redis任务队列 ：https://realpython.com/flask-by-example-implementing-a-redis-task-queue/ 
  - 编写文档 sphinx
+ - 编写文档[]
+ - 权限设计 
+ - 路由懒加载
+ - flask-asp 定时任务
+ - flask-celery队列任务
+
+ - 均衡负载
+ - supervisor部署控制
+ - 数据库高级[分表分库]
 
 
     

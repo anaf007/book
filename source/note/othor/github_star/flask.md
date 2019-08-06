@@ -3,6 +3,7 @@
 
 名称|添加时间|问题|备注|说明|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[`置顶`awesome-flask](https://github.com/humiaozuzu/awesome-flask)|2018-12-15|flask的资源集合||务必要常看|
 [peewee Python ORM ](https://github.com/coleifer/peewee)|2019-07-24|Python ORM 和SQLAlchemy对比使用|||6677
 [Flask项目生成器](https://github.com/TTWShell/hobbit-core)|2019-05-28|快速创建flask、模块等|||5
 [Falsk的HTTP身份认证](https://github.com/miguelgrinberg/Flask-HTTPAuth)|2019-03-05||||
@@ -42,7 +43,6 @@
 [flask-redis](https://github.com/underyx/flask-redis)|2018-12-15| |||
 [flaskapp](https://github.com/tomoncle/flaskapp)|2018-12-15|使用flask搭建web项目框架. <br> 模块化设计, 支持数据迁移, banner，<br>拦截器, 异常处理, json转换，,swagger, celery，flask配置拓展 等等| http://tomoncle.com/app||
 [flask_jsondash](https://github.com/christabor/flask_jsondash)|2018-12-15| 可从任意API端点轻松配置图表仪表板。仅限JSON配置|| 仪表盘 有空看看|
-[awesome-flask](https://github.com/humiaozuzu/awesome-flask)|2018-12-15|flask的资源集合||务必要常看|
 [wtxlog](https://github.com/wtx358/wtxlog)|2018-12-15|flask的简单blog例子|||
 [june](https://github.com/pythoncn/june)|2018-12-15|论坛项目，已弃用py27版本|||
 [flaskbb](https://github.com/flaskbb/flaskbb)|2018-12-15|flask论坛程序|||
