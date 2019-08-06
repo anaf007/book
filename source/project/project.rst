@@ -26,6 +26,36 @@
     
 
 
+flask基本:
+ - 环境搭建
+ - 运行基本
+ - 模板输出
+ - 表单
+ - 数据库操作
+ - 组织结构
+ - 部署
+
+
+flask中级：
+ - 升级python3
+ - REST接口
+ - REST接口2 restless
+ - REST接口3 return json格式
+ - 模板继承
+ - 表单高级
+ - 数据库高级[分表分库]
+ - 组织结构2  使用cookieturr
+ - 均衡负载
+ - supervisor部署控制
+
+
+https://realpython.com/
+
+flask扩展：
+ - 实现Redis任务队列 ：https://realpython.com/flask-by-example-implementing-a-redis-task-queue/ 
+ - 编写文档 sphinx
+
+
     
 
 
