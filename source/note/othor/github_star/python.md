@@ -2,6 +2,7 @@
 
 名称|添加时间|说明|备注|问题|star数量
 :---:|:---:|:---:|:---:|:---:|:--:
+[Mini-Spider](https://github.com/ZYunH/Mini-Spider)|2019-08-06|Mini-Spider是一个实用的爬虫工具|||41
 [pykafka](https://github.com/Parsely/pykafka)|2019-07-29|python连接kafka消息队列|||940
 [beanstalkd](https://github.com/beanstalkd/beanstalkd)|2019-07-27|消息队列的后起之秀，是一个高性能、轻量级的分布式内存队列系统|||5153
 [WMI](https://pypi.org/project/WMI/)|2019-07-26|python操作Windows的工具比如获取进程什么的 hacker需要的多|||
