@@ -9,7 +9,6 @@ kernel:do_IRQ: 2.95 No irq handler for vector
     othor/sublime_use
     othor/inno_setup
     python/APScheduler
-    othor/restructuredtext
     othor/web_site_techniques
     othor/git_use
     othor/v2ray
