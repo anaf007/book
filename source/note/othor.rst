@@ -27,6 +27,7 @@ Python相关
     python/flask_extends/flask_security
     python/flask_extends/flask_admin
     python/flask_page_tables
+    python/python_ext
 
 Java相关
 ------------------------------------------------------------------

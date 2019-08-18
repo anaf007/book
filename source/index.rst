@@ -12,7 +12,7 @@
     :maxdepth: 2
     :glob:
 
-    book
+    book/book
  
 笔记
 ======================
