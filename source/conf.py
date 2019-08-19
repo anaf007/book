@@ -190,3 +190,10 @@ texinfo_documents = [
 #不显示原文链接
 html_show_sourcelink = False
 
+#显示markdown的链接
+enable_auto_toc_tree = True
+
+#启用数学公式
+enable_inline_math = True
+# enable_math = True
+

@@ -9,6 +9,7 @@ Python书籍
 
 
 
+
 安全相关书籍
 ======================
 
@@ -27,6 +28,15 @@ ASM/C/C++书籍
     :maxdepth: 2
 
     asm_c_cpp_book
+
+Go语言书籍
+======================
+
+.. toctree::
+    :maxdepth: 2
+
+    golang/Go语言学习笔记.md
+    golang/Go语言实战.md
 
 
 Java、PHP书籍

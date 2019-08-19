@@ -1,15 +1,17 @@
 GoLang的学习
 ==================================================================
 
-1、下载安装
+原链接： https://www.jianshu.com/nb/30833789
+
+1、环境搭建和运行
 ---------------------------------------------------------------
 
 下载go程序并安装
 
 输入 ``go version`` 出现版本号说明正常
 
-2、 第一个go程序
----------------------------------------------------------------
+第一个go程序
+
 
 ```
 package main
@@ -26,7 +28,7 @@ func main(){
 或者编译exe： ``go build index.go``
 
 
-3、 基础语法
+2、 基础语法
 ---------------------------------------------------------------
 
 四种方式：
@@ -289,6 +291,73 @@ fmt.Println(a, b)
 *int 代表是指针类型，此时会将外界传入的 &a 拷贝给 这里的a，即这里的 a 拿到的是外界的 a 的地址
 通过 *a，由于 a 是 &a，这里的 *a 相当于 *(&a) ，即从地址中取值
 由于函数内部直接操作的是外界的 a,b 的内存地址，所以可以实现引用传递
+```
+
+
+3、 内建容易——array数组、slice切片、map映射
+---------------------------------------------------------------
+
+[原文链接](https://www.jianshu.com/p/78975d33a018)  和Python不一样的  一时还是无法理解 有些晦涩难懂
+
+
+4、面向对象
+---------------------------------------------------------------
+
+
+1、 定义类
+
+定义类：type 类名 struct
+
+```
+// user 类
+type user struct {
+    name       string
+    email      string
+    ext        int
+    privileged bool
+}
+
+// admin 类
+type admin struct {
+    // 自定义类
+    person user
+    // 内置类型
+    level string
+}
+
+
+```
+
+1.2、 实例化
+
+```
+// 1. 创建 user 变量，所有属性初始化为其零值
+    var bill user
+    fmt.Println(bill) // {  0 false}
+
+    // 2. 创建 user 变量，并初始化属性值
+    lisa := user{
+        name:       "nana",
+        email:      "117@qq.com",
+        ext:        123,
+        privileged: true,
+    }
+    fmt.Println(lisa) // {nana 117@qq.com 123 true}
+    // 直接使用属性值，属性值的顺序要与 struct 中定义的一致
+    lisa2 := user{"nana", "117@qq.com", 123, true}
+    fmt.Println(lisa2) // {nana 117@qq.com 123 true}
+
+    // 3. 含有自定义类型的 struct 进行初始化
+    fred := admin{
+        person: user{
+            name:       "nana",
+            email:      "117@qq.com",
+            ext:        123,
+            privileged: true,
+        },
+        level: "super",
+    }
+    fmt.Println("fred:", fred) // fred: {{nana 117@qq.com 123 true} super}
 ```
 
 
